@@ -8,4 +8,4 @@ deployment:
     - /bin/cp -R application/ $DEPLOYPATH
     - /bin/cp -R system/ $DEPLOYPATH
     - /bin/cp index.php $DEPLOYPATH
-    - /bin/cp .htaccess.php $DEPLOYPATH
+    - /bin/cp .htaccess $DEPLOYPATH
