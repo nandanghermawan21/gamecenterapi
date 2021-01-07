@@ -29,14 +29,14 @@ class Auth extends BD_Controller
      *          mediaType="multipart/form-data",
      *          @OA\Schema(
      *              @OA\Property(
-     *                  property="Username",
+     *                  property="test[name]",
      *                  type="string",
      *                  description="username"
      *              ),
      *              @OA\Property(
-     *                  property="Password",
+     *                  property="test[desc]",
      *                  type="string",
-     *                  description="password"
+     *                  description="description"
      *              )
      *          )
      *      )
