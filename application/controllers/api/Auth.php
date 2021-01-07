@@ -5,7 +5,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 use \Firebase\JWT\JWT;
 
 /**
- * @OA\Info(title="My First API", version="0.1")
+ * @OA\Info(title="Game Center API", version="0.1")
  */
 class Auth extends BD_Controller
 {
@@ -23,7 +23,7 @@ class Auth extends BD_Controller
     }
 
     /**
-     * @OA\Post(path="/api/auth/",tags={"Auth}
+     * @OA\Post(path="/api/auth/",tags={"Auth"}
      * @OA\Response(response="200", description="An example resource")
      * @OA\Response(response="404", description="not found")
      * )
