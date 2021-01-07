@@ -31,7 +31,7 @@ class Auth extends BD_Controller
      *              @OA\Property(
      *                  property="test[name]",
      *                  type="string",
-     *                  description="username"
+     *                  description="name"
      *              ),
      *              @OA\Property(
      *                  property="test[desc]",
@@ -40,7 +40,7 @@ class Auth extends BD_Controller
      *              )
      *          )
      *      )
-     *  )
+     *  ),
      * @OA\Response(response="200", description="An example resource"),
      * @OA\Response(response="404", description="not found")
      * )
