@@ -1,9 +1,14 @@
 <?php
 
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
+
 use \Firebase\JWT\JWT;
 
-class Auth extends BD_Controller {
+/**
+ * @OA\Info(title="My First API", version="0.1")
+ */
+class Auth extends BD_Controller
+{
 
     function __construct()
     {
@@ -17,8 +22,12 @@ class Auth extends BD_Controller {
         $this->load->model('M_main');
     }
 
-    
-
+    /**
+     * @OA\Post(path="/api/auth/",tags={"Auth}
+     * @OA\Response(response="200", description="An example resource")
+     * @OA\Response(response="404", description="not found")
+     * )
+     */
     public function login_post()
     {
         $u = $this->post('username'); //Username Posted
@@ -27,20 +36,20 @@ class Auth extends BD_Controller {
         $kunci = $this->config->item('thekey');
         $invalidLogin = ['status' => 'Invalid Login']; //Respon if login invalid
         $val = $this->M_main->get_user($q)->row(); //Model to get single data row from database base on username
-        if($this->M_main->get_user($q)->num_rows() == 0){$this->response($invalidLogin, REST_Controller::HTTP_NOT_FOUND);}
-		$match = $val->password;   //Get password for user from database
-        if($p == $match){  //Condition if password matched
-        	$token['id'] = $val->id;  //From here
+        if ($this->M_main->get_user($q)->num_rows() == 0) {
+            $this->response($invalidLogin, REST_Controller::HTTP_NOT_FOUND);
+        }
+        $match = $val->password;   //Get password for user from database
+        if ($p == $match) {  //Condition if password matched
+            $token['id'] = $val->id;  //From here
             $token['username'] = $u;
             $date = new DateTime();
             $token['iat'] = $date->getTimestamp();
-            $token['exp'] = $date->getTimestamp() + 60*60*5; //To here is to generate token
-            $output['token'] = JWT::encode($token,$kunci ); //This is the output token
+            $token['exp'] = $date->getTimestamp() + 60 * 60 * 5; //To here is to generate token
+            $output['token'] = JWT::encode($token, $kunci); //This is the output token
             $this->set_response($output, REST_Controller::HTTP_OK); //This is the respon if success
-        }
-        else {
+        } else {
             $this->set_response($invalidLogin, REST_Controller::HTTP_NOT_FOUND); //This is the respon if failed
         }
     }
-
 }
