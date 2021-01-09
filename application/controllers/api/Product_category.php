@@ -16,7 +16,7 @@ class Main extends BD_Controller
     }
 
     /**
-     * @OA\Get(path="/api/category/all}",
+     * @OA\Get(path="/api/category/all",
      *   operationId="getAllCategory",
      *   @OA\Response(response=200,
      *     description="categpry product",
