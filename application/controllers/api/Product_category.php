@@ -2,6 +2,9 @@
 
 defined('BASEPATH') or exit('No direct script access allowed');
 
+/**
+ * @OA\Info(title="Game Center API", version="0.1")
+ */
 class Main extends BD_Controller
 {
     function __construct()
