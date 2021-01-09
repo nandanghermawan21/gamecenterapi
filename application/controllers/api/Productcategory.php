@@ -5,10 +5,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
 /**
  * @OA\Info(title="Game Center API", version="0.1")
  * @OA\SecurityScheme(
- *   securityDefinition="MyHeaderAuthentication",
- *   type="apiKey",
- *   in="header",
- *   name="Authorization"
+ *   securityScheme="token",
+ *   type="Bearer Token",
+ *   name="Authorization",
+ *   in="header"
  * )
  */
 class Productcategory extends BD_Controller
@@ -30,7 +30,7 @@ class Productcategory extends BD_Controller
      *       @OA\Items(ref="#/components/schemas/category")
      *     ),
      *   ),
-     *   security={{"MyHeaderAuthentication":{}}}
+     *   security={{"token": {}}},
      * )
      */
     public function all_get()
