@@ -15,12 +15,7 @@ class Main extends BD_Controller
         $this->load->model("m_category", "category");
     }
 
-    /**
-     * @OA\Post(path="/api/category/all",tags={"Category"},
-     * @OA\Response(response="200", description="An example resource"),
-     * @OA\Response(response="404", description="not found")
-     * )
-     */
+
     public function all_get()
     {
         $data = $this->category->getAll();
