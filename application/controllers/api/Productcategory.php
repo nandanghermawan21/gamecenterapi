@@ -5,7 +5,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 /**
  * @OA\Info(title="Game Center API", version="0.1")
  */
-class Poductcategory extends BD_Controller
+class Productcategory extends BD_Controller
 {
     function __construct()
     {
@@ -16,7 +16,7 @@ class Poductcategory extends BD_Controller
     }
 
     /**
-     * @OA\Get(path="/api/poductcategory/all",
+     * @OA\Get(path="/api/productcategory/all",
      *   operationId="getAllCategory",
      *   @OA\Response(response=200,
      *     description="categpry product",
