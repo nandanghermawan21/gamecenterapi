@@ -6,6 +6,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
  * @OA\Info(title="Game Center API", version="0.1")
  * @OA\SecurityScheme(
  *   securityScheme="token",
+ *   type="token",
  *   name="Authorization",
  *   in="header"
  * )
