@@ -16,7 +16,7 @@ class Main extends BD_Controller
     }
 
     /**
-     * @OA\Post(path="/api/auth/login",tags={"Auth"},
+     * @OA\Post(path="/api/category/all",tags={"Category"},
      * @OA\Response(response="200", description="An example resource"),
      * @OA\Response(response="404", description="not found")
      * )
