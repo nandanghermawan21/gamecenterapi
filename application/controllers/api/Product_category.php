@@ -16,25 +16,14 @@ class Main extends BD_Controller
     }
 
     /**
-     * @OA\Get(path="/2.0/repositories/{username}",
-     *   operationId="getRepositoriesByOwner",
-     *   @OA\Parameter(
-     *     name="username",
-     *     in="path",
-     *     required=true,
-     *     @OA\Schema(type="string")
-     *   ),
+     * @OA\Get(path="api/category/all}",
+     *   operationId="getAllCategory",
      *   @OA\Response(response=200,
-     *     description="repositories owned by the supplied user",
+     *     description="categpry product",
      *     @OA\JsonContent(type="array",
      *       @OA\Items(ref="#/components/schemas/category")
      *     ),
-     *     @OA\Link(link="userRepository", ref="#/components/links/UserRepository")
      *   )
-     * )
-     * @OA\Link(link="UserRepositories",
-     *   operationId="getRepositoriesByOwner",
-     *   parameters={"username"="$response.body#/username"}
      * )
      */
     public function all_get()
