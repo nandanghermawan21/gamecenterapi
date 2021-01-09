@@ -17,23 +17,6 @@ class Main extends BD_Controller
 
     /**
      * @OA\Post(path="/api/category/all",tags={"Category"},
-     * @OA\RequestBody(
-     *      @OA\MediaType(
-     *          mediaType="multipart/form-data",
-     *          @OA\Schema(
-     *              @OA\Property(
-     *                  property="username",
-     *                  type="string",
-     *                  description="username"
-     *              ),
-     *              @OA\Property(
-     *                  property="password",
-     *                  type="string",
-     *                  description="password"
-     *              )
-     *          )
-     *      )
-     *  ),
      * @OA\Response(response="200", description="An example resource"),
      * @OA\Response(response="404", description="not found")
      * )
