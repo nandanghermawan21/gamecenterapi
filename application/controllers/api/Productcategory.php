@@ -5,11 +5,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 /**
  * @OA\Info(title="Game Center API", version="0.1")
  * @OA\SecurityScheme(
- *   securityScheme="token",
- *   type="apiKey",
- *   name="Authorization",
- *   in="header"
- * )
+ *      securityScheme="bearerAuth",
+ *      in="header",
+ *      name="bearerAuth",
+ *      type="http",
+ *      scheme="bearer",
+ *      bearerFormat="JWT",
+ * ),
  */
 class Productcategory extends BD_Controller
 {
@@ -30,7 +32,6 @@ class Productcategory extends BD_Controller
      *       @OA\Items(ref="#/components/schemas/category")
      *     ),
      *   ),
-     *   security={{"token": {}}},
      * )
      */
     public function all_get()
