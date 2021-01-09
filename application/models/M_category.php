@@ -26,7 +26,7 @@ class M_category extends CI_Model
 
     function getAll()
     {
-        $query = $this->db->get('m_categoy');
+        $query = $this->db->get('m_category');
 
         $result = [];
         foreach ($query->result() as $row) {
