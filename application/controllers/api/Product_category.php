@@ -16,8 +16,14 @@ class Main extends BD_Controller
     }
 
     /**
-     * @OA\Post(path="/api/category/all",tags={"Category"},
-     * @OA\Response(response="200", description="An example resource"),
+     * @OA\Get(path="/api/category/all",tags={"Category"},
+     *   @OA\Response(response=200,
+     *     description="repositories owned by the supplied user",
+     *     @OA\JsonContent(type="array",
+     *       @OA\Items(ref="#/components/schemas/category")
+     *     ),
+     *     @OA\Link(link="userRepository", ref="#/components/links/UserRepository")
+     *   )
      * @OA\Response(response="404", description="not found")
      * )
      */
