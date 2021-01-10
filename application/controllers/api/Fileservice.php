@@ -19,7 +19,7 @@ class Fileservice extends BD_Controller
         // Construct the parent class
         parent::__construct();
         //mendefinisikan folder upload
-        define("UPLOAD_DIR", "../upload/");
+        define("UPLOAD_DIR", $this->config->item("upload_dir"));
     }
 
     /**
@@ -80,7 +80,6 @@ class Fileservice extends BD_Controller
 
             // menambahkan path
             $name = $path . "/" . $name;
-
 
             // create path jika tidak ada
             if (!is_dir(UPLOAD_DIR . "/" . $path)) {
