@@ -64,13 +64,13 @@ class Productcategory extends BD_Controller
         try {
             $jsonBody  = json_decode(file_get_contents('php://input'), true);
 
-            if ($jsonBody->id == "" || $jsonBody->id == null) {
-                $jsonBody->id = random_string('alnum', 10);
-            }
+            // if ($jsonBody->id == "" || $jsonBody->id == null) {
+            //     $jsonBody->id = random_string('alnum', 10);
+            // }
 
-            $result = $this->category->add($jsonBody);
+            // $result = $this->category->add($jsonBody);
 
-            $this->response($result, 200);
+            $this->response($jsonBody, 200);
         } catch (\Exception $e) {
             $error = new errormodel();
             $error->status = 500;
