@@ -119,7 +119,7 @@ class Productcategory extends BD_Controller
      *   operationId="add category",
      *   @OA\Parameter(
      *     name="id",
-     *     in="path",
+     *     in="query",
      *     required=true,
      *     @OA\Schema(type="string")
      *   ),
