@@ -46,7 +46,7 @@ class Productcategory extends BD_Controller
      *   operationId="add category",
      *   @OA\RequestBody(
      *     @OA\MediaType(
-     *         mediaType="application/xml",
+     *         mediaType="application/json",
      *         @OA\Schema(ref="#/components/schemas/category")
      *     )
      *   ),
