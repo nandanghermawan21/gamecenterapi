@@ -70,7 +70,7 @@ class M_category extends CI_Model
     {
         $this->db->insert('m_category', $category->toRow());
 
-        $data = $this->db->get_where('id', array('id' => $category->id));
+        $data = $this->db->get_where('m_category', array('id' => $category->id));
 
         return $this->fromRow($data->result()[0]);
     }
