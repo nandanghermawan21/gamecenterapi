@@ -95,12 +95,12 @@ class Fileservice extends BD_Controller
             }
 
             // mencegah overwrite filename
-            $i = 0;
+            // $i = 0;
             $parts = pathinfo($name);
-            while (file_exists(UPLOAD_DIR . $name)) {
-                $i++;
-                $name =  $parts["filename"] . "-" . $i . "." . $parts["extension"];
-            }
+            // while (file_exists(UPLOAD_DIR . $name)) {
+            //     $i++;
+            //     $name =  $parts["filename"] . "-" . $i . "." . $parts["extension"];
+            // }
 
             $success = move_uploaded_file($media["tmp_name"], UPLOAD_DIR . $name);
             if ($success) {
