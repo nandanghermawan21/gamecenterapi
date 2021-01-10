@@ -25,10 +25,10 @@ class Productcategory extends BD_Controller
      *     ),
      *   ),
      *  @OA\Parameter(
-     *    paramType="header", 
+     *    type="string",                                                                                                                                                                              
      *    name="Authorization",
-     *    required=true
-     *  )
+     *    in="header",
+     *    required=true)
      * )
      */
     public function all_get()
