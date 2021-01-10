@@ -20,6 +20,8 @@ class Fileservice extends BD_Controller
         parent::__construct();
         //mendefinisikan folder upload
         define("UPLOAD_DIR", $this->config->item("upload_dir"));
+        $this->load->model('filemodel', 'filemodel');
+        $this->load->helper('file', 'file');
     }
 
     /**
@@ -50,6 +52,12 @@ class Fileservice extends BD_Controller
      *                ),
      *            ),
      *        ),
+     *    ),
+     *    @OA\Response(response=200,
+     *     description="file info",
+     *     @OA\JsonContent(type="array",
+     *       @OA\Items(ref="#/components/schemas/filemodel")
+     *     ),
      *    ),
      *   security={{"token": {}}},
      * )
@@ -100,10 +108,14 @@ class Fileservice extends BD_Controller
                 // $q = $conn->query("SELECT id FROM files ORDER BY id DESC LIMIT 1");
                 // $rq = $q->fetch_assoc();
                 // echo $rq['id'];
+                $filemodel = new filemodel();
+                $filemodel->filename = $name;
+                $filemodel->path = $path;
+                $filemodel->extention = $parts["extension"];
+                $filemodel->size = filesize(UPLOAD_DIR . "/" . $path . "/" . $name);
                 $this->response("Ok", 200);
                 exit;
             }
-            chmod(UPLOAD_DIR . $name, 0644);
         }
     }
 }
