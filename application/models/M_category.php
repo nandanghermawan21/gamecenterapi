@@ -47,9 +47,16 @@ class M_category extends CI_Model
     function fromJson($json)
     {
         $data = new M_category();
-        $data->id = $json["id"];
-        $data->name = $json["name"];
-        $data->iconUrl = $json["iconUrl"];
+
+        if (isset($mydata['id'])) {
+            $data->id = $json["id"];
+        }
+        if (isset($mydata['name'])) {
+            $data->name = $json["name"];
+        }
+        if (isset($mydata['name'])) {
+            $data->iconUrl = $json["name"];
+        }
 
         return $data;
     }

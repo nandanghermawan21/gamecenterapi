@@ -140,7 +140,6 @@ class Productcategory extends BD_Controller
      */
     public function update_post()
     {
-
         $id = $this->input->get('id', TRUE);
         $jsonBody  = json_decode(file_get_contents('php://input'), true);
         $category = $this->category->fromJson($jsonBody);
