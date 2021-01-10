@@ -93,7 +93,7 @@ class M_category extends CI_Model
     {
         $data = array(
             'name' => $category->name,
-            'iconUrl' => $category->iconUrl,
+            'icon_url' => $category->iconUrl,
         );
 
         $this->db->where('id', $id);
