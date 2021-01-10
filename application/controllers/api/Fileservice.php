@@ -75,7 +75,7 @@ class Fileservice extends BD_Controller
             if ($name == "" || $name == null) {
                 $name = $currentName;
             } else {
-                $name = $name . "." . pathinfo($name)["extension"];
+                $name = $name . "." . pathinfo($currentName)["extension"];
             }
 
             // menambahkan path
