@@ -71,7 +71,7 @@ class Productcategory extends BD_Controller
 
             $result = $this->category->add($category);
 
-            $this->response($result->id, 200);
+            $this->response($result, 200);
         } catch (\Exception $e) {
             $error = new errormodel();
             $error->status = 500;
