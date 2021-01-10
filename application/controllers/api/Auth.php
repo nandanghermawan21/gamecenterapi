@@ -41,8 +41,12 @@ class Auth extends BD_Controller
      *          )
      *      )
      *  ),
-     * @OA\Response(response="200", description="An example resource"),
-     * @OA\Response(response="404", description="not found")
+     *   @OA\Response(response=200,
+     *     description="basic user info",
+     *     @OA\JsonContent(type="array",
+     *       @OA\Items(ref="#/components/schemas/user")
+     *     ),
+     *   ),
      * )
      */
     public function login_post()
