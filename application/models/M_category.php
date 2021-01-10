@@ -29,6 +29,7 @@ class M_category extends CI_Model
         $data = new M_category();
         $data->id = $row->id;
         $data->name = $row->name;
+        $data->iconUrl = $row->icon_url;
 
         return $data;
     }
@@ -38,6 +39,7 @@ class M_category extends CI_Model
         $data = new M_category();
         $data->id = $json["id"];
         $data->name = $json["name"];
+        $data->iconUrl = $json["iconUrl"];
 
         return $data;
     }
