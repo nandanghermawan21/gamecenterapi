@@ -72,6 +72,11 @@ class M_category extends CI_Model
 
         $data = $this->db->get_where('id', array('id' => $category->id));
 
+        $db_error = $this->db->error();
+        if (!empty($db_error)) {
+            throw new Exception('Database error! Error Code [' . $db_error['code'] . '] Error: ' . $db_error['message']);
+            return false; // unreachable retrun statement !!!
+        }
         return $this->fromRow($data[0]);
     }
 }
