@@ -72,6 +72,6 @@ class M_category extends CI_Model
 
         $data = $this->db->get_where('m_category', array('id' => $category->id));
 
-        return $this->fromRow($data->result()[0]);
+        return $this->fromRow($data->result());
     }
 }
