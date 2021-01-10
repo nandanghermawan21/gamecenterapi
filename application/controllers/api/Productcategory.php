@@ -44,16 +44,6 @@ class Productcategory extends BD_Controller
     /**
      * @OA\Post(path="/api/productcategory/add",
      *   operationId="add category",
-     *   @OA\RequestBody(
-     *     request="Category",
-     *     description="Product Category set id as empty for generate id automaticaly",
-     *     required=true,
-     *     @OA\JsonContent(ref="#/components/schemas/category"),
-     *     @OA\MediaType(
-     *         mediaType="application/json",
-     *         @OA\Schema(ref="#/components/schemas/category")
-     *     )
-     *   )
      *   @OA\Response(response=200,
      *     description="categpry product",
      *     @OA\JsonContent(type="array",
