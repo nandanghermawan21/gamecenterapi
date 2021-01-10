@@ -19,7 +19,7 @@ class Auth extends BD_Controller
         $this->methods['users_get']['limit'] = 500; // 500 requests per hour per user/key
         $this->methods['users_post']['limit'] = 100; // 100 requests per hour per user/key
         $this->methods['users_delete']['limit'] = 50; // 50 requests per hour per user/key
-        $this->load->model('M_user');
+        $this->load->model('M_user', 'user');
     }
 
     /**
@@ -56,8 +56,8 @@ class Auth extends BD_Controller
         $q = array('username' => $u); //For where query condition
         $kunci = $this->config->item('thekey');
         $invalidLogin = ['status' => 'Invalid Login']; //Respon if login invalid
-        $val = $this->M_user->get_user($q)->row(); //Model to get single data row from database base on username
-        if ($this->M_user->get_user($q)->num_rows() == 0) {
+        $val = $this->user->get_user($q)->row(); //Model to get single data row from database base on username
+        if ($this->user->get_user($q)->num_rows() == 0) {
             $this->response($invalidLogin, REST_Controller::HTTP_NOT_FOUND);
         }
         $match = $val->password;   //Get password for user from database
@@ -68,7 +68,13 @@ class Auth extends BD_Controller
             $token['iat'] = $date->getTimestamp();
             $token['exp'] = $date->getTimestamp() + 60 * 60 * 5; //To here is to generate token
             $output['token'] = JWT::encode($token, $kunci); //This is the output token
-            $this->set_response($output, REST_Controller::HTTP_OK); //This is the respon if success
+
+            //result the user
+            $user = $this->user->fromRow($val);
+            $user->tokken = $output;
+
+            $this->$this->set_response($user, REST_Controller::HTTP_OK); //This is the respon if success
+
         } else {
             $this->set_response($invalidLogin, REST_Controller::HTTP_NOT_FOUND); //This is the respon if failed
         }

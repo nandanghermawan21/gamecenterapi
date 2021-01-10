@@ -17,6 +17,14 @@ class M_user extends CI_Model
 	 */
 	public $token;
 
+	function fromRow($row)
+	{
+		$data = new M_user();
+		$data->username = $row->username;
+
+		return $data;
+	}
+
 
 	function get_user($q)
 	{
