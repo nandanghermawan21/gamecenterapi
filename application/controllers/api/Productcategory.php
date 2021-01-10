@@ -4,11 +4,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 /**
  * @OA\Info(title="Game Center API", version="0.1")
- * @OA\SecurityScheme(
- *   securityScheme="token",
- *   name="Authorization",
- *   in="header"
- * )
  */
 class Productcategory extends BD_Controller
 {
@@ -28,6 +23,12 @@ class Productcategory extends BD_Controller
      *     @OA\JsonContent(type="array",
      *       @OA\Items(ref="#/components/schemas/category")
      *     ),
+     *   ),
+     *   @OA\Parameter(
+     *     name="Authorization",
+     *     in="header",
+     *     required=true,
+     *     @OA\Schema(type="string")
      *   ),
      * )
      */
