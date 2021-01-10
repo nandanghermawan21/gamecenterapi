@@ -82,7 +82,7 @@ class M_category extends CI_Model
         );
 
         $this->db->where('id', $id);
-        $this->db->update('mytable', $data);
+        $this->db->update('m_category', $data);
 
         $data = $this->db->get_where('m_category', array('id' => $id));
 
