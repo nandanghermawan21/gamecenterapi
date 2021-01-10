@@ -1,4 +1,4 @@
-create table m_catogory(
+create table m_category(
     id varchar(10) primary key,
     name varchar(50),
     icon_url varchar(200)
@@ -19,5 +19,6 @@ create table m_sub_category(
     category_id varchar(10),
     name varchar(50),
     icon_url varchar(200),
-    FOREIGN KEY (category_id) REFERENCES m_catogory(id)
+    FOREIGN KEY (category_id) REFERENCES m_category(id)
 )
+

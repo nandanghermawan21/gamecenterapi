@@ -37,6 +37,6 @@ class M_category extends CI_Model
             array_push($result, $data);
         }
 
-        return $data;
+        return $result;
     }
 }
