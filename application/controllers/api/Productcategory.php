@@ -115,7 +115,7 @@ class Productcategory extends BD_Controller
     }
 
     /**
-     * @OA\Post(path="/api/productcategory/add",tags={"productCategory"},
+     * @OA\Post(path="/api/productcategory/update",tags={"productCategory"},
      *   operationId="add category",
      *   @OA\Parameter(
      *     name="id",
