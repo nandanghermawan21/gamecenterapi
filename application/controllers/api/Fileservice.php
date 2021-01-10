@@ -42,7 +42,7 @@ class Fileservice extends BD_Controller
      *   security={{"token": {}}},
      * )
      */
-    public function do_upload()
+    public function upload_post()
     {
         if (!empty($_FILES["media"])) {
             $media    = $_FILES["media"];
