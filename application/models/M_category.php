@@ -88,4 +88,19 @@ class M_category extends CI_Model
 
         return $this->fromRow($data->result()[0]);
     }
+
+    function update($id, \M_category $category)
+    {
+        $data = array(
+            'name' => $category->name,
+            'iconUrl' => $category->iconUrl,
+        );
+
+        $this->db->where('id', $id);
+        $this->db->update('m_category', $data);
+
+        $data = $this->db->get_where('m_category', array('id' => $id));
+
+        return $this->fromRow($data->result()[0]);
+    }
 }

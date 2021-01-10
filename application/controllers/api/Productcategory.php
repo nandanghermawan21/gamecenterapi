@@ -113,4 +113,40 @@ class Productcategory extends BD_Controller
 
         $this->response($result, 200);
     }
+
+    /**
+     * @OA\Post(path="/api/productcategory/add",tags={"productCategory"},
+     *   operationId="add category",
+     *   @OA\Parameter(
+     *     name="id",
+     *     in="path",
+     *     required=true,
+     *     @OA\Schema(type="string")
+     *   ),
+     *   @OA\RequestBody(
+     *     @OA\MediaType(
+     *         mediaType="application/json",
+     *         @OA\Schema(ref="#/components/schemas/category")
+     *     ),
+     *   ),
+     *   @OA\Response(response=200,
+     *     description="categpry product",
+     *     @OA\JsonContent(type="array",
+     *       @OA\Items(ref="#/components/schemas/category")
+     *     ),
+     *   ),
+     *   security={{"token": {}}},
+     * )
+     */
+    public function update_post()
+    {
+
+        $id = $this->post('id');
+        $jsonBody  = json_decode(file_get_contents('php://input'), true);
+        $category = $this->category->fromJson($jsonBody);
+
+        $result = $this->category->update()($id, $category);
+
+        $this->response($result, 200);
+    }
 }
