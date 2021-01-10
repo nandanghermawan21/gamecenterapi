@@ -33,7 +33,10 @@ class BD_Controller extends REST_Controller
             $decoded = JWT::decode($token, $kunci, array('HS256'));
             $this->user_data = $decoded;
         } catch (Exception $e) {
-            $invalid = ['status' => $e->getMessage()]; //Respon if credential invalid
+            $invalid = [
+                'status' => $e->getMessage(),
+                'Authorization' => $headers
+            ]; //Respon if credential invalid
             $this->response($invalid, 401); //401
         }
     }
