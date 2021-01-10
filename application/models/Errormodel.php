@@ -2,7 +2,7 @@
 
 
 /**
- * @OA\Schema(schema="category")
+ * @OA\Schema(schema="errormodel")
  */
 class Errormodel extends CI_Model
 {
