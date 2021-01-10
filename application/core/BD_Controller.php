@@ -27,6 +27,8 @@ class BD_Controller extends REST_Controller
         if (!empty($headers)) {
             if (preg_match('/Bearer\s(\S+)/', $headers, $matches)) {
                 $token = $matches[1];
+            } else if (preg_match('/bearer\s(\S+)/', $headers, $matches)) {
+                $token = $matches[1];
             }
         }
         try {
