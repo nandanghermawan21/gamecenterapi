@@ -71,7 +71,7 @@ class Auth extends BD_Controller
 
             //result the user
             $user = $this->user->fromRow($val);
-            $user->tokken = $output['token'];
+            $user->token = $output['token'];
 
             $this->set_response($user, REST_Controller::HTTP_OK); //This is the respon if success
 
