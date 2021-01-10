@@ -104,10 +104,6 @@ class Fileservice extends BD_Controller
 
             $success = move_uploaded_file($media["tmp_name"], UPLOAD_DIR . $name);
             if ($success) {
-                // $in = $conn->query("INSERT INTO files(tgl_upload, file_name, file_size, file_type) VALUES('$tgl', '$name', '$size', '$ext')");
-                // $q = $conn->query("SELECT id FROM files ORDER BY id DESC LIMIT 1");
-                // $rq = $q->fetch_assoc();
-                // echo $rq['id'];
                 $filemodel = new filemodel();
                 $filemodel->filename = $name;
                 $filemodel->path = $path;
