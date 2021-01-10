@@ -30,7 +30,7 @@ class BD_Controller extends REST_Controller
             }
         }
         try {
-            $decoded = JWT::decode("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjIiLCJ1c2VybmFtZSI6ImRvZGkiLCJpYXQiOjE2MTAyNDQ0NDMsImV4cCI6MTYxMDI2MjQ0M30.oSScc4zKtiP_dWYatUSSv1zR7YXP3h67fACDJFOdc8o", $kunci, array('HS256'));
+            $decoded = JWT::decode($token, $kunci, array('HS256'));
             $this->user_data = $decoded;
         } catch (Exception $e) {
             $invalid = ['status' => $e->getMessage()]; //Respon if credential invalid

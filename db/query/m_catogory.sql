@@ -5,7 +5,7 @@ create table m_category(
 )
 
 -- add initial data
-insert into m_catogory
+insert into m_category
 values 
 ('ZKU8AIL22Z','Sembako','icon/category/ZKU8AIL22Z.png'),
 ('0HO2LOH66N','Makanan','icon/category/0HO2LOH66N.png'),

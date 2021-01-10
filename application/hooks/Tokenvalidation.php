@@ -16,6 +16,6 @@ class Tokenvalidation extends CI_Controller {
              $this->set_response($invalid, REST_Controller::HTTP_BAD_REQUEST);
         }
     }
-
+}
 
 }
