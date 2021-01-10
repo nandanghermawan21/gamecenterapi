@@ -65,7 +65,7 @@ class Productcategory extends BD_Controller
             $jsonBody  = json_decode(file_get_contents('php://input'), true);
             $category = $this->category->fromJson($jsonBody);
 
-            if ($category->id == "" || $jsonBody->id == null) {
+            if ($category->id == "" || $category->id == null) {
                 $category->id = random_string('alnum', 10);
             }
 
