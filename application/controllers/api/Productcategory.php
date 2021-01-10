@@ -44,6 +44,12 @@ class Productcategory extends BD_Controller
     /**
      * @OA\Post(path="/api/productcategory/add",tags={"productCategory"},
      *   operationId="add category",
+     *   @OA\RequestBody(
+     *     @OA\MediaType(
+     *         mediaType="application/xml",
+     *         @OA\Schema(ref="#/components/schemas/category")
+     *     )
+     *   ),
      *   @OA\Response(response=200,
      *     description="categpry product",
      *     @OA\JsonContent(type="array",
