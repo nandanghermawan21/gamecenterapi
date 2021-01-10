@@ -34,6 +34,16 @@ class M_category extends CI_Model
         return $data;
     }
 
+    function toRow($row)
+    {
+        $data = new stdClass();
+        $data->id = $row->id;
+        $data->name = $row->name;
+        $data->icon_url = $row->iconUrl;
+
+        return $data;
+    }
+
     function fromJson($json)
     {
         $data = new M_category();
@@ -43,6 +53,8 @@ class M_category extends CI_Model
 
         return $data;
     }
+
+
 
     function getAll()
     {
@@ -58,7 +70,7 @@ class M_category extends CI_Model
 
     function add($category)
     {
-        $this->db->insert('m_category', $category);
+        $this->db->insert('m_category', $category->toRow());
 
         $data = $this->db->get_where('id', array('id' => $$category->id));
 
