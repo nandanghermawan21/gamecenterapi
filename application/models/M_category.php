@@ -24,19 +24,33 @@ class M_category extends CI_Model
      */
     public $iconUrl;
 
+    function fromRow($row)
+    {
+        $data = new M_category();
+        $data->id = $row->id;
+        $data->name = $row->name;
+
+        return $data;
+    }
+
     function getAll()
     {
         $query = $this->db->get('m_category');
 
         $result = [];
         foreach ($query->result() as $row) {
-            $data = new M_category();
-            $data->id = $row->id;
-            $data->name = $row->name;
-            $data->iconUrl = $row->icon_url;
-            array_push($result, $data);
+            array_push($result, $this->fromRow($row));
         }
 
         return $result;
+    }
+
+    function add($category)
+    {
+        $this->db->insert('m_category', $category);
+
+        $data = $this->db->get_where('id', array('id' => $$category->id));
+
+        return $this->fromRow($data[0]);
     }
 }
