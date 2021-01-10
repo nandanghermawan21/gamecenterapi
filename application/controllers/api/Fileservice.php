@@ -19,8 +19,7 @@ class Fileservice extends BD_Controller
         // Construct the parent class
         parent::__construct();
         //mendefinisikan folder upload
-        $uploadpath = $_SERVER["DOCUMENT_ROOT"] . '/upload';
-        define("UPLOAD_DIR", $uploadpath);
+        define("UPLOAD_DIR", "../upload/");
     }
 
     /**
