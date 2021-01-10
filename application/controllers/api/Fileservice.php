@@ -76,7 +76,7 @@ class Fileservice extends BD_Controller
             }
 
             // menambahkan path
-            $name = $path . $name;
+            $name = $path . "/" . $name;
 
             // mencegah overwrite filename
             $i = 0;
