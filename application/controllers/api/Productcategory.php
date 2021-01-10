@@ -25,7 +25,6 @@ class Productcategory extends BD_Controller
 
     /**
      * @OA\Get(path="/api/productcategory/all",
-     *   tags={"Product Category"}
      *   operationId="getAllCategory",
      *   @OA\Response(response=200,
      *     description="categpry product",
@@ -44,7 +43,6 @@ class Productcategory extends BD_Controller
 
     /**
      * @OA\Post(path="/api/productcategory/add",
-     *   tags={"Product Category"}
      *   operationId="add category",
      *   @OA\RequestBody(
      *     request="Category",
