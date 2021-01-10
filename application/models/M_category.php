@@ -34,12 +34,12 @@ class M_category extends CI_Model
         return $data;
     }
 
-    function toRow($row)
+    function toRow()
     {
         $data = new stdClass();
-        $data->id = $row->id;
-        $data->name = $row->name;
-        $data->icon_url = $row->iconUrl;
+        $data->id = $this->id;
+        $data->name = $this->name;
+        $data->icon_url = $this->iconUrl;
 
         return $data;
     }
