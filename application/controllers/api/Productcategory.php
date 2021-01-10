@@ -82,7 +82,7 @@ class Productcategory extends BD_Controller
     }
 
     /**
-     * @OA\Post(path="/api/category/remove",tags={"category"},
+     * @OA\Post(path="/api/productcategory/remove",tags={"productCategory"},
      * @OA\RequestBody(
      *      @OA\MediaType(
      *          mediaType="multipart/form-data",
