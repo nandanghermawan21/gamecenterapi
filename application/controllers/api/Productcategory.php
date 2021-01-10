@@ -80,4 +80,35 @@ class Productcategory extends BD_Controller
             $this->response($error, 500);
         }
     }
+
+    /**
+     * @OA\Post(path="/api/auth/login",tags={"Auth"},
+     * @OA\RequestBody(
+     *      @OA\MediaType(
+     *          mediaType="multipart/form-data",
+     *          @OA\Schema(
+     *              @OA\Property(
+     *                  property="id",
+     *                  type="string",
+     *                  description="id"
+     *              ),
+     *          )
+     *      )
+     *  ),
+     *   @OA\Response(response=200,
+     *     description="categpry product",
+     *     @OA\JsonContent(type="array",
+     *       @OA\Items(ref="#/components/schemas/category")
+     *     ),
+     *   ),
+     * )
+     */
+    public function remove_post()
+    {
+        $id = $this->post('id');
+
+        $result = $this->category->remove($id);
+
+        $this->response($result, 200);
+    }
 }

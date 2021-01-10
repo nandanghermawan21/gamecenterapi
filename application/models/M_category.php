@@ -74,4 +74,18 @@ class M_category extends CI_Model
 
         return $this->fromRow($data->result()[0]);
     }
+
+    function remove($id)
+    {
+        $data = array(
+            'is_deleted' => 1,
+        );
+
+        $this->db->where('id', $id);
+        $this->db->update('mytable', $data);
+
+        $data = $this->db->get_where('m_category', array('id' => $id));
+
+        return $this->fromRow($data->result()[0]);
+    }
 }

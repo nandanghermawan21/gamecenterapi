@@ -7,6 +7,9 @@ create table m_product(
     selling_price decimal,
     silver_coint int,
     mega_ticket int,
+    created_by int,
+    created_date datetime,
+    is_deleted boolean,
     image varchar(500),
     FOREIGN KEY (sub_category_id) REFERENCES m_sub_category(id)
 )
