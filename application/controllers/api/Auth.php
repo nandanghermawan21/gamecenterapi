@@ -19,7 +19,7 @@ class Auth extends BD_Controller
         $this->methods['users_get']['limit'] = 500; // 500 requests per hour per user/key
         $this->methods['users_post']['limit'] = 100; // 100 requests per hour per user/key
         $this->methods['users_delete']['limit'] = 50; // 50 requests per hour per user/key
-        $this->load->model('M_main');
+        $this->load->model('M_user');
     }
 
     /**
@@ -52,8 +52,8 @@ class Auth extends BD_Controller
         $q = array('username' => $u); //For where query condition
         $kunci = $this->config->item('thekey');
         $invalidLogin = ['status' => 'Invalid Login']; //Respon if login invalid
-        $val = $this->M_main->get_user($q)->row(); //Model to get single data row from database base on username
-        if ($this->M_main->get_user($q)->num_rows() == 0) {
+        $val = $this->M_user->get_user($q)->row(); //Model to get single data row from database base on username
+        if ($this->M_user->get_user($q)->num_rows() == 0) {
             $this->response($invalidLogin, REST_Controller::HTTP_NOT_FOUND);
         }
         $match = $val->password;   //Get password for user from database

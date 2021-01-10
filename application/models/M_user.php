@@ -1,6 +1,6 @@
 <?php if (!defined('BASEPATH')) exit('No direct script allowed');
 
-class M_main extends CI_Model
+class M_user extends CI_Model
 {
 
 	function get_user($q)
