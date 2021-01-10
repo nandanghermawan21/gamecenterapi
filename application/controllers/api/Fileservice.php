@@ -25,25 +25,40 @@ class Fileservice extends BD_Controller
     /**
      * @OA\Post(path="/api/Fileservice/upload",tags={"fileService"},
      *   operationId="upload file",
-     *     	@OA\RequestBody(
-     *          required=true,
-     *          @OA\MediaType(
-     *              mediaType="multipart/form-data",
-     *              @OA\Schema(
-     *                  @OA\Property(
-     *                      property="media",
-     *                      description="media",
-     *                      type="file",
-     *                      @OA\Items(type="string", format="binary")
-     *                   ),
-     *               ),
-     *           ),
-     *       ),
+     *   @OA\Parameter(
+     *       name="path",
+     *       in="query",
+     *       required=true,
+     *       @OA\Schema(type="string")
+     *   ),
+     *   @OA\Parameter(
+     *       name="name",
+     *       in="query",
+     *       required=true,
+     *       @OA\Schema(type="string")
+     *   ),
+     *   @OA\RequestBody(
+     *       required=true,
+     *       @OA\MediaType(
+     *           mediaType="multipart/form-data",
+     *           @OA\Schema(
+     *               @OA\Property(
+     *                   property="media",
+     *                   description="media",
+     *                   type="file",
+     *                   @OA\Items(type="string", format="binary")
+     *                ),
+     *            ),
+     *        ),
+     *    ),
      *   security={{"token": {}}},
      * )
      */
     public function upload_post()
     {
+        $path = $this->input->get("path", true);
+        $name = $this->input->get("name", true);
+
         if (!empty($_FILES["media"])) {
             $media    = $_FILES["media"];
             $ext    = pathinfo($_FILES["media"]["name"], PATHINFO_EXTENSION);
@@ -56,14 +71,19 @@ class Fileservice extends BD_Controller
             }
 
             // filename yang aman
-            $name = preg_replace("/[^A-Z0-9._-]/i", "_", $media["name"]);
+            if ($name == "" || $name == null) {
+                $name = preg_replace("/[^A-Z0-9._-]/i", "_", $media["name"]);
+            }
+
+            // menambahkan path
+            $name = $path . $name;
 
             // mencegah overwrite filename
             $i = 0;
             $parts = pathinfo($name);
             while (file_exists(UPLOAD_DIR . $name)) {
                 $i++;
-                $name = $parts["filename"] . "-" . $i . "." . $parts["extension"];
+                $name =  $parts["filename"] . "-" . $i . "." . $parts["extension"];
             }
 
             $success = move_uploaded_file($media["tmp_name"], UPLOAD_DIR . $name);
