@@ -11,7 +11,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
  *   in="header"
  * )
  */
-class Upload extends BD_Controller
+class Fileservice extends BD_Controller
 {
 
     function __construct()
@@ -23,8 +23,8 @@ class Upload extends BD_Controller
     }
 
     /**
-     * @OA\Post(path="/api/productcategory/add",tags={"productCategory"},
-     *   operationId="add category",
+     * @OA\Post(path="/api/Fileservice/upload",tags={"fileService"},
+     *   operationId="upload file",
      *     	@OA\RequestBody(
      *          required=true,
      *          @OA\MediaType(
