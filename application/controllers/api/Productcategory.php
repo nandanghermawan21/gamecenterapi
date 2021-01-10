@@ -24,12 +24,11 @@ class Productcategory extends BD_Controller
      *       @OA\Items(ref="#/components/schemas/category")
      *     ),
      *   ),
-     *   @OA\Parameter(
-     *     name="Authorization",
-     *     in="header",
-     *     required=true,
-     *     @OA\Schema(type="string")
-     *   ),
+     *  @OA\Parameter(
+     *    paramType="header", 
+     *    name="Authorization",
+     *    required=true
+     *  )
      * )
      */
     public function all_get()
