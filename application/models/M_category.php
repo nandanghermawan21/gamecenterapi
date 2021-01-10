@@ -48,13 +48,13 @@ class M_category extends CI_Model
     {
         $data = new M_category();
 
-        if (isset($mydata['id'])) {
+        if (isset($json['id'])) {
             $data->id = $json["id"];
         }
-        if (isset($mydata['name'])) {
+        if (isset($json['name'])) {
             $data->name = $json["name"];
         }
-        if (isset($mydata['name'])) {
+        if (isset($json['name'])) {
             $data->iconUrl = $json["name"];
         }
 
