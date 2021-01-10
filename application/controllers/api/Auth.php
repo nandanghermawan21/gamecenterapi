@@ -73,7 +73,7 @@ class Auth extends BD_Controller
             $user = $this->user->fromRow($val);
             $user->tokken = $output['token'];
 
-            $this->$this->set_response($user, REST_Controller::HTTP_OK); //This is the respon if success
+            $this->set_response($user, REST_Controller::HTTP_OK); //This is the respon if success
 
         } else {
             $this->set_response($invalidLogin, REST_Controller::HTTP_NOT_FOUND); //This is the respon if failed
