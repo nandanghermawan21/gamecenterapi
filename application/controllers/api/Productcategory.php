@@ -52,7 +52,7 @@ class Productcategory extends BD_Controller
      *   ),
      *   @OA\Response(response=200,
      *     description="categpry product",
-     *     @OA\JsonContent(type="array",
+     *     @OA\JsonContent(
      *       @OA\Items(ref="#/components/schemas/category")
      *     ),
      *   ),
@@ -98,7 +98,7 @@ class Productcategory extends BD_Controller
      *  ),
      *   @OA\Response(response=200,
      *     description="categpry product",
-     *     @OA\JsonContent(type="array",
+     *     @OA\JsonContent(
      *       @OA\Items(ref="#/components/schemas/category")
      *     ),
      *   ),
@@ -131,7 +131,7 @@ class Productcategory extends BD_Controller
      *   ),
      *   @OA\Response(response=200,
      *     description="categpry product",
-     *     @OA\JsonContent(type="array",
+     *     @OA\JsonContent(
      *       @OA\Items(ref="#/components/schemas/category")
      *     ),
      *   ),
