@@ -33,6 +33,15 @@ class M_category extends CI_Model
         return $data;
     }
 
+    function fromJson($json)
+    {
+        $data = new M_category();
+        $data->id = $json["id"];
+        $data->name = $json["name"];
+
+        return $data;
+    }
+
     function getAll()
     {
         $query = $this->db->get('m_category');

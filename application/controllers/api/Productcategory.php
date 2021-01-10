@@ -63,6 +63,7 @@ class Productcategory extends BD_Controller
     {
         try {
             $jsonBody  = json_decode(file_get_contents('php://input'), true);
+            $category = $this->category->fromJson($jsonBody);
 
             // if ($jsonBody->id == "" || $jsonBody->id == null) {
             //     $jsonBody->id = random_string('alnum', 10);
@@ -70,7 +71,7 @@ class Productcategory extends BD_Controller
 
             // $result = $this->category->add($jsonBody);
 
-            $this->response($jsonBody, 200);
+            $this->response($category, 200);
         } catch (\Exception $e) {
             $error = new errormodel();
             $error->status = 500;
