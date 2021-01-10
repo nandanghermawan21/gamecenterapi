@@ -101,6 +101,7 @@ class Productcategory extends BD_Controller
      *       @OA\Items(ref="#/components/schemas/category")
      *     ),
      *   ),
+     *   security={{"token": {}}},
      * )
      */
     public function remove_post()
