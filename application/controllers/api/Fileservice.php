@@ -71,12 +71,21 @@ class Fileservice extends BD_Controller
             }
 
             // filename yang aman
+            $currentName = preg_replace("/[^A-Z0-9._-]/i", "_", $media["name"]);
             if ($name == "" || $name == null) {
-                $name = preg_replace("/[^A-Z0-9._-]/i", "_", $media["name"]);
+                $name = $currentName;
+            } else {
+                $name = $name . "." . pathinfo($name)["extension"];
             }
 
             // menambahkan path
             $name = $path . "/" . $name;
+
+
+            // create path jika tidak ada
+            if (!is_dir(UPLOAD_DIR . "/" . $path)) {
+                mkdir(UPLOAD_DIR . "/" . $path, 0777, TRUE);
+            }
 
             // mencegah overwrite filename
             $i = 0;
