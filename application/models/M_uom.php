@@ -7,7 +7,7 @@ class M_uom extends CI_Model
 {
     /**
      * @OA\Property()
-     * @var string
+     * @var int
      */
     public $uomId;
 
