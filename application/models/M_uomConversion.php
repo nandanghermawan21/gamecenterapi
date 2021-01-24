@@ -76,7 +76,7 @@ class M_uomConversion extends CI_Model
             $data = $this->fromRow($row);
             $data->uomBasicUnit =  $uom->get($data->uomBasicId);
 
-            array_push($result, $this->fromRow($row));
+            array_push($result, $data);
         }
 
         return $result;
