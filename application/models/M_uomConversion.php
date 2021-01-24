@@ -23,6 +23,12 @@ class M_uomConversion extends CI_Model
      */
     public $uomBasicId;
 
+    /**
+     * @OA\Property()
+     * @var M_uom
+     */
+    public $uomBasicUnit;
+
     function fromRow($row)
     {
         $data = new M_uomConversion();
@@ -66,6 +72,10 @@ class M_uomConversion extends CI_Model
 
         $result = [];
         foreach ($query->result() as $row) {
+            $uom = new M_uom();
+            $data = $this->fromRow($row);
+            $data->uomBasicUnit =  $uom->get($data->uomBasicId);
+
             array_push($result, $this->fromRow($row));
         }
 

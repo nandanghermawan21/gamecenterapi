@@ -95,4 +95,10 @@ class M_uom extends CI_Model
 
         return $this->fromRow($data->result()[0]);
     }
+
+    function get($id)
+    {
+        $data = $this->db->get_where('m_uom', array('uom_id' => $id));
+        return $this->fromRow($data->result()[0]);
+    }
 }
