@@ -76,7 +76,7 @@ class M_uom extends CI_Model
     {
         $this->db->insert('m_uom', $uom->toRow());
 
-        $data = $this->db->get_where('m_category', array('id' => $uom->id));
+        $data = $this->db->get_where('m_category', array('uom_id' => $uom->id));
 
         return $this->fromRow($data->result()[0]);
     }
@@ -88,10 +88,10 @@ class M_uom extends CI_Model
             'uom_code' => $uom->uomCode,
         );
 
-        $this->db->where('id', $id);
+        $this->db->where('uom_id', $id);
         $this->db->update('m_uom', $data);
 
-        $data = $this->db->get_where('m_uom', array('id' => $id));
+        $data = $this->db->get_where('m_uom', array('uom_id' => $id));
 
         return $this->fromRow($data->result()[0]);
     }

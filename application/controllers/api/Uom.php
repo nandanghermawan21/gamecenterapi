@@ -44,6 +44,43 @@ class Uom extends BD_Controller
     }
 
     /**
+     * @OA\Get(path="/api/uom/alluomconversion",tags={"uom"},
+     *   operationId="getAllUomConversion",
+     *   @OA\Response(response=200,
+     *     description="UOM Master Conversion",
+     *     @OA\JsonContent(type="array",
+     *       @OA\Items(ref="#/components/schemas/uomConversion")
+     *     ),
+     *   ),
+     *   security={{"token": {}}},
+     * )
+     */
+    public function alluomconversion_get()
+    {
+        $data = $this->uomConversion->getAll();
+        $this->response($data, 200); // OK (200) being the HTTP response code
+    }
+
+    /**
+     * @OA\Get(path="/api/uom/alluomconversiontree",tags={"uom"},
+     *   operationId="alluomconversiontree",
+     *   @OA\Response(response=200,
+     *     description="UOM Master Conversion Tree",
+     *     @OA\JsonContent(type="array",
+     *       @OA\Items(ref="#/components/schemas/uomConversionTree")
+     *     ),
+     *   ),
+     *   security={{"token": {}}},
+     * )
+     */
+    public function alluomconversiontree_get()
+    {
+        $data = $this->uomConversionTree->getAll();
+        $this->response($data, 200); // OK (200) being the HTTP response code
+    }
+
+
+    /**
      * @OA\Post(path="/api/uom/add",tags={"uom"},
      *   operationId="add Uom",
      *   @OA\RequestBody(
@@ -72,6 +109,46 @@ class Uom extends BD_Controller
             }
 
             $result = $this->category->add($uom);
+
+            $this->response($result, 200);
+        } catch (\Exception $e) {
+            $error = new errormodel();
+            $error->status = 500;
+            $error->message = $e->getMessage();
+
+            $this->response($error, 500);
+        }
+    }
+
+    /**
+     * @OA\Post(path="/api/uom/adduomconversion",tags={"uom"},
+     *   operationId="add Uom Conversion",
+     *   @OA\RequestBody(
+     *     @OA\MediaType(
+     *         mediaType="application/json",
+     *         @OA\Schema(ref="#/components/schemas/uomConversion")
+     *     )
+     *   ),
+     *   @OA\Response(response=200,
+     *     description="categpry product",
+     *     @OA\JsonContent(
+     *       @OA\Items(ref="#/components/schemas/uomConversion")
+     *     ),
+     *   ),
+     *   security={{"token": {}}},
+     * )
+     */
+    public function addUomConversion_post()
+    {
+        try {
+            $jsonBody  = json_decode(file_get_contents('php://input'), true);
+            $uomConversion = $this->uomConversion->fromJson($jsonBody);
+
+            if ($uomConversion->conversionId == "" || $uomConversion->conversionId == null) {
+                $uomConversion->conversionId = random_string('num', 10);
+            }
+
+            $result = $this->category->add($uomConversion);
 
             $this->response($result, 200);
         } catch (\Exception $e) {
