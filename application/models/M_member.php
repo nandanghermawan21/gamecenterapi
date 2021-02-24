@@ -110,6 +110,20 @@ class M_member extends CI_Model
 
 	/**
 	 * @OA\Property()
+	 * @var string
+	 */
+	public $imageId;
+	public function imageIdField(): string
+	{
+		return "image_id";
+	}
+	public function imageIdJsonKey(): string
+	{
+		return "imageId";
+	}
+
+	/**
+	 * @OA\Property()
 	 * @var date
 	 */
 	public $dob;
@@ -180,6 +194,7 @@ class M_member extends CI_Model
 		$this->address = $row->address;
 		$this->phone = $row->phone;
 		$this->email = $row->email;
+		$this->imageId = $row->image_id;
 		$this->dob = $row->dob;
 		$this->point = $row->point;
 		$this->silverTicket = $row->silver_ticket;
@@ -208,13 +223,16 @@ class M_member extends CI_Model
 		if (isset($json[$this->phoneJsonKey()])) {
 			$this->phone = $json[$this->phoneJsonKey()];
 		}
-		if (isset($json[$this->email])) {
+		if (isset($json[$this->emailJsonKey()])) {
 			$this->email = $json[$this->emailJsonKey()];
 		}
-		if (isset($json[$this->dob])) {
+		if (isset($json[$this->imageIdJsonKey()])) {
+			$this->imageId = $json[$this->imageIdJsonKey()()];
+		}
+		if (isset($json[$this->dobJsonKey()])) {
 			$this->dob = $json[$this->dobJsonKey()];
 		}
-		if (isset($json[$this->point])) {
+		if (isset($json[$this->pointJsonKey()])) {
 			$this->point = $json[$this->pointJsonKey()];
 		}
 		if (isset($json[$this->silverTicketJsonKey()])) {
@@ -230,17 +248,18 @@ class M_member extends CI_Model
 	function toArray(): array
 	{
 		$data = array(
-			'id' => $this->id,
-			'username' => $this->username,
-			'password' => $this->password,
-			'name' => $this->name,
-			'address' => $this->address,
-			'phone' => $this->phone,
-			'email' => $this->email,
-			'dob' => $this->dob,
-			'point' => $this->point,
-			'silver_ticket' => $this->silverTicket,
-			'gold_ticket' => $this->goldTicket,
+			$this->idField() => $this->id,
+			$this->usernameField() => $this->username,
+			$this->passwordField() => $this->password,
+			$this->nameField() => $this->name,
+			$this->addressField() => $this->address,
+			$this->phoneField() => $this->phone,
+			$this->emailField() => $this->email,
+			$this->imageIdField() => $this->imageId,
+			$this->dobField() => $this->dob,
+			$this->pointField() => $this->point,
+			$this->silverTicketField() => $this->silverTicket,
+			$this->goldTicketField() => $this->goldTicket,
 		);
 
 		return $data;
