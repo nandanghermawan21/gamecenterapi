@@ -6,6 +6,7 @@
  */
 class M_category extends CI_Model
 {
+
     /**
      * @OA\Property()
      * @var string
