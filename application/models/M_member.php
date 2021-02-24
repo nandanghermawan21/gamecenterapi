@@ -250,7 +250,7 @@ class M_member extends CI_Model
 	}
 
 
-	function insert_entry(M_member $member): M_member
+	function add(M_member $member): M_member
 	{
 		try {
 			//generate key
