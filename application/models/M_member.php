@@ -11,7 +11,7 @@ class M_member extends CI_Model
 	}
 	/**
 	 * @OA\Property()
-	 * @var int
+	 * @var string
 	 */
 	public $id;
 	public function idField(): string
@@ -270,7 +270,7 @@ class M_member extends CI_Model
 	{
 		try {
 			//generate key
-			$this->id = random_string('numeric', 10);
+			$this->id = random_string('numeric', 12);
 
 			$this->db->insert($this->tableName(), $this->toArray());
 

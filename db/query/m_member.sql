@@ -1,5 +1,5 @@
 create table m_member(
-    id int primary key,
+    id varchar(12) primary key,
     username varchar(50),
     password varchar(200),
     name varchar(100),
