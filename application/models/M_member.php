@@ -276,7 +276,7 @@ class M_member extends CI_Model
 
 			$data = $this->db->get_where($this->tableName(), array('id' => $this->id));
 
-			return $this->fromRow($data[0]);
+			return $this->fromRow($data->result()[0]);
 		} catch (Exception $e) {
 			throw $e;
 		}

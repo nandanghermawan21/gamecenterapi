@@ -6,7 +6,7 @@ create table m_member(
     address varchar(200),
     phone varchar(20),
     email varchar(200),
-    iamge_id int,
+    image_id int,
     dob date,
     point int,
     silver_ticket int,
