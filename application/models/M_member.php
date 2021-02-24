@@ -145,9 +145,9 @@ class M_member extends CI_Model
 		return $data;
 	}
 
-	function fromJson($json)
+	function fromJson($json): M_member
 	{
-		$data = new M_category();
+		$data = new M_member();
 
 		if (isset($json[$$this->id])) {
 			$data->id = $json[$$this->id];
