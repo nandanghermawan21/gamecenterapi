@@ -11,7 +11,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
  *   in="header"
  * )
  */
-class Productcategory extends BD_Controller
+class Member extends BD_Controller
 {
     function __construct()
     {
