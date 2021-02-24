@@ -48,7 +48,7 @@ class Member extends BD_Controller
         try {
             $jsonBody  = json_decode(file_get_contents('php://input'), true);
             $data = $this->member->fromJson($jsonBody);
-            $result = $this->category->add($data);
+            $result = $this->member->add($data);
             $this->response($result, 200);
         } catch (\Exception $e) {
             $error = new errormodel();
