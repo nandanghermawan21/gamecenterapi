@@ -12,3 +12,4 @@ create table m_member(
     gold_ticket int
 )
 
+select * from m_member

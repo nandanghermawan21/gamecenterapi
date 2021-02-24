@@ -173,61 +173,58 @@ class M_member extends CI_Model
 
 	function fromRow($row): M_member
 	{
-		$data = new M_member();
-		$data->id = $row->id;
-		$data->username = $row->username;
-		$data->password = $row->password;
-		$data->name = $row->name;
-		$data->address = $row->address;
-		$data->phone = $row->phone;
-		$data->email = $row->email;
-		$data->dob = $row->dob;
-		$data->point = $row->point;
-		$data->silverTicket = $row->silver_ticket;
-		$data->goldTicket = $row->gold_ticket;
+		$this->id = $row->id;
+		$this->username = $row->username;
+		$this->password = $row->password;
+		$this->name = $row->name;
+		$this->address = $row->address;
+		$this->phone = $row->phone;
+		$this->email = $row->email;
+		$this->dob = $row->dob;
+		$this->point = $row->point;
+		$this->silverTicket = $row->silver_ticket;
+		$this->goldTicket = $row->gold_ticket;
 
-		return $data;
+		return $this;
 	}
 
 	function fromJson($json): M_member
 	{
-		$data = new M_member();
-
 		if (isset($json[$this->idjsonKey()])) {
-			$data->id = $json[$this->idjsonKey()];
+			$this->id = $json[$this->idjsonKey()];
 		}
 		if (isset($json[$this->usernameJsonKey()])) {
-			$data->username = $json[$this->usernameJsonKey()];
+			$this->username = $json[$this->usernameJsonKey()];
 		}
 		if (isset($json[$this->passwordJsonKey()])) {
-			$data->password = $json[$this->passwordJsonKey()];
+			$this->password = $json[$this->passwordJsonKey()];
 		}
 		if (isset($json[$this->nameJsonKey()])) {
-			$data->name = $json[$this->nameJsonKey()];
+			$this->name = $json[$this->nameJsonKey()];
 		}
 		if (isset($json[$this->addressJsonKey()])) {
-			$data->address = $json[$this->addressJsonKey()];
+			$this->address = $json[$this->addressJsonKey()];
 		}
 		if (isset($json[$this->phoneJsonKey()])) {
-			$data->phone = $json[$this->phoneJsonKey()];
+			$this->phone = $json[$this->phoneJsonKey()];
 		}
 		if (isset($json[$this->email])) {
-			$data->email = $json[$this->emailJsonKey()];
+			$this->email = $json[$this->emailJsonKey()];
 		}
 		if (isset($json[$this->dob])) {
-			$data->dob = $json[$this->dobJsonKey()];
+			$this->dob = $json[$this->dobJsonKey()];
 		}
 		if (isset($json[$this->point])) {
-			$data->point = $json[$this->pointJsonKey()];
+			$this->point = $json[$this->pointJsonKey()];
 		}
 		if (isset($json[$this->silverTicketJsonKey()])) {
-			$data->silverTicket = $json[$this->silverTicketJsonKey()];
+			$this->silverTicket = $json[$this->silverTicketJsonKey()];
 		}
 		if (isset($json[$this->goldTicketJsonKey()])) {
-			$data->goldTicket = $json[$this->goldTicketJsonKey()];
+			$this->goldTicket = $json[$this->goldTicketJsonKey()];
 		}
 
-		return $data;
+		return $this;
 	}
 
 	function toArray(): array
@@ -250,11 +247,11 @@ class M_member extends CI_Model
 	}
 
 
-	function add(M_member $member): M_member
+	function add(): M_member
 	{
 		try {
 			//generate key
-			$this->id = random_string('alnum', 10);
+			$this->id = random_string('numeric', 10);
 
 			$this->db->insert($this->tableName(), $this->toArray());
 
