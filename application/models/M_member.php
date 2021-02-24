@@ -18,6 +18,10 @@ class M_member extends CI_Model
 	{
 		return "id";
 	}
+	public function idjsonKey(): string
+	{
+		return "id";
+	}
 
 	/**
 	 * @OA\Property()
@@ -28,6 +32,10 @@ class M_member extends CI_Model
 	{
 		return "username";
 	}
+	public function usernameJsonKey(): string
+	{
+		return "username";
+	}
 
 	/**
 	 * @OA\Property()
@@ -35,6 +43,10 @@ class M_member extends CI_Model
 	 */
 	public $password;
 	public function passwordField(): string
+	{
+		return "password";
+	}
+	public function passwordJsonKey(): string
 	{
 		return "password";
 	}
@@ -49,6 +61,10 @@ class M_member extends CI_Model
 	{
 		return "name";
 	}
+	public function nameJsonKey(): string
+	{
+		return "name";
+	}
 
 	/**
 	 * @OA\Property()
@@ -56,6 +72,10 @@ class M_member extends CI_Model
 	 */
 	public $address;
 	public function addressField(): string
+	{
+		return "address";
+	}
+	public function addressJsonKey(): string
 	{
 		return "address";
 	}
@@ -69,6 +89,10 @@ class M_member extends CI_Model
 	{
 		return "phone";
 	}
+	public function phoneJsonKey(): string
+	{
+		return "phone";
+	}
 
 	/**
 	 * @OA\Property()
@@ -76,6 +100,10 @@ class M_member extends CI_Model
 	 */
 	public $email;
 	public function emailField(): string
+	{
+		return "email";
+	}
+	public function emailJsonKey(): string
 	{
 		return "email";
 	}
@@ -89,6 +117,10 @@ class M_member extends CI_Model
 	{
 		return "dob";
 	}
+	public function dobJsonKey(): string
+	{
+		return "dob";
+	}
 
 	/**
 	 * @OA\Property()
@@ -96,6 +128,10 @@ class M_member extends CI_Model
 	 */
 	public $point;
 	public function pointField(): string
+	{
+		return "point";
+	}
+	public function pointJsonKey(): string
 	{
 		return "point";
 	}
@@ -109,6 +145,10 @@ class M_member extends CI_Model
 	{
 		return "silver_ticket";
 	}
+	public function silverTicketJsonKey(): string
+	{
+		return "silverTicket";
+	}
 
 	/**
 	 * @OA\Property()
@@ -118,6 +158,10 @@ class M_member extends CI_Model
 	public function goldTicketField(): string
 	{
 		return "gold_ticket";
+	}
+	public function goldTicketJsonKey(): string
+	{
+		return "goldTicket";
 	}
 
 	function __construct()
@@ -149,38 +193,38 @@ class M_member extends CI_Model
 	{
 		$data = new M_member();
 
-		if (isset($json[$$this->id])) {
-			$data->id = $json[$$this->id];
+		if (isset($json[$this->idjsonKey()])) {
+			$data->id = $json[$this->idjsonKey()];
 		}
-		if (isset($json[$$this->username])) {
-			$data->username = $json[$$this->username];
+		if (isset($json[$this->usernameJsonKey()])) {
+			$data->username = $json[$this->usernameJsonKey()];
 		}
-		if (isset($json[$$this->password])) {
-			$data->password = $json[$$this->password];
+		if (isset($json[$this->passwordJsonKey()])) {
+			$data->password = $json[$this->passwordJsonKey()];
 		}
-		if (isset($json[$$this->name])) {
-			$data->name = $json[$$this->name];
+		if (isset($json[$this->nameJsonKey()])) {
+			$data->name = $json[$this->nameJsonKey()];
 		}
-		if (isset($json[$$this->address])) {
-			$data->address = $json[$$this->address];
+		if (isset($json[$this->addressJsonKey()])) {
+			$data->address = $json[$this->addressJsonKey()];
 		}
-		if (isset($json[$$this->phone])) {
-			$data->phone = $json[$$this->phone];
+		if (isset($json[$this->phoneJsonKey()])) {
+			$data->phone = $json[$this->phoneJsonKey()];
 		}
-		if (isset($json[$$this->email])) {
-			$data->email = $json[$$this->email];
+		if (isset($json[$this->email])) {
+			$data->email = $json[$this->emailJsonKey()];
 		}
-		if (isset($json[$$this->dob])) {
-			$data->dob = $json[$$this->dob];
+		if (isset($json[$this->dob])) {
+			$data->dob = $json[$this->dobJsonKey()];
 		}
-		if (isset($json[$$this->point])) {
-			$data->point = $json[$$this->point];
+		if (isset($json[$this->point])) {
+			$data->point = $json[$this->pointJsonKey()];
 		}
-		if (isset($json[$$this->silverTicket])) {
-			$data->silverTicket = $json[$$this->silverTicket];
+		if (isset($json[$this->silverTicketJsonKey()])) {
+			$data->silverTicket = $json[$this->silverTicketJsonKey()];
 		}
-		if (isset($json[$$this->goldTicketFied])) {
-			$data->goldTicket = $json[$$this->goldTicketField];
+		if (isset($json[$this->goldTicketJsonKey()])) {
+			$data->goldTicket = $json[$this->goldTicketJsonKey()];
 		}
 
 		return $data;
