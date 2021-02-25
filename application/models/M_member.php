@@ -310,7 +310,8 @@ class M_member extends CI_Model
 
 		$result = [];
 		foreach ($query->result() as $row) {
-			$result[] = $this->fromRow($row);
+			$member = new M_member();
+			$result[] = $member->fromRow($row);
 		}
 
 		return $result;
