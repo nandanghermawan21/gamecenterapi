@@ -69,7 +69,7 @@ class Member extends BD_Controller
      *   security={{"token": {}}},
      * )
      */
-    public function all_get()
+    public function get_get()
     {
         $data = $this->member->get()();
         $this->response($data, 200); // OK (200) being the HTTP response code
