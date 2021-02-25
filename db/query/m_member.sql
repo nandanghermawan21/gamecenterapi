@@ -12,11 +12,3 @@ create table m_member(
     silver_ticket int,
     gold_ticket int
 )
-
-drop table m_member
-
-select * from m_member
-
-delete from m_member
-
-INSERT INTO `m_member` (`id`, `username`, `password`, `name`, `address`, `phone`, `email`, `dob`, `point`, `silver_ticket`, `gold_ticket`) VALUES ('4368529071', 'string', 'string', 'string', 'string', 'string', NULL, NULL, NULL, 0, 0)

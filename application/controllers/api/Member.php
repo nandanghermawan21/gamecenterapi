@@ -56,4 +56,22 @@ class Member extends BD_Controller
             $this->response($error, 500);
         }
     }
+
+    /**
+     * @OA\Get(path="/api/productcategory/get",tags={"productCategory"},
+     *   operationId="get member",
+     *   @OA\Response(response=200,
+     *     description="get member",
+     *     @OA\JsonContent(type="array",
+     *       @OA\Items(ref="#/components/schemas/member")
+     *     ),
+     *   ),
+     *   security={{"token": {}}},
+     * )
+     */
+    public function all_get()
+    {
+        $data = $this->member->get()();
+        $this->response($data, 200); // OK (200) being the HTTP response code
+    }
 }

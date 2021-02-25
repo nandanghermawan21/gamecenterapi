@@ -281,4 +281,30 @@ class M_member extends CI_Model
 			throw $e;
 		}
 	}
+
+	public function get(String $id = null, String $searchKey = null, int $skip = 0, int $limit = 10): array
+	{
+		$this->db->select('*');
+		$this->db->from($this->tableName());
+
+		if ($id != null && $id != "")
+			$this->db->where($this->idField(), $id);
+
+		if ($searchKey != null && $searchKey != "") {
+			$this->db->where($this->usernameField(), $searchKey);
+			$this->db->where($this->phoneField(), $searchKey);
+			$this->db->where($this->emailField()(), $searchKey);
+		}
+
+		$this->db->limit($limit, $skip);
+
+		$query = $this->db->get();
+
+		$result = [];
+		foreach ($query->result() as $row) {
+			$result[] = $this->fromRow($row);
+		}
+
+		return $result;
+	}
 }
