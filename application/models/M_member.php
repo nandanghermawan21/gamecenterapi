@@ -297,7 +297,7 @@ class M_member extends CI_Model
 			$this->db->where($this->emailField()(), $searchKey);
 		}
 
-		$this->db->limit($limit, $skip);
+		$this->db->limit($limit ?? 10, $skip ?? 0);
 
 		$query = $this->db->get();
 
