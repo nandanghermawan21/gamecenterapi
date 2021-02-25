@@ -292,6 +292,7 @@ class M_member extends CI_Model
 			$this->db->where($this->idField(), $id);
 
 		if ($searchKey != null && $searchKey != "") {
+			$this->db->or_like($this->idField(), $searchKey);
 			$this->db->or_like($this->usernameField(), $searchKey);
 			$this->db->or_like($this->phoneField(), $searchKey);
 			$this->db->or_like($this->emailField(), $searchKey);
