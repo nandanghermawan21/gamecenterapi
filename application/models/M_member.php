@@ -292,9 +292,9 @@ class M_member extends CI_Model
 			$this->db->where($this->idField(), $id);
 
 		if ($searchKey != null && $searchKey != "") {
-			$this->db->where($this->usernameField(), $searchKey);
-			$this->db->where($this->phoneField(), $searchKey);
-			$this->db->where($this->emailField(), $searchKey);
+			$this->db->like($this->usernameField(), $searchKey);
+			$this->db->like($this->phoneField(), $searchKey);
+			$this->db->like($this->emailField(), $searchKey);
 		}
 
 		$skip = $skip == "" || $skip == null ? 0 : $skip;
