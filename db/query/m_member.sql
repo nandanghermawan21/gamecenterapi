@@ -12,3 +12,5 @@ create table m_member(
     silver_ticket int,
     gold_ticket int
 )
+
+select * from m_member
