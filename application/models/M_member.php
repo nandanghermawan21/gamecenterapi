@@ -295,6 +295,7 @@ class M_member extends CI_Model
 			$this->db->like($this->usernameField(), $searchKey);
 			$this->db->like($this->phoneField(), $searchKey);
 			$this->db->like($this->emailField(), $searchKey);
+			$this->db->like($this->phoneField(), $searchKey);
 		}
 
 		$skip = $skip == "" || $skip == null ? 0 : $skip;
