@@ -60,6 +60,30 @@ class Member extends BD_Controller
     /**
      * @OA\Get(path="/api/member/get",tags={"member"},
      *   operationId="get member",
+     *   @OA\Parameter(
+     *       name="id",
+     *       in="query",
+     *       required=false,
+     *       @OA\Schema(type="string")
+     *   ),
+     *   @OA\Parameter(
+     *       name="searchKey",
+     *       in="query",
+     *       required=false,
+     *       @OA\Schema(type="string")
+     *   ),
+     *   @OA\Parameter(
+     *       name="skip",
+     *       in="query",
+     *       required=false,
+     *       @OA\Schema(type="int")
+     *   ),
+     *   @OA\Parameter(
+     *       name="limit",
+     *       in="query",
+     *       required=false,
+     *       @OA\Schema(type="int")
+     *   ),
      *   @OA\Response(response=200,
      *     description="get member",
      *     @OA\JsonContent(type="array",
@@ -71,7 +95,11 @@ class Member extends BD_Controller
      */
     public function get_get()
     {
-        $data = $this->member->get();
+        $id = $this->get("id", true);
+        $serchKey = $this->get("searchKey", true);
+        $limit = $this->get("limit", true);
+        $skip = $this->get("skip", true);
+        $data = $this->member->get($id, $serchKey, $skip, $limit);
         $this->response($data, 200); // OK (200) being the HTTP response code
     }
 }
