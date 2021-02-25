@@ -14,3 +14,6 @@ create table m_member(
 )
 
 select * from m_member
+
+delete from m_member where
+id = '547606781341'

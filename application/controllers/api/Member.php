@@ -58,7 +58,7 @@ class Member extends BD_Controller
     }
 
     /**
-     * @OA\Get(path="/api/productcategory/get",tags={"productCategory"},
+     * @OA\Get(path="/api/member/get",tags={"member"},
      *   operationId="get member",
      *   @OA\Response(response=200,
      *     description="get member",
