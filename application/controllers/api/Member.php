@@ -71,7 +71,7 @@ class Member extends BD_Controller
      */
     public function get_get()
     {
-        $data = $this->member->get()();
+        $data = $this->member->get();
         $this->response($data, 200); // OK (200) being the HTTP response code
     }
 }
