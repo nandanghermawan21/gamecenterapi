@@ -271,6 +271,7 @@ class M_member extends CI_Model
 		try {
 			//generate key
 			$this->id = random_string('numeric', 12);
+			$this->password = sha1($this->password . "|" . $this->id);
 
 			$this->db->insert($this->tableName(), $this->toArray());
 
