@@ -3,6 +3,7 @@
 /**
  * @OA\Schema(schema="member")
  */
+
 class M_member extends CI_Model
 {
 	public function tableName(): string
@@ -196,9 +197,9 @@ class M_member extends CI_Model
 		$this->email = $row->email;
 		$this->imageId = $row->image_id;
 		$this->dob = $row->dob;
-		$this->point = $row->point;
-		$this->silverTicket = $row->silver_ticket;
-		$this->goldTicket = $row->gold_ticket;
+		$this->point = (int)$row->point;
+		$this->silverTicket = (int)$row->silver_ticket;
+		$this->goldTicket = (int)$row->gold_ticket;
 
 		return $this;
 	}
