@@ -13,7 +13,7 @@ class M_member extends CI_Model
 	 * @OA\Property()
 	 * @var string
 	 */
-	public String $id;
+	public $id;
 	public function idField(): string
 	{
 		return "id";
@@ -27,7 +27,7 @@ class M_member extends CI_Model
 	 * @OA\Property()
 	 * @var string
 	 */
-	public String $username;
+	public $username;
 	public function usernameField(): string
 	{
 		return "username";
@@ -41,7 +41,7 @@ class M_member extends CI_Model
 	 * @OA\Property()
 	 * @var string
 	 */
-	public String $password;
+	public $password;
 	public function passwordField(): string
 	{
 		return "password";
@@ -56,7 +56,7 @@ class M_member extends CI_Model
 	 * @OA\Property()
 	 * @var string
 	 */
-	public String $name;
+	public $name;
 	public function nameField(): string
 	{
 		return "name";
@@ -70,7 +70,7 @@ class M_member extends CI_Model
 	 * @OA\Property()
 	 * @var string
 	 */
-	public String $address;
+	public $address;
 	public function addressField(): string
 	{
 		return "address";
@@ -84,7 +84,7 @@ class M_member extends CI_Model
 	 * @OA\Property()
 	 * @var string
 	 */
-	public String $phone;
+	public $phone;
 	public function phoneField(): string
 	{
 		return "phone";
@@ -98,7 +98,7 @@ class M_member extends CI_Model
 	 * @OA\Property()
 	 * @var string
 	 */
-	public String $email;
+	public $email;
 	public function emailField(): string
 	{
 		return "email";
@@ -112,7 +112,7 @@ class M_member extends CI_Model
 	 * @OA\Property()
 	 * @var string
 	 */
-	public int $imageId;
+	public $imageId;
 	public function imageIdField(): string
 	{
 		return "image_id";
@@ -126,7 +126,7 @@ class M_member extends CI_Model
 	 * @OA\Property()
 	 * @var date
 	 */
-	public DateTime $dob;
+	public $dob;
 	public function dobField(): string
 	{
 		return "dob";
@@ -140,7 +140,7 @@ class M_member extends CI_Model
 	 * @OA\Property()
 	 * @var int
 	 */
-	public int $point;
+	public $point;
 	public function pointField(): string
 	{
 		return "point";
@@ -154,7 +154,7 @@ class M_member extends CI_Model
 	 * @OA\Property()
 	 * @var int
 	 */
-	public int $silverTicket;
+	public $silverTicket;
 	public function silverTicketField(): string
 	{
 		return "silver_ticket";
@@ -168,7 +168,7 @@ class M_member extends CI_Model
 	 * @OA\Property()
 	 * @var int
 	 */
-	public int $goldTicket;
+	public $goldTicket;
 	public function goldTicketField(): string
 	{
 		return "gold_ticket";
