@@ -17,3 +17,5 @@ select * from m_member
 
 delete from m_member where
 id = '547606781341'
+
+select * from svc_file

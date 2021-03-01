@@ -82,6 +82,17 @@ class filemodel extends CI_Model
         return "path";
     }
 
+    /**
+     * @OA\Property()
+     * @var string
+     */
+    public $url;
+    public function createUrl(): String
+    {
+        $this->url = base_url() . UPLOAD_DIR . $this->filename;
+        return $this->url;
+    }
+
     function __construct()
     {
         // Construct the parent class
