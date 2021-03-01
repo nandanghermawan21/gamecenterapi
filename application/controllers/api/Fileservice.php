@@ -110,6 +110,7 @@ class Fileservice extends BD_Controller
                 $filemodel->path = $path;
                 $filemodel->extention = $parts["extension"];
                 // $filemodel->size = filesize(UPLOAD_DIR . "/" . $path . "/" . $name);
+                $filemodel->url = $filemodel->createUrl();
                 $filemodel->add();
                 $this->response($filemodel, 200);
                 exit;
