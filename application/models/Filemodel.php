@@ -89,7 +89,7 @@ class filemodel extends CI_Model
     public $url;
     public function createUrl(): String
     {
-        $this->url = base_url() . UPLOAD_DIR . $this->filename;
+        $this->url =  $this->config->item("upload_url") . $this->filename;
         return $this->url;
     }
 
