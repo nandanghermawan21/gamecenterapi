@@ -114,7 +114,7 @@ class Member extends BD_Controller
     }
 
     /**
-     * @OA\Get(path="/api/member/get",tags={"member"},
+     * @OA\Get(path="/api/member/addpoint",tags={"member"},
      *   operationId="add point",
      *   @OA\Parameter(
      *       name="id",
