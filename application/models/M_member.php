@@ -228,7 +228,7 @@ class M_member extends CI_Model
 			$this->email = $json[$this->emailJsonKey()];
 		}
 		if (isset($json[$this->imageIdJsonKey()])) {
-			$this->imageId = $json[$this->imageIdJsonKey()()];
+			$this->imageId = $json[$this->imageIdJsonKey()];
 		}
 		if (isset($json[$this->dobJsonKey()])) {
 			$this->dob = $json[$this->dobJsonKey()];
