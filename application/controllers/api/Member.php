@@ -112,4 +112,36 @@ class Member extends BD_Controller
         $data = $this->member->get($id, $serchKey, $skip, $limit);
         $this->response($data, 200); // OK (200) being the HTTP response code
     }
+
+    /**
+     * @OA\Get(path="/api/member/get",tags={"member"},
+     *   operationId="add point",
+     *   @OA\Parameter(
+     *       name="id",
+     *       in="query",
+     *       required=false,
+     *       @OA\Schema(type="string")
+     *   ),
+     *   @OA\Parameter(
+     *       name="point",
+     *       in="query",
+     *       required=false,
+     *       @OA\Schema(type="int")
+     *   ),
+     *   @OA\Response(response=200,
+     *     description="get member",
+     *     @OA\JsonContent(type="array",
+     *       @OA\Items(ref="#/components/schemas/member")
+     *     ),
+     *   ),
+     *   security={{"token": {}}},
+     * )
+     */
+    public function addpoint_get()
+    {
+        $id = $this->get("id", true);
+        $point = $this->get("point", true);
+        $data = $this->member->fromId($id)->addPoint($point);
+        $this->response($data, 200); // OK (200) being the HTTP response code
+    }
 }

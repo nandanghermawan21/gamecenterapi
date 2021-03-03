@@ -246,6 +246,13 @@ class M_member extends CI_Model
 		return $this;
 	}
 
+	public function fromId(String $id): M_member
+	{
+		$data = $this->db->get_where($this->tableName(), array('id' => $id));
+
+		return $this->fromRow($data->result()[0]);
+	}
+
 	function toArray(): array
 	{
 		$data = array(
@@ -316,6 +323,24 @@ class M_member extends CI_Model
 		}
 
 		return $result;
+	}
+
+	//get from id first before add point
+	public function addPoint(int $point): M_member
+	{
+
+		$this->db->set($this->pointField(), $this->point + $point);
+		$this->db->where($this->idField(), $this->id);
+		$this->db->update($this->tableName());
+
+		return $this->getData();
+	}
+
+	public function getData(): M_member
+	{
+		$data = $this->db->get_where($this->tableName(), array('id' => $this->id));
+
+		return $this->fromRow($data->result()[0]);
 	}
 
 	public function validateNewMember(): bool
