@@ -47,8 +47,18 @@ class Member extends BD_Controller
     {
         try {
             $jsonBody  = json_decode(file_get_contents('php://input'), true);
-            $result = $this->member->fromJson($jsonBody)->add();
-            $this->response($result, 200);
+            $member = $this->member->fromJson($jsonBody);
+
+            if ($member->checkUsernameExist == true) {
+                $this->response("Username Is Exist", 400);
+            } else if ($member->checkEmailExist == true) {
+                $this->response("Email Is Exist", 400);
+            } else if ($member->checkPhoneExist == true) {
+                $this->response("Phone Is Exist", 400);
+            } else {
+                $result = $this->member->fromJson($jsonBody)->add();
+                $this->response($result, 200);
+            }
         } catch (\Exception $e) {
             $error = new errormodel();
             $error->status = 500;

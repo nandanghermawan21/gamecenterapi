@@ -317,4 +317,54 @@ class M_member extends CI_Model
 
 		return $result;
 	}
+
+	public function validateNewMember(): bool
+	{
+		$this->db->select('*');
+		$this->db->from($this->tableName());
+
+		$this->db->where($this->usernameField(), $this->username);
+		$this->db->or_where($this->emailField(), $this->email);
+		$this->db->or_where($this->phoneField(), $this->phone);
+
+		$count = $this->db->count_all_results();
+
+		return $count > 0 ? false : true;
+	}
+
+	public function checkUsernameExist(): bool
+	{
+		$this->db->select('*');
+		$this->db->from($this->tableName());
+
+		$this->db->where($this->usernameField(), $this->username);
+
+		$count = $this->db->count_all_results();
+
+		return $count > 0 ? true : false;
+	}
+
+	public function checkEmailExist(): bool
+	{
+		$this->db->select('*');
+		$this->db->from($this->tableName());
+
+		$this->db->where($this->emailField(), $this->email);
+
+		$count = $this->db->count_all_results();
+
+		return $count > 0 ? true : false;
+	}
+
+	public function checkPhoneExist(): bool
+	{
+		$this->db->select('*');
+		$this->db->from($this->tableName());
+
+		$this->db->where($this->phoneField(), $this->phone);
+
+		$count = $this->db->count_all_results();
+
+		return $count > 0 ? true : false;
+	}
 }
