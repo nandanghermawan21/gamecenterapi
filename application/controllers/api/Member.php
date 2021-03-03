@@ -49,11 +49,11 @@ class Member extends BD_Controller
             $jsonBody  = json_decode(file_get_contents('php://input'), true);
             $member = $this->member->fromJson($jsonBody);
 
-            if ($member->checkUsernameExist == true) {
+            if ($member->checkUsernameExist() == true) {
                 $this->response("Username Is Exist", 400);
-            } else if ($member->checkEmailExist == true) {
+            } else if ($member->checkEmailExist() == true) {
                 $this->response("Email Is Exist", 400);
-            } else if ($member->checkPhoneExist == true) {
+            } else if ($member->checkPhoneExist() == true) {
                 $this->response("Phone Is Exist", 400);
             } else {
                 $result = $this->member->fromJson($jsonBody)->add();
