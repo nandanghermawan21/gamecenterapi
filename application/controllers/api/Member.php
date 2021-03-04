@@ -144,4 +144,70 @@ class Member extends BD_Controller
         $data = $this->member->fromId($id)->addPoint($point);
         $this->response($data, 200); // OK (200) being the HTTP response code
     }
+
+    /**
+     * @OA\Get(path="/api/member/buySilverTicket",tags={"member"},
+     *   operationId="buySilverTicket",
+     *   @OA\Parameter(
+     *       name="id",
+     *       in="query",
+     *       required=false,
+     *       @OA\Schema(type="string")
+     *   ),
+     *   @OA\Response(response=200,
+     *     description="get member",
+     *     @OA\JsonContent(type="array",
+     *       @OA\Items(ref="#/components/schemas/member")
+     *     ),
+     *   ),
+     *   security={{"token": {}}},
+     * )
+     */
+    public function buySilverTicket_get()
+    {
+        $id = $this->get("id", true);
+
+        $member = $this->member->fromId($id);
+
+        if ($member->point < $this->config->item('silver_ticket_price')) {
+            $this->response("Not Enought Point", 400);
+        } else {
+            $member = $member->buySilverTicket();
+        }
+
+        $this->response($member, 200); // OK (200) being the HTTP response code
+    }
+
+    /**
+     * @OA\Get(path="/api/member/buyGoldTicket",tags={"member"},
+     *   operationId="buyGoldTicket",
+     *   @OA\Parameter(
+     *       name="id",
+     *       in="query",
+     *       required=false,
+     *       @OA\Schema(type="string")
+     *   ),
+     *   @OA\Response(response=200,
+     *     description="get member",
+     *     @OA\JsonContent(type="array",
+     *       @OA\Items(ref="#/components/schemas/member")
+     *     ),
+     *   ),
+     *   security={{"token": {}}},
+     * )
+     */
+    public function buyGoldTicket_get()
+    {
+        $id = $this->get("id", true);
+
+        $member = $this->member->fromId($id);
+
+        if ($member->point < $this->config->item('gold_ticket_price')) {
+            $this->response("Not Enought Point", 400);
+        } else {
+            $member = $member->buySilverTicket();
+        }
+
+        $this->response($member, 200); // OK (200) being the HTTP response code
+    }
 }
