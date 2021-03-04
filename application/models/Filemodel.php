@@ -145,7 +145,8 @@ class filemodel extends CI_Model
     {
         $data = $this->db->get_where($this->tableName(), array('id' => $id));
 
-        if ($this->db->count_all_results() > 0) {
+
+        if ($data->num_rows() > 0) {
             return $this->fromRow($data->result()[0]);
         } else {
             return new filemodel();
