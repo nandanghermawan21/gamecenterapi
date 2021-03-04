@@ -350,7 +350,7 @@ class M_member extends CI_Model
 	{
 
 		$this->db->set($this->pointField(), $this->point - $this->config->item('gold_ticket_price'));
-		$this->db->set($this->goldTicketField(), $this->point + 1);
+		$this->db->set($this->goldTicketField(), $this->goldTicket + 1);
 		$this->db->where($this->idField(), $this->id);
 		$this->db->update($this->tableName());
 
