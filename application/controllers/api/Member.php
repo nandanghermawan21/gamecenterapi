@@ -205,7 +205,7 @@ class Member extends BD_Controller
         if ($member->point < $this->config->item('gold_ticket_price')) {
             $this->response("Not Enought Point", 400);
         } else {
-            $member = $member->buySilverTicket();
+            $member = $member->buyGoldTicket();
         }
 
         $this->response($member, 200); // OK (200) being the HTTP response code
