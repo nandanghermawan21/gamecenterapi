@@ -530,4 +530,4 @@ $config['thekey'] = 'ValarMorghulis!';
 
 //ticket price
 $config['silver_ticket_price'] = 10;
-$config['gold_ticket_price'] = 10;
+$config['gold_ticket_price'] = 20;
