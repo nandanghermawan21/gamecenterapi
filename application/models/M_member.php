@@ -203,7 +203,7 @@ class M_member extends CI_Model
 		$this->phone = $row->phone;
 		$this->email = $row->email;
 		$this->imageId = $row->image_id;
-		$this->filemodel = $this->filemodel->fromId($this->id)->url;
+		$this->filemodel = $this->filemodel->fromId($this->imageId)->url;
 		$this->dob = $row->dob;
 		$this->point = (int)$row->point;
 		$this->silverTicket = (int)$row->silver_ticket;
