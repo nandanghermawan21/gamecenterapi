@@ -125,6 +125,12 @@ class M_member extends CI_Model
 
 	/**
 	 * @OA\Property()
+	 * @var string
+	 */
+	public $imageUrl;
+
+	/**
+	 * @OA\Property()
 	 * @var date
 	 */
 	public $dob;
@@ -184,6 +190,7 @@ class M_member extends CI_Model
 		// Construct the parent class
 		parent::__construct();
 		$this->load->helper('string');
+		$this->load->model('filemodel', 'filemodel');
 	}
 
 	function fromRow($row): M_member
@@ -196,6 +203,7 @@ class M_member extends CI_Model
 		$this->phone = $row->phone;
 		$this->email = $row->email;
 		$this->imageId = $row->image_id;
+		$this->filemodel = $this->filemodel->fromId($this->id)->url;
 		$this->dob = $row->dob;
 		$this->point = (int)$row->point;
 		$this->silverTicket = (int)$row->silver_ticket;

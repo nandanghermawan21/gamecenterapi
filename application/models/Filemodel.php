@@ -107,6 +107,7 @@ class filemodel extends CI_Model
         $this->size = $row->size;
         $this->extention = $row->extention;
         $this->path = $row->path;
+        $this->url =  $this->createUrl();
 
         return $this;
     }
@@ -138,5 +139,12 @@ class filemodel extends CI_Model
         } catch (Exception $e) {
             throw $e;
         }
+    }
+
+    public function fromId($id)
+    {
+        $data = $this->db->get_where($this->tableName(), array('id' => $id));
+
+        return $this->fromRow($data->result()[0]);
     }
 }
