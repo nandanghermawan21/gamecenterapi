@@ -6,7 +6,7 @@ create table m_member(
     address varchar(200),
     phone varchar(20),
     email varchar(200),
-    image_id int,
+    image_id varchar(12),
     dob date,
     point int,
     silver_ticket int,
@@ -15,10 +15,13 @@ create table m_member(
 
 select * from m_member
 
+select * from svc_file
+where id = '617423300978'
+
 delete from m_member
 where username Is null
 
 delete from m_member where
 id = '547606781341'
 
-select * from svc_file
+delete * from svc_file
