@@ -291,7 +291,7 @@ class M_member extends CI_Model
 		}
 	}
 
-	public function get(String $id = null, String $searchKey = null, int $skip = 0, int $limit = 10): array
+	public function get(String $id = null, String $searchKey = null, int $limit = 0, int $skip = 10): array
 	{
 		$this->db->select('*');
 		$this->db->from($this->tableName());
@@ -308,9 +308,6 @@ class M_member extends CI_Model
 			$this->db->or_like($this->emailField(), $searchKey);
 			$this->db->or_like($this->phoneField(), $searchKey);
 		}
-
-		$skip = $skip == "" || $skip == null ? 0 : $skip;
-		$limit = $limit == "" || $limit == null ? 0 : $skip;
 
 		$this->db->limit($limit, $skip);
 
