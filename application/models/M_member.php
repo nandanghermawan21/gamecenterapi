@@ -334,7 +334,7 @@ class M_member extends CI_Model
 	}
 
 	//get from id first before add point
-	public function buySilverTicket(int $point): M_member
+	public function buySilverTicket(): M_member
 	{
 
 		$this->db->set($this->pointField(), $this->point - $this->config->item('silver_ticket_price'));
@@ -346,7 +346,7 @@ class M_member extends CI_Model
 	}
 
 	//get from id first before add point
-	public function buyGoldTicket(int $point): M_member
+	public function buyGoldTicket(): M_member
 	{
 
 		$this->db->set($this->pointField(), $this->point - $this->config->item('gold_ticket_price'));
