@@ -201,7 +201,7 @@ class Member extends BD_Controller
      *   security={{"token": {}}},
      * )
      */
-    public function useSilverTicket_get()
+    public function buySilverTicket_get()
     {
         $id = $this->get("id", true);
 
@@ -234,7 +234,7 @@ class Member extends BD_Controller
      *   security={{"token": {}}},
      * )
      */
-    public function buySilverTicket_get()
+    public function useSilverTicket_get()
     {
         $id = $this->get("id", true);
 
