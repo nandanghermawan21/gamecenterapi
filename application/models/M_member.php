@@ -288,10 +288,11 @@ class M_member extends CI_Model
 
 		$this->db->where($this->usernameField(), $username);
 
+		$query = $this->db->get();
 		$count = $this->db->count_all_results();
 
 		if ($count > 0) {
-			$this->fromRow($this->db->get()->result()[0]);
+			$this->fromRow($query->result()[0]);
 			if ($this->password == sha1($password . "|" . $this->id)) {
 				return $this;
 			} else {
