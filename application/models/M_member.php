@@ -293,7 +293,7 @@ class M_member extends CI_Model
 
 		if ($count > 0) {
 			$this->fromRow($query->result()[0]);
-			$this->password = $this->password . " <=> " . sha1($password . "|" . $this->id);
+			$this->password = $this->password . " <=> " . sha1($password);
 			// if ($this->password == sha1($password . "|" . $this->id)) {
 			return $this;
 			// } else {
