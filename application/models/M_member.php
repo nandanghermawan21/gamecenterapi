@@ -281,6 +281,26 @@ class M_member extends CI_Model
 		return $data;
 	}
 
+	function login(String $username, String $password): M_member
+	{
+		$this->db->select('*');
+		$this->db->from($this->tableName());
+
+		$this->db->where($this->emailField(), $username);
+
+		$count = $this->db->count_all_results();
+
+		if ($count > 0) {
+			$this->fromRow($this->db->get()->result()[0]);
+			if ($this->password == sha1($password . "|" . $this->id)) {
+				return $this;
+			} else {
+				return null;
+			}
+		} else {
+			return null;
+		}
+	}
 
 	function add(): M_member
 	{
