@@ -281,12 +281,12 @@ class M_member extends CI_Model
 		return $data;
 	}
 
-	function login(String $username, String $password): M_member
+	function login(String $username, String $password)
 	{
 		$this->db->select('*');
 		$this->db->from($this->tableName());
 
-		$this->db->where($this->emailField(), $username);
+		$this->db->where($this->usernameField(), $username);
 
 		$count = $this->db->count_all_results();
 
