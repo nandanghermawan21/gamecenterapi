@@ -342,11 +342,33 @@ class M_member extends CI_Model
 	}
 
 	//get from id first before add point
+	public function removePoint(int $point): M_member
+	{
+
+		$this->db->set($this->pointField(), $this->point - $point);
+		$this->db->where($this->idField(), $this->id);
+		$this->db->update($this->tableName());
+
+		return $this->getData();
+	}
+
+	//get from id first before add point
 	public function buySilverTicket(): M_member
 	{
 
 		$this->db->set($this->pointField(), $this->point - $this->config->item('silver_ticket_price'));
 		$this->db->set($this->silverTicketField(), $this->silverTicket + 1);
+		$this->db->where($this->idField(), $this->id);
+		$this->db->update($this->tableName());
+
+		return $this->getData();
+	}
+
+	//get from id first before add point
+	public function useSilverTicket(): M_member
+	{
+
+		$this->db->set($this->silverTicketField(), $this->silverTicket - 1);
 		$this->db->where($this->idField(), $this->id);
 		$this->db->update($this->tableName());
 
@@ -365,6 +387,16 @@ class M_member extends CI_Model
 		return $this->getData();
 	}
 
+	//get from id first before add point
+	public function useGoldTicket(): M_member
+	{
+
+		$this->db->set($this->goldTicketField(), $this->goldTicket - 1);
+		$this->db->where($this->idField(), $this->id);
+		$this->db->update($this->tableName());
+
+		return $this->getData();
+	}
 
 	public function getData(): M_member
 	{

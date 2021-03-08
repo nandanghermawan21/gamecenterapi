@@ -146,8 +146,79 @@ class Member extends BD_Controller
     }
 
     /**
+     * @OA\Get(path="/api/member/removepoint",tags={"member"},
+     *   operationId="removepoint point",
+     *   @OA\Parameter(
+     *       name="id",
+     *       in="query",
+     *       required=false,
+     *       @OA\Schema(type="string")
+     *   ),
+     *   @OA\Parameter(
+     *       name="point",
+     *       in="query",
+     *       required=false,
+     *       @OA\Schema(type="int")
+     *   ),
+     *   @OA\Response(response=200,
+     *     description="get member",
+     *     @OA\JsonContent(type="array",
+     *       @OA\Items(ref="#/components/schemas/member")
+     *     ),
+     *   ),
+     *   security={{"token": {}}},
+     * )
+     */
+    public function removepoint_get()
+    {
+        $id = $this->get("id", true);
+        $point = $this->get("point", true);
+        $member = $this->member->fromId($id);
+
+        if (($member->point - $point) < 0) {
+            $this->response("Not Enought Point", 400);
+        } else {
+            $data = $member->fromId($id)->removePoint($point);
+            $this->response($data, 200); // OK (200) being the HTTP response code
+        }
+    }
+
+    /**
      * @OA\Get(path="/api/member/buySilverTicket",tags={"member"},
      *   operationId="buySilverTicket",
+     *   @OA\Parameter(
+     *       name="id",
+     *       in="query",
+     *       required=false,
+     *       @OA\Schema(type="string")
+     *   ),
+     *   @OA\Response(response=200,
+     *     description="get member",
+     *     @OA\JsonContent(type="array",
+     *       @OA\Items(ref="#/components/schemas/member")
+     *     ),
+     *   ),
+     *   security={{"token": {}}},
+     * )
+     */
+    public function useSilverTicket_get()
+    {
+        $id = $this->get("id", true);
+
+        $member = $this->member->fromId($id);
+
+        if ($member->point < $this->config->item('silver_ticket_price')) {
+            $this->response("Not Enought Point", 400);
+        } else {
+            $member = $member->buySilverTicket();
+        }
+
+        $this->response($member, 200); // OK (200) being the HTTP response code
+    }
+
+    /**
+     * @OA\Get(path="/api/member/useSilverTicket",tags={"member"},
+     *   operationId="useSilverTicket",
      *   @OA\Parameter(
      *       name="id",
      *       in="query",
@@ -169,13 +240,12 @@ class Member extends BD_Controller
 
         $member = $this->member->fromId($id);
 
-        if ($member->point < $this->config->item('silver_ticket_price')) {
-            $this->response("Not Enought Point", 400);
+        if ($member->silverTicket - 1 < 0) {
+            $this->response("Not Enought Ticket", 400);
         } else {
-            $member = $member->buySilverTicket();
+            $member = $member->useSilverTicket();
+            $this->response($member, 200); // OK (200) being the HTTP response code
         }
-
-        $this->response($member, 200); // OK (200) being the HTTP response code
     }
 
     /**
@@ -209,5 +279,37 @@ class Member extends BD_Controller
         }
 
         $this->response($member, 200); // OK (200) being the HTTP response code
+    }
+
+    /**
+     * @OA\Get(path="/api/member/useGoldTicket",tags={"member"},
+     *   operationId="useGoldTicket",
+     *   @OA\Parameter(
+     *       name="id",
+     *       in="query",
+     *       required=false,
+     *       @OA\Schema(type="string")
+     *   ),
+     *   @OA\Response(response=200,
+     *     description="get member",
+     *     @OA\JsonContent(type="array",
+     *       @OA\Items(ref="#/components/schemas/member")
+     *     ),
+     *   ),
+     *   security={{"token": {}}},
+     * )
+     */
+    public function useGoldTicket_get()
+    {
+        $id = $this->get("id", true);
+
+        $member = $this->member->fromId($id);
+
+        if ($member->goldTicket - 1 < 0) {
+            $this->response("Not Enought Ticket", 400);
+        } else {
+            $member = $member->useGoldTicket();
+            $this->response($member, 200); // OK (200) being the HTTP response code
+        }
     }
 }
