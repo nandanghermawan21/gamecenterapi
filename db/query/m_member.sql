@@ -24,4 +24,7 @@ where username Is null
 delete from m_member where
 id = '547606781341'
 
+update m_member
+set password = 'e21e06b070720663963fb788957d1ef2d0a0979e'
+
 delete * from svc_file
