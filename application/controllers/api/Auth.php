@@ -58,7 +58,7 @@ class Auth extends BD_Controller
         $kunci = $this->config->item('thekey');
         $val = $this->user->get_user($q)->row(); //Model to get single data row from database base on username
         if ($this->user->get_user($q)->num_rows() == 0) {
-            $this->response("invalid login", REST_Controller::HTTP_NOT_FOUND);
+            $this->response("invalid login", 403);
         }
         $match = $val->password;   //Get password for user from database
         if ($p == $match) {  //Condition if password matched
@@ -74,10 +74,10 @@ class Auth extends BD_Controller
             $user = $this->user->fromRow($val);
             $user->token = $output['token'];
 
-            $this->set_response($user, REST_Controller::HTTP_OK); //This is the respon if success
+            $this->set_response($user, 200); //This is the respon if success
 
         } else {
-            $this->set_response("invalid login", REST_Controller::HTTP_NOT_FOUND); //This is the respon if failed
+            $this->set_response("invalid login", 403); //This is the respon if failed
         }
     }
 
@@ -116,7 +116,7 @@ class Auth extends BD_Controller
         $kunci = $this->config->item('thekey');
         $val = $this->member->login($u, $p); //Model to get single data row from database base on username
         if ($val == null) {
-            $this->response("invalid login", REST_Controller::HTTP_NOT_FOUND);
+            $this->response("invalid login", 403);
         } else {
             $token['id'] = $val->id;  //From here
             $token['username'] = $u;
@@ -130,7 +130,7 @@ class Auth extends BD_Controller
             $user = $val;
             $user->token = $output['token'];
 
-            $this->set_response($user, REST_Controller::HTTP_OK); //This is the respon if success
+            $this->set_response($user, 200); //This is the respon if success
         }
     }
 }
