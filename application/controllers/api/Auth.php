@@ -78,7 +78,7 @@ class Auth extends BD_Controller
             $this->set_response($user, REST_Controller::HTTP_OK); //This is the respon if success
 
         } else {
-            $this->set_response($invalidLogin . " " . sha1($p), REST_Controller::HTTP_NOT_FOUND); //This is the respon if failed
+            $this->set_response($invalidLogin, REST_Controller::HTTP_NOT_FOUND); //This is the respon if failed
         }
     }
 
@@ -115,7 +115,7 @@ class Auth extends BD_Controller
         $u = $this->post('username'); //Username Posted
         $p = $this->post('password'); //Pasword Posted
         $kunci = $this->config->item('thekey');
-        $invalidLogin = ['status' => 'Invalid Login']; //Respon if login invalid
+        $invalidLogin = ['status' => 'Invalid Login' . " " . sha1($p)]; //Respon if login invalid
         $val = $this->member->login($u, $p); //Model to get single data row from database base on username
         if ($val == null) {
             $this->response($invalidLogin, REST_Controller::HTTP_NOT_FOUND);
