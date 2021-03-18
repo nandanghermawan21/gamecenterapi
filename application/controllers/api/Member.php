@@ -359,7 +359,7 @@ class Member extends BD_Controller
 
         if ($this->user_data->type == "member") {
             $userid = $this->user_data->id;
-            $member = $this->member->login("hermanto", "");
+            $member = $this->member->login($this->user_data->username, $oldPassword);
             if ($member == null) {
                 $this->response("Old password is wrong", 401);
             } else {
