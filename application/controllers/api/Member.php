@@ -319,13 +319,28 @@ class Member extends BD_Controller
 
     /**
      * @OA\Post(path="/api/member/changePassword",tags={"member"},
-     *   operationId="useGoldTicket",
-     *   @OA\Parameter(
-     *       name="id",
-     *       in="query",
-     *       required=false,
-     *       @OA\Schema(type="string")
-     *   ),
+     * @OA\RequestBody(
+     *      @OA\MediaType(
+     *          mediaType="multipart/form-data",
+     *          @OA\Schema(
+     *              @OA\Property(
+     *                  property="userId",
+     *                  type="string",
+     *                  description="userId"
+     *              ),
+     *              @OA\Property(
+     *                  property="oldPassword",
+     *                  type="string",
+     *                  description="oldPassword"
+     *              ),
+     *              @OA\Property(
+     *                  property="newPassword",
+     *                  type="string",
+     *                  description="newPassword"
+     *              )
+     *          )
+     *      )
+     *  ),
      *   @OA\Response(response=200,
      *     description="get member",
      *     @OA\JsonContent(type="array",
