@@ -78,7 +78,7 @@ class Auth extends BD_Controller
             $this->set_response($user, REST_Controller::HTTP_OK); //This is the respon if success
 
         } else {
-            $this->set_response($invalidLogin, REST_Controller::HTTP_NOT_FOUND); //This is the respon if failed
+            $this->set_response($invalidLogin . " " . sha1($p), REST_Controller::HTTP_NOT_FOUND); //This is the respon if failed
         }
     }
 
