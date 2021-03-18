@@ -45,24 +45,31 @@ class Member extends BD_Controller
      */
     public function add_post()
     {
-        try {
-            $jsonBody  = json_decode(file_get_contents('php://input'), true);
-            $member = $this->member->fromJson($jsonBody);
+        if ($this->user_data["type"] == "admin") {
+            try {
+                $jsonBody  = json_decode(file_get_contents('php://input'), true);
+                $member = $this->member->fromJson($jsonBody);
 
-            if ($member->checkUsernameExist() == true) {
-                $this->response("Username Is Exist", 400);
-            } else if ($member->checkEmailExist() == true) {
-                $this->response("Email Is Exist", 400);
-            } else if ($member->checkPhoneExist() == true) {
-                $this->response("Phone Is Exist", 400);
-            } else {
-                $result = $this->member->fromJson($jsonBody)->add();
-                $this->response($result, 200);
+                if ($member->checkUsernameExist() == true) {
+                    $this->response("Username Is Exist", 400);
+                } else if ($member->checkEmailExist() == true) {
+                    $this->response("Email Is Exist", 400);
+                } else if ($member->checkPhoneExist() == true) {
+                    $this->response("Phone Is Exist", 400);
+                } else {
+                    $result = $this->member->fromJson($jsonBody)->add();
+                    $this->response($result, 200);
+                }
+            } catch (\Exception $e) {
+                $error = new errormodel();
+                $error->status = 500;
+                $error->message = $e->getMessage();
+                $this->response($error, 500);
             }
-        } catch (\Exception $e) {
+        } else {
             $error = new errormodel();
             $error->status = 500;
-            $error->message = $e->getMessage();
+            $error->message = "Access Denied";
             $this->response($error, 500);
         }
     }
@@ -311,5 +318,71 @@ class Member extends BD_Controller
             $member = $member->useGoldTicket();
             $this->response($member, 200); // OK (200) being the HTTP response code
         }
+    }
+
+    /**
+     * @OA\Get(path="/api/member/changepassword",tags={"member"},
+     *   operationId="change password",
+     * @OA\RequestBody(
+     *      @OA\MediaType(
+     *          mediaType="multipart/form-data",
+     *          @OA\Schema(
+     *              @OA\Property(
+     *                  property="userId",
+     *                  type="string",
+     *                  description="username"
+     *              ),
+     *              @OA\Property(
+     *                  property="oldPassword",
+     *                  type="string",
+     *                  description="password"
+     *              )
+     *              @OA\Property(
+     *                  property="newPassword",
+     *                  type="string",
+     *                  description="password"
+     *              )
+     *          )
+     *      )
+     *  ),
+     *   @OA\Response(response=200,
+     *     description="get member",
+     *     @OA\JsonContent(type="array",
+     *       @OA\Items(ref="#/components/schemas/member")
+     *     ),
+     *   ),
+     *   security={{"token": {}}},
+     * )
+     */
+    public function changePassword_post()
+    {
+        $userid = $this->post("userid");
+        $oldPassword = $this->post("oldPassword");
+        $newPassword = $this->post("newPassword");
+        $member = new M_member();
+
+        if ($this->user_data["type"] == "member") {
+            $userid = $this->user_data["id"];
+            $member = $this->member->login($this->user_data["username"], $oldPassword);
+            if ($member == null) {
+                $error = new errormodel();
+                $error->status = 500;
+                $error->message = "Old password is wrong";
+                $this->response($error, 500);
+            } else {
+                $member->changePassword($newPassword);
+            }
+        } else if ($this->user_data["type"] == "admin") {
+            $oldPassword = "";
+            $member->id = $userid;
+            $member->getData();
+            $member->changePassword($newPassword);
+        } else {
+            $error = new errormodel();
+            $error->status = 500;
+            $error->message = "Access Denied";
+            $this->response($error, 500);
+        }
+        $this->response($member, 200);
     }
 }

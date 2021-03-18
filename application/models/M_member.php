@@ -476,4 +476,14 @@ class M_member extends CI_Model
 
 		return $count > 0 ? true : false;
 	}
+
+	public function changePassword($newPassword): M_member
+	{
+		$this->password = sha1($newPassword);
+		$this->db->set($this->passwordField(), $this->password);
+		$this->db->where($this->idField(), $this->id);
+		$this->db->update($this->tableName());
+
+		return $this->getData();
+	}
 }

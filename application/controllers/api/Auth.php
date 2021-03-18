@@ -65,6 +65,7 @@ class Auth extends BD_Controller
         if ($p == $match) {  //Condition if password matched
             $token['id'] = $val->id;  //From here
             $token['username'] = $u;
+            $token['type'] = "admin";
             $date = new DateTime();
             $token['iat'] = $date->getTimestamp();
             $token['exp'] = $date->getTimestamp() + 60 * 60 * 5; //To here is to generate token
@@ -113,7 +114,6 @@ class Auth extends BD_Controller
     {
         $u = $this->post('username'); //Username Posted
         $p = sha1($this->post('password')); //Pasword Posted
-        $q = array('username' => $u); //For where query condition
         $kunci = $this->config->item('thekey');
         $invalidLogin = ['status' => 'Invalid Login']; //Respon if login invalid
         $val = $this->member->login($u, $p); //Model to get single data row from database base on username
@@ -122,6 +122,7 @@ class Auth extends BD_Controller
         } else {
             $token['id'] = $val->id;  //From here
             $token['username'] = $u;
+            $token['type'] = "member";
             $date = new DateTime();
             $token['iat'] = $date->getTimestamp();
             $token['exp'] = $date->getTimestamp() + 60 * 60 * 5; //To here is to generate token
