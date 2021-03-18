@@ -25,6 +25,6 @@ delete from m_member where
 id = '547606781341'
 
 update m_member
-set password = '10a34637ad661d98ba3344717656fcc76209c2f8'
+set password = 'da39a3ee5e6b4b0d3255bfef95601890afd80709'
 
 delete * from svc_file
