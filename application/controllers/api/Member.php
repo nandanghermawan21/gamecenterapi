@@ -45,7 +45,7 @@ class Member extends BD_Controller
      */
     public function add_post()
     {
-        if ($this->user_data["type"] == "admin") {
+        if ($this->user_data->type == "admin") {
             try {
                 $jsonBody  = json_decode(file_get_contents('php://input'), true);
                 $member = $this->member->fromJson($jsonBody);
@@ -361,9 +361,9 @@ class Member extends BD_Controller
         $newPassword = $this->post("newPassword");
         $member = new M_member();
 
-        if ($this->user_data["type"] == "member") {
-            $userid = $this->user_data["id"];
-            $member = $this->member->login($this->user_data["username"], $oldPassword);
+        if ($this->user_data->type == "member") {
+            $userid = $this->user_data->id;
+            $member = $this->member->login($this->user_data->username, $oldPassword);
             if ($member == null) {
                 $error = new errormodel();
                 $error->status = 500;
@@ -372,7 +372,7 @@ class Member extends BD_Controller
             } else {
                 $member->changePassword($newPassword);
             }
-        } else if ($this->user_data["type"] == "admin") {
+        } else if ($this->user_data->type == "admin") {
             $oldPassword = "";
             $member->id = $userid;
             $member->getData();
