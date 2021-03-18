@@ -318,8 +318,7 @@ class Member extends BD_Controller
     }
 
     /**
-     * @OA\Get(path="/api/member/changepassword",tags={"member"},
-     *   operationId="change password",
+     * @OA\Post(path="/api/member/changepassword",tags={"Member"},
      * @OA\RequestBody(
      *      @OA\MediaType(
      *          mediaType="multipart/form-data",
@@ -327,28 +326,27 @@ class Member extends BD_Controller
      *              @OA\Property(
      *                  property="userId",
      *                  type="string",
-     *                  description="username"
+     *                  description="userId"
      *              ),
      *              @OA\Property(
      *                  property="oldPassword",
      *                  type="string",
-     *                  description="password"
+     *                  description="oldPassword"
      *              )
      *              @OA\Property(
      *                  property="newPassword",
      *                  type="string",
-     *                  description="password"
+     *                  description="newPassword"
      *              )
      *          )
      *      )
      *  ),
      *   @OA\Response(response=200,
-     *     description="get member",
-     *     @OA\JsonContent(type="array",
-     *       @OA\Items(ref="#/components/schemas/member")
+     *     description="basic user info",
+     *     @OA\JsonContent(
+     *       @OA\Items(ref="#/components/schemas/user")
      *     ),
      *   ),
-     *   security={{"token": {}}},
      * )
      */
     public function changePassword_post()
