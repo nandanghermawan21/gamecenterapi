@@ -364,15 +364,16 @@ class Member extends BD_Controller
                 $this->response("Old password is wrong", 401);
             } else {
                 $member->changePassword($newPassword);
+                $this->response($member, 200);
             }
         } else if ($this->user_data->type == "admin") {
             $oldPassword = "";
             $member->id = $userid;
             $member->getData();
             $member->changePassword($newPassword);
+            $this->response($member, 200);
         } else {
             $this->response("Access Denied", 401);
         }
-        $this->response($member, 200);
     }
 }
