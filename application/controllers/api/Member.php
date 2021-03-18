@@ -67,10 +67,7 @@ class Member extends BD_Controller
                 $this->response($error, 500);
             }
         } else {
-            $error = new errormodel();
-            $error->status = 500;
-            $error->message = "Access Denied";
-            $this->response($error, 500);
+            $this->response("Access Denied", 500);
         }
     }
 
@@ -365,10 +362,7 @@ class Member extends BD_Controller
             $userid = $this->user_data->id;
             $member = $this->member->login($this->user_data->username, $oldPassword);
             if ($member == null) {
-                $error = new errormodel();
-                $error->status = 500;
-                $error->message = "Old password is wrong";
-                $this->response($error, 500);
+                $this->response("Old password is wrong", 401);
             } else {
                 $member->changePassword($newPassword);
             }
@@ -378,10 +372,7 @@ class Member extends BD_Controller
             $member->getData();
             $member->changePassword($newPassword);
         } else {
-            $error = new errormodel();
-            $error->status = 500;
-            $error->message = "Access Denied";
-            $this->response($error, 500);
+            $this->response("Access Denied", 401);
         }
         $this->response($member, 200);
     }
