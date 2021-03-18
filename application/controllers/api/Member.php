@@ -318,55 +318,34 @@ class Member extends BD_Controller
     }
 
     /**
-     * @OA\Post(path="/api/auth/login",tags={"member"},
-     * @OA\RequestBody(
-     *      @OA\MediaType(
-     *          mediaType="multipart/form-data",
-     *          @OA\Schema(
-     *              @OA\Property(
-     *                  property="username",
-     *                  type="string",
-     *                  description="username"
-     *              ),
-     *              @OA\Property(
-     *                  property="password",
-     *                  type="string",
-     *                  description="password"
-     *              )
-     *          )
-     *      )
-     *  ),
+     * @OA\Get(path="/api/member/test",tags={"member"},
+     *   operationId="useGoldTicket",
+     *   @OA\Parameter(
+     *       name="id",
+     *       in="query",
+     *       required=false,
+     *       @OA\Schema(type="string")
+     *   ),
      *   @OA\Response(response=200,
-     *     description="basic user info",
-     *     @OA\JsonContent(
-     *       @OA\Items(ref="#/components/schemas/user")
+     *     description="get member",
+     *     @OA\JsonContent(type="array",
+     *       @OA\Items(ref="#/components/schemas/member")
      *     ),
      *   ),
+     *   security={{"token": {}}},
      * )
      */
-    public function changePassword_post()
+    public function test_get()
     {
-        $userid = $this->post("userid");
-        $oldPassword = $this->post("oldPassword");
-        $newPassword = $this->post("newPassword");
-        $member = new M_member();
+        $id = $this->get("id", true);
 
-        if ($this->user_data->type == "member") {
-            $userid = $this->user_data->id;
-            $member = $this->member->login($this->user_data->username, $oldPassword);
-            if ($member == null) {
-                $this->response("Old password is wrong", 401);
-            } else {
-                $member->changePassword($newPassword);
-            }
-        } else if ($this->user_data->type == "admin") {
-            $oldPassword = "";
-            $member->id = $userid;
-            $member->getData();
-            $member->changePassword($newPassword);
+        $member = $this->member->fromId($id);
+
+        if ($member->goldTicket - 1 < 0) {
+            $this->response("Not Enought Ticket", 400);
         } else {
-            $this->response("Access Denied", 401);
+            $member = $member->useGoldTicket();
+            $this->response($member, 200); // OK (200) being the HTTP response code
         }
-        $this->response($member, 200);
     }
 }
