@@ -318,7 +318,7 @@ class Member extends BD_Controller
     }
 
     /**
-     * @OA\Get(path="/api/member/test",tags={"member"},
+     * @OA\Post(path="/api/member/changePassword",tags={"member"},
      *   operationId="useGoldTicket",
      *   @OA\Parameter(
      *       name="id",
@@ -335,17 +335,29 @@ class Member extends BD_Controller
      *   security={{"token": {}}},
      * )
      */
-    public function test_get()
+    public function changePassword_post()
     {
-        $id = $this->get("id", true);
+        $userid = $this->post("userid");
+        $oldPassword = $this->post("oldPassword");
+        $newPassword = $this->post("newPassword");
+        $member = new M_member();
 
-        $member = $this->member->fromId($id);
-
-        if ($member->goldTicket - 1 < 0) {
-            $this->response("Not Enought Ticket", 400);
+        if ($this->user_data->type == "member") {
+            $userid = $this->user_data->id;
+            $member = $this->member->login($this->user_data->username, $oldPassword);
+            if ($member == null) {
+                $this->response("Old password is wrong", 401);
+            } else {
+                $member->changePassword($newPassword);
+            }
+        } else if ($this->user_data->type == "admin") {
+            $oldPassword = "";
+            $member->id = $userid;
+            $member->getData();
+            $member->changePassword($newPassword);
         } else {
-            $member = $member->useGoldTicket();
-            $this->response($member, 200); // OK (200) being the HTTP response code
+            $this->response("Access Denied", 401);
         }
+        $this->response($member, 200);
     }
 }
