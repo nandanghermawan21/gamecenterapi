@@ -318,25 +318,25 @@ class Member extends BD_Controller
     }
 
     /**
-     * @OA\Post(path="/api/member/changepassword",tags={"Member"},
+     * @OA\Post(path="/api/member/changePassword",tags={"Member"},
      * @OA\RequestBody(
      *      @OA\MediaType(
      *          mediaType="multipart/form-data",
      *          @OA\Schema(
      *              @OA\Property(
-     *                  property="userId",
+     *                  property="userid",
      *                  type="string",
-     *                  description="userId"
+     *                  description="userid"
      *              ),
      *              @OA\Property(
-     *                  property="oldPassword",
+     *                  property="oldpassword",
      *                  type="string",
-     *                  description="oldPassword"
+     *                  description="oldpassword"
      *              )
      *              @OA\Property(
-     *                  property="newPassword",
+     *                  property="newpassword",
      *                  type="string",
-     *                  description="newPassword"
+     *                  description="newpassword"
      *              )
      *          )
      *      )
