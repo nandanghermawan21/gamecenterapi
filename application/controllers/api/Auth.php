@@ -56,10 +56,9 @@ class Auth extends BD_Controller
         $p = sha1($this->post('password')); //Pasword Posted
         $q = array('username' => $u); //For where query condition
         $kunci = $this->config->item('thekey');
-        $invalidLogin = ['status' => 'Invalid Login']; //Respon if login invalid
         $val = $this->user->get_user($q)->row(); //Model to get single data row from database base on username
         if ($this->user->get_user($q)->num_rows() == 0) {
-            $this->response($invalidLogin, REST_Controller::HTTP_NOT_FOUND);
+            $this->response("invalid login", REST_Controller::HTTP_NOT_FOUND);
         }
         $match = $val->password;   //Get password for user from database
         if ($p == $match) {  //Condition if password matched
@@ -78,7 +77,7 @@ class Auth extends BD_Controller
             $this->set_response($user, REST_Controller::HTTP_OK); //This is the respon if success
 
         } else {
-            $this->set_response($invalidLogin, REST_Controller::HTTP_NOT_FOUND); //This is the respon if failed
+            $this->set_response("invalid login", REST_Controller::HTTP_NOT_FOUND); //This is the respon if failed
         }
     }
 
@@ -115,10 +114,9 @@ class Auth extends BD_Controller
         $u = $this->post('username'); //Username Posted
         $p = $this->post('password'); //Pasword Posted
         $kunci = $this->config->item('thekey');
-        $invalidLogin = ['status' => 'Invalid Login']; //Respon if login invalid
         $val = $this->member->login($u, $p); //Model to get single data row from database base on username
         if ($val == null) {
-            $this->response($invalidLogin, REST_Controller::HTTP_NOT_FOUND);
+            $this->response("invalid login", REST_Controller::HTTP_NOT_FOUND);
         } else {
             $token['id'] = $val->id;  //From here
             $token['username'] = $u;
