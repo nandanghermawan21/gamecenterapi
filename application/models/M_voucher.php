@@ -29,11 +29,11 @@ class M_voucher extends CI_Model
 	 * @var int
 	 */
 	public $count;
-	public function countField(): int
+	public function countField(): String
 	{
 		return "count";
 	}
-	public function countJsonKey(): int
+	public function countJsonKey(): String
 	{
 		return "count";
 	}
