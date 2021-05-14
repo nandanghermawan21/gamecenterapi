@@ -13,3 +13,7 @@ create table trx_voucher(
     voucher_id varchar(12),
     used_date datetime,
 )
+
+select * from m_voucher
+
+delete from m_voucher
