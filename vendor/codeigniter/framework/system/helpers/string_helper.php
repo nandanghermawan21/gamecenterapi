@@ -199,26 +199,16 @@ if (!function_exists('random_string')) {
 			case 'basic':
 				return mt_rand();
 			case 'alnum':
+				$pool = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+				return substr(str_shuffle(str_repeat($pool, ceil($len / strlen($pool)))), 0, $len);
 			case 'numeric':
+				$pool = '1234567890';
+				return substr(str_shuffle(str_repeat($pool, ceil($len / strlen($pool)))), 0, $len);
 			case 'nozero':
+				$pool = '123456789';
+				return substr(str_shuffle(str_repeat($pool, ceil($len / strlen($pool)))), 0, $len);
 			case 'alpha':
-				switch ($type) {
-					case 'alpha':
-						$pool = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-						break;
-					case 'alnum':
-						$pool = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-						break;
-					case 'numeric':
-						$pool = '0123456789';
-						break;
-					case 'nozero':
-						$pool = '123456789';
-						break;
-					case 'num':
-						$pool = '1234567890';
-						break;
-				}
+				$pool = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 				return substr(str_shuffle(str_repeat($pool, ceil($len / strlen($pool)))), 0, $len);
 			case 'unique': // todo: remove in 3.1+
 			case 'md5':
