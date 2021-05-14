@@ -28,6 +28,12 @@ class Voucher extends BD_Controller
     /**
      * @OA\Post(path="/api/voucher/add",tags={"voucher"},
      *   operationId="add voucher",
+     *   @OA\Parameter(
+     *       name="count",
+     *       in="query",
+     *       required=false,
+     *       @OA\Schema(type="int")
+     *   ),
      *   @OA\RequestBody(
      *     @OA\MediaType(
      *         mediaType="application/json",
@@ -35,9 +41,9 @@ class Voucher extends BD_Controller
      *     )
      *   ),
      *   @OA\Response(response=200,
-     *     description="add voucher",
-     *     @OA\JsonContent(
-     *       @OA\Items(ref="#/components/schemas/voucher")
+     *     description="get member",
+     *     @OA\JsonContent(type="array",
+     *       @OA\Items(ref="#/components/schemas/member")
      *     ),
      *   ),
      *   security={{"token": {}}},
