@@ -26,7 +26,7 @@ class Voucher extends BD_Controller
 
 
     /**
-     * @OA\Post(path="/api/member/add",tags={"voucher"},
+     * @OA\Post(path="/api/voucher/add",tags={"voucher"},
      *   operationId="add voucher",
      *   @OA\RequestBody(
      *     @OA\MediaType(
