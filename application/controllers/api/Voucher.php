@@ -56,7 +56,7 @@ class Voucher extends BD_Controller
                 $count = $this->post("count");
                 $jsonBody  = json_decode(file_get_contents('php://input'), true);
                 $this->voucher->fromJson($jsonBody);
-                $result = $this->voucher->addBatch(5);
+                $result = $this->voucher->addBatch($count);
                 $this->response($result, 200);
             } catch (\Exception $e) {
                 $error = new errormodel();

@@ -28,6 +28,20 @@ class M_voucher extends CI_Model
 	 * @OA\Property()
 	 * @var int
 	 */
+	public $used;
+	public function usedField(): String
+	{
+		return "used";
+	}
+	public function usedJsonKey(): String
+	{
+		return "used";
+	}
+
+	/**
+	 * @OA\Property()
+	 * @var int
+	 */
 	public $count;
 	public function countField(): String
 	{
@@ -103,6 +117,9 @@ class M_voucher extends CI_Model
 	{
 		if (isset($json[$this->idjsonKey()])) {
 			$this->id = $json[$this->idjsonKey()];
+		}
+		if (isset($json[$this->countJsonKey()])) {
+			$this->count = $json[$this->countJsonKey()];
 		}
 		if (isset($json[$this->startDateJsonKey()])) {
 			$this->startDate = $json[$this->startDateJsonKey()];
