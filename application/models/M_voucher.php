@@ -199,6 +199,9 @@ class M_voucher extends CI_Model
 		$data = array(
 			$this->idField() => $this->id,
 			$this->countField() => $this->count,
+			$this->pointField() => $this->point,
+			$this->silverTicketField() => $this->silverTicket,
+			$this->goldTicketField() => $this->goldTicket,
 			$this->startDateField() => $this->startDate,
 			$this->endDateField() => $this->endDate,
 			$this->createDateField() => $this->createDate,
