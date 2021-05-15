@@ -1,6 +1,6 @@
 
 create table m_voucher(
-    id varchar(16) primary key,
+    id varchar(12) primary key,
     count int,
     used int,
     start_date datetime,

@@ -193,30 +193,41 @@ if (!function_exists('random_string')) {
 	 * @param	int	number of characters
 	 * @return	string
 	 */
-	function random_string($type = 'alnum', $len = 8)
+	function random_string($type = 'alnum', $len = 8, $prefix = "", $sufix = "")
 	{
+		$result = "";
 		switch ($type) {
 			case 'basic':
-				return mt_rand();
+				$result = mt_rand();
 			case 'alnum':
 				$pool = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-				return substr(str_shuffle(str_repeat($pool, ceil($len / strlen($pool)))), 0, $len);
+				$result = substr(str_shuffle(str_repeat($pool, ceil($len / strlen($pool)))), 0, $len);
 			case 'numeric':
 				$pool = '1234567890';
-				return substr(str_shuffle(str_repeat($pool, ceil($len / strlen($pool)))), 0, $len);
+				$result = substr(str_shuffle(str_repeat($pool, ceil($len / strlen($pool)))), 0, $len);
 			case 'nozero':
 				$pool = '123456789';
-				return substr(str_shuffle(str_repeat($pool, ceil($len / strlen($pool)))), 0, $len);
+				$result = substr(str_shuffle(str_repeat($pool, ceil($len / strlen($pool)))), 0, $len);
 			case 'alpha':
 				$pool = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-				return substr(str_shuffle(str_repeat($pool, ceil($len / strlen($pool)))), 0, $len);
+				$result = substr(str_shuffle(str_repeat($pool, ceil($len / strlen($pool)))), 0, $len);
 			case 'unique': // todo: remove in 3.1+
 			case 'md5':
-				return md5(uniqid(mt_rand()));
+				$result = md5(uniqid(mt_rand()));
 			case 'encrypt': // todo: remove in 3.1+
 			case 'sha1':
-				return sha1(uniqid(mt_rand(), TRUE));
+				$result = sha1(uniqid(mt_rand(), TRUE));
 		}
+
+		if ($prefix != "") {
+			$result = $prefix . substr($result, strlen($prefix), strlen($result) - strlen($sufix));
+		}
+
+		if ($sufix != "") {
+			$result = substr($result, 0, strlen($result) - strlen($sufix)) . $sufix;
+		}
+
+		return $result;
 	}
 }
 

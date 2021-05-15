@@ -29,6 +29,24 @@ class Voucher extends BD_Controller
      * @OA\Post(path="/api/voucher/add",tags={"voucher"},
      *   operationId="add voucher",
      *   @OA\Parameter(
+     *       name="prefix",
+     *       in="query",
+     *       required=false,
+     *       @OA\Schema(type="string")
+     *   ),
+     *   @OA\Parameter(
+     *       name="sufix",
+     *       in="query",
+     *       required=false,
+     *       @OA\Schema(type="string")
+     *   ),
+     *   @OA\Parameter(
+     *       name="prefix",
+     *       in="query",
+     *       required=false,
+     *       @OA\Schema(type="string")
+     *   ),
+     *   @OA\Parameter(
      *       name="count",
      *       in="query",
      *       required=false,
@@ -54,9 +72,11 @@ class Voucher extends BD_Controller
         if ($this->user_data->type == "admin") {
             try {
                 $count = $this->post("count");
+                $prefix = $this->post("prefix");
+                $sufix = $this->post("sufix");
                 $jsonBody  = json_decode(file_get_contents('php://input'), true);
                 $this->voucher->fromJson($jsonBody);
-                $result = $this->voucher->addBatch($count);
+                $result = $this->voucher->addBatch(prefix: $prefix, sufix: $sufix, count: $count);
                 $this->response($result, 200);
             } catch (\Exception $e) {
                 $error = new errormodel();

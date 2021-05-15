@@ -153,11 +153,11 @@ class M_voucher extends CI_Model
 		return $data;
 	}
 
-	function add(): M_voucher
+	function add(String $prefix, String $sufix): M_voucher
 	{
 		try {
 			//generate key
-			$this->id = random_string('numeric', 16);
+			$this->id = random_string(type: 'numeric', len: 12, prefix: $prefix, sufix: $sufix);
 
 			$this->db->insert($this->tableName(), $this->toArray());
 
@@ -169,12 +169,12 @@ class M_voucher extends CI_Model
 		}
 	}
 
-	function addBatch(int $count): array
+	function addBatch(String $prefix, String $sufix, int $count): array
 	{
 		$data = [];
 
 		for ($i = 1; $i <= $count; $i++) {
-			array_push($data, $this->add());
+			array_push($data, $this->add(prefix: $prefix, sufix: $sufix));
 		}
 
 		return $data;
