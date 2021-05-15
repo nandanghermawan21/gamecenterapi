@@ -41,12 +41,6 @@ class Voucher extends BD_Controller
      *       @OA\Schema(type="string")
      *   ),
      *   @OA\Parameter(
-     *       name="prefix",
-     *       in="query",
-     *       required=false,
-     *       @OA\Schema(type="string")
-     *   ),
-     *   @OA\Parameter(
      *       name="count",
      *       in="query",
      *       required=false,

@@ -169,7 +169,7 @@ class M_voucher extends CI_Model
 		}
 	}
 
-	function addBatch(String $prefix, String $sufix, int $count): array
+	function addBatch(String $prefix = "", String $sufix = "", int $count = 1): array
 	{
 		$data = [];
 
