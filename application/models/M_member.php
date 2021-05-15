@@ -364,6 +364,7 @@ class M_member extends CI_Model
 			$this->db->or_like($this->phoneField(), $searchKey);
 		}
 
+		$this->db->order_by($this->idField(), "desc");
 		$this->db->limit($limit, $skip);
 
 		$query = $this->db->get();

@@ -1,5 +1,6 @@
 create table m_member(
-    id varchar(12) primary key,
+    id int AUTO_INCREMENT primary key,
+    code varchar(12),
     username varchar(50),
     password varchar(200),
     name varchar(100),
@@ -12,6 +13,8 @@ create table m_member(
     silver_ticket int,
     gold_ticket int
 )
+
+drop table m_member
 
 select * from m_member
 
