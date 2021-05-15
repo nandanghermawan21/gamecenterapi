@@ -103,7 +103,7 @@ class Voucher extends BD_Controller
      *     )
      *   ),
      *   @OA\Response(response=200,
-     *     description="get member",
+     *     description="voucher",
      *     @OA\JsonContent(type="array",
      *       @OA\Items(ref="#/components/schemas/voucher")
      *     ),
@@ -143,7 +143,7 @@ class Voucher extends BD_Controller
      *       @OA\Schema(type="string")
      *   ),
      *   @OA\Response(response=200,
-     *     description="get member",
+     *     description="voucher",
      *     @OA\JsonContent(type="array",
      *       @OA\Items(ref="#/components/schemas/member")
      *     ),
