@@ -241,7 +241,8 @@ class M_voucher extends CI_Model
 		$data = [];
 
 		for ($i = 1; $i <= $count; $i++) {
-			array_push($data, $this->add($prefix, $sufix));
+			$this->add($prefix, $sufix);
+			array_push($data, clone $this);
 		}
 
 		return $data;
