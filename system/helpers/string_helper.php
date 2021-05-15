@@ -201,24 +201,31 @@ if (!function_exists('random_string')) {
 		switch ($type) {
 			case 'basic':
 				$result = mt_rand();
+				break;
 			case 'alnum':
 				$pool = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 				$result = substr(str_shuffle(str_repeat($pool, ceil($len / strlen($pool)))), 0, $len);
+				break;
 			case 'numeric':
 				$pool = '1234567890';
 				$result = substr(str_shuffle(str_repeat($pool, ceil($len / strlen($pool)))), 0, $len);
+				break;
 			case 'nozero':
 				$pool = '123456789';
 				$result = substr(str_shuffle(str_repeat($pool, ceil($len / strlen($pool)))), 0, $len);
+				break;
 			case 'alpha':
 				$pool = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 				$result = substr(str_shuffle(str_repeat($pool, ceil($len / strlen($pool)))), 0, $len);
+				break;
 			case 'unique': // todo: remove in 3.1+
 			case 'md5':
 				$result = md5(uniqid(mt_rand()));
+				break;
 			case 'encrypt': // todo: remove in 3.1+
 			case 'sha1':
 				$result = sha1(uniqid(mt_rand(), TRUE));
+				break;
 		}
 
 		// if ($prefix != "") {
