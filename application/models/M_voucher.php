@@ -6,6 +6,7 @@
 
 class M_voucher extends CI_Model
 {
+
 	public function tableName(): string
 	{
 		return "m_voucher";
@@ -22,6 +23,20 @@ class M_voucher extends CI_Model
 	public function idjsonKey(): string
 	{
 		return "id";
+	}
+
+	/**
+	 * @OA\Property()
+	 * @var string
+	 */
+	public $code;
+	public function codeField(): string
+	{
+		return "code";
+	}
+	public function codejsonKey(): string
+	{
+		return "code";
 	}
 
 	/**
@@ -147,6 +162,7 @@ class M_voucher extends CI_Model
 	function fromRow($row): M_voucher
 	{
 		$this->id = $row->id;
+		$this->code = $row->code;
 		$this->count = $row->count;
 		$this->used = $row->used;
 		$this->point = $row->point;
@@ -163,6 +179,9 @@ class M_voucher extends CI_Model
 	{
 		if (isset($json[$this->idjsonKey()])) {
 			$this->id = $json[$this->idjsonKey()];
+		}
+		if (isset($json[$this->codejsonKey()])) {
+			$this->code = $json[$this->codejsonKey()];
 		}
 		if (isset($json[$this->countJsonKey()])) {
 			$this->count = $json[$this->countJsonKey()];
@@ -202,6 +221,7 @@ class M_voucher extends CI_Model
 	{
 		$data = array(
 			$this->idField() => $this->id,
+			$this->codeField() => $this->code,
 			$this->countField() => $this->count,
 			$this->usedField() => $this->used,
 			$this->pointField() => $this->point,
@@ -219,16 +239,16 @@ class M_voucher extends CI_Model
 	{
 		try {
 			//generate key
-			$this->id = random_string('numeric',  12, $prefix, $sufix);
+			$this->code = random_string('numeric',  12, $prefix, $sufix);
 
 			//chek if key exist
-			if (count($this->db->get_where($this->tableName(), array('id' => $this->id))->result()) >= 1) {
+			if (count($this->db->get_where($this->tableName(), array('code' => $this->id))->result()) >= 1) {
 				$this->add($prefix, $sufix);
 			}
 
 			$this->db->insert($this->tableName(), $this->toArray());
 
-			$data = $this->db->get_where($this->tableName(), array('id' => $this->id));
+			$data = $this->db->get_where($this->tableName(), array('code' => $this->id));
 
 			return $this->fromRow($data->result()[0]);
 		} catch (Exception $e) {
@@ -248,16 +268,16 @@ class M_voucher extends CI_Model
 		return $data;
 	}
 
-	public function get(String $id = null, String $searchKey = null, int $limit = 0, int $skip = 10): array
+	public function get(String $code = null, String $searchKey = null, int $limit = 0, int $skip = 10): array
 	{
 		$this->db->select('*');
 		$this->db->from($this->tableName());
 
-		if ($id != null && $id != "")
-			$this->db->where($this->idField(), $id);
+		if ($code != null && $code != "")
+			$this->db->where($this->codeField(), $code);
 
 		if ($searchKey != null && $searchKey != "") {
-			$this->db->or_like($this->idField(), $searchKey);
+			$this->db->or_like($this->codeField(), $searchKey);
 		}
 
 		$this->db->limit($limit, $skip);
@@ -273,27 +293,27 @@ class M_voucher extends CI_Model
 		return $result;
 	}
 
-	function getById(String $id): M_voucher
+	function getByCode(String $code): M_voucher
 	{
-		$this->id = $id;
-		$data = $this->db->get_where($this->tableName(), array('id' => $this->id))->result();
+		$this->code = $code;
+		$data = $this->db->get_where($this->tableName(), array('code' => $this->code))->result();
 
 		if (count($data) == 1) {
 			return $this->fromRow($data[0]);
 		} else {
-			$this->id = "";
+			$this->code = "";
 			return $this;
 		}
 	}
 
 	function getData(): M_voucher
 	{
-		return $this->getById($this->id);
+		return $this->getByCode($this->id);
 	}
 
 	function useVoucher(String $id)
 	{
-		$this->getById($id);
+		$this->getByCode($id);
 		if ($this == "") {
 			throw new Exception("voucher not found");
 		}

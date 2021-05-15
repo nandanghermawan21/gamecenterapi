@@ -1,6 +1,7 @@
 
 create table m_voucher(
-    id varchar(12) primary key,
+    id int AUTO_INCREMENT primary key,
+    code varchar(12),
     count int,
     used int,
     point int,

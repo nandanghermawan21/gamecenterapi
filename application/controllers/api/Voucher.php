@@ -28,7 +28,7 @@ class Voucher extends BD_Controller
      * @OA\Get(path="/api/voucher/get",tags={"voucher"},
      *   operationId="get voucher",
      *   @OA\Parameter(
-     *       name="id",
+     *       name="code",
      *       in="query",
      *       required=false,
      *       @OA\Schema(type="string")
@@ -63,11 +63,11 @@ class Voucher extends BD_Controller
     public function get_get()
     {
         if ($this->user_data->type == "admin") {
-            $id = $this->get("id", true);
+            $code = $this->get("code", true);
             $serchKey = $this->get("searchKey", true);
             $limit = $this->get("limit", true);
             $skip = $this->get("skip", true);
-            $data = $this->voucher->get($id, $serchKey, $limit, $skip);
+            $data = $this->voucher->get($code, $serchKey, $limit, $skip);
             $this->response($data, 200);
         } else {
             $this->response("Access Denied", 401);
@@ -137,7 +137,7 @@ class Voucher extends BD_Controller
      * @OA\Post(path="/api/voucher/use",tags={"voucher"},
      *   operationId="use voucher",
      *   @OA\Parameter(
-     *       name="voucherid",
+     *       name="code",
      *       in="query",
      *       required=true,
      *       @OA\Schema(type="string")
@@ -153,10 +153,10 @@ class Voucher extends BD_Controller
      */
     public function use_post()
     {
-        $voucherId = $this->input->get("voucherid", true);
+        $code = $this->input->get("code", true);
         try {
             if ($this->user_data->type == "member") {
-                $this->voucher->useVoucher($voucherId);
+                $this->voucher->useVoucher($code);
                 $this->member->fromId($this->user_data->id);
                 $this->member->addPoint($this->voucher->point ?? 0);
                 $this->member->addSilverTicket($this->voucher->silverTicket ?? 0);
