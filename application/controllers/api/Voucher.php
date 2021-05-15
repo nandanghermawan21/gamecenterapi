@@ -24,6 +24,51 @@ class Voucher extends BD_Controller
         $this->load->model('errormodel', 'errormodel');
     }
 
+    /**
+     * @OA\Get(path="/api/member/get",tags={"voucher"},
+     *   operationId="get voucher",
+     *   @OA\Parameter(
+     *       name="id",
+     *       in="query",
+     *       required=false,
+     *       @OA\Schema(type="string")
+     *   ),
+     *   @OA\Parameter(
+     *       name="searchKey",
+     *       in="query",
+     *       required=false,
+     *       @OA\Schema(type="string")
+     *   ),
+     *   @OA\Parameter(
+     *       name="skip",
+     *       in="query",
+     *       required=false,
+     *       @OA\Schema(type="int")
+     *   ),
+     *   @OA\Parameter(
+     *       name="limit",
+     *       in="query",
+     *       required=false,
+     *       @OA\Schema(type="int")
+     *   ),
+     *   @OA\Response(response=200,
+     *     description="get member",
+     *     @OA\JsonContent(type="array",
+     *       @OA\Items(ref="#/components/schemas/voucher")
+     *     ),
+     *   ),
+     *   security={{"token": {}}},
+     * )
+     */
+    public function get_get()
+    {
+        $id = $this->get("id", true);
+        $serchKey = $this->get("searchKey", true);
+        $limit = $this->get("limit", true);
+        $skip = $this->get("skip", true);
+        $data = $this->voucher->get($id, $serchKey, $limit, $skip);
+        $this->response($data, 200); // OK (200) being the HTTP response code
+    }
 
 
     /**

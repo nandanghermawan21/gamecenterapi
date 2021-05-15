@@ -247,6 +247,31 @@ class M_voucher extends CI_Model
 		return $data;
 	}
 
+	public function get(String $id = null, String $searchKey = null, int $limit = 0, int $skip = 10): array
+	{
+		$this->db->select('*');
+		$this->db->from($this->tableName());
+
+		if ($id != null && $id != "")
+			$this->db->where($this->idField(), $id);
+
+		if ($searchKey != null && $searchKey != "") {
+			$this->db->or_like($this->idField(), $searchKey);
+		}
+
+		$this->db->limit($limit, $skip);
+
+		$query = $this->db->get();
+
+		$result = [];
+		foreach ($query->result() as $row) {
+			$member = new M_voucher();
+			$result[] = $member->fromRow($row);
+		}
+
+		return $result;
+	}
+
 	function getById(String $id): M_voucher
 	{
 		$this->id = $id;
