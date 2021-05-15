@@ -52,6 +52,48 @@ class M_voucher extends CI_Model
 		return "count";
 	}
 
+	/**
+	 * @OA\Property()
+	 * @var int
+	 */
+	public $point;
+	public function pointField(): String
+	{
+		return "point";
+	}
+	public function pointJsonKey(): String
+	{
+		return "point";
+	}
+
+	/**
+	 * @OA\Property()
+	 * @var int
+	 */
+	public $silverTicket;
+	public function silverTicketField(): String
+	{
+		return "silver_ticket";
+	}
+	public function silverTicketJsonKey(): String
+	{
+		return "silverTicket";
+	}
+
+	/**
+	 * @OA\Property()
+	 * @var int
+	 */
+	public $goldTicket;
+	public function goldTicketField(): String
+	{
+		return "gold_ticket";
+	}
+	public function goldTicketJsonKey(): String
+	{
+		return "goldTicket";
+	}
+
 
 	/**
 	 * @OA\Property()
@@ -106,6 +148,9 @@ class M_voucher extends CI_Model
 	{
 		$this->id = $row->id;
 		$this->count = $row->count;
+		$this->point = $row->point;
+		$this->silverTicket = $row->silver_ticket;
+		$this->goldTicket = $row->gold_ticket;
 		$this->startDate = $row->start_date;
 		$this->endDate = $row->end_date;
 		$this->createDate = $row->create_date;
@@ -120,6 +165,15 @@ class M_voucher extends CI_Model
 		}
 		if (isset($json[$this->countJsonKey()])) {
 			$this->count = $json[$this->countJsonKey()];
+		}
+		if (isset($json[$this->pointJsonKey()])) {
+			$this->point = $json[$this->pointJsonKey()];
+		}
+		if (isset($json[$this->silverTicketJsonKey()])) {
+			$this->silverTicket = $json[$this->silverTicketJsonKey()];
+		}
+		if (isset($json[$this->goldTicketJsonKey()])) {
+			$this->goldTicket = $json[$this->goldTicketJsonKey()];
 		}
 		if (isset($json[$this->startDateJsonKey()])) {
 			$this->startDate = $json[$this->startDateJsonKey()];

@@ -3,6 +3,9 @@ create table m_voucher(
     id varchar(12) primary key,
     count int,
     used int,
+    point int,
+    silver_ticket int,
+    gold_ticket int,
     start_date datetime,
     end_date datetime,
     create_date datetime
