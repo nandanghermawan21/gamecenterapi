@@ -18,8 +18,10 @@ create table trx_voucher(
     used_date datetime,
 )
 
-select * from m_voucher
+select * from trx_point
 
 delete from m_voucher
 
 drop table m_voucher
+
+select * from m_member
