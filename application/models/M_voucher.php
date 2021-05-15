@@ -153,7 +153,7 @@ class M_voucher extends CI_Model
 		return $data;
 	}
 
-	function add(String $prefix, String $sufix): M_voucher
+	function add(String $prefix = "", String $sufix = ""): M_voucher
 	{
 		try {
 			//generate key

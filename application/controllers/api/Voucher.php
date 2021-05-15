@@ -65,12 +65,12 @@ class Voucher extends BD_Controller
     {
         if ($this->user_data->type == "admin") {
             try {
-                $count = $this->post("count");
-                $prefix = $this->post("prefix");
-                $sufix = $this->post("sufix");
+                $count = $this->get("count");
+                $prefix = $this->get("prefix");
+                $sufix = $this->get("sufix");
                 $jsonBody  = json_decode(file_get_contents('php://input'), true);
                 $this->voucher->fromJson($jsonBody);
-                $result = $this->voucher->addBatch("test", "bla", $count);
+                $result = $this->voucher->addBatch($prefix, $sufix, $count);
                 $this->response($result, 200);
             } catch (\Exception $e) {
                 $error = new errormodel();
