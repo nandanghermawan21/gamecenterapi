@@ -75,7 +75,7 @@ class Member extends BD_Controller
      * @OA\Get(path="/api/member/get",tags={"member"},
      *   operationId="get member",
      *   @OA\Parameter(
-     *       name="id",
+     *       name="code",
      *       in="query",
      *       required=false,
      *       @OA\Schema(type="string")
@@ -109,11 +109,11 @@ class Member extends BD_Controller
      */
     public function get_get()
     {
-        $id = $this->get("id", true);
+        $code = $this->get("code", true);
         $serchKey = $this->get("searchKey", true);
         $limit = $this->get("limit", true);
         $skip = $this->get("skip", true);
-        $data = $this->member->get($id, $serchKey, $limit, $skip);
+        $data = $this->member->get($code, $serchKey, $limit, $skip);
         $this->response($data, 200); // OK (200) being the HTTP response code
     }
 

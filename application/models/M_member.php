@@ -12,7 +12,7 @@ class M_member extends CI_Model
 	}
 	/**
 	 * @OA\Property()
-	 * @var string
+	 * @var int
 	 */
 	public $id;
 	public function idField(): string
@@ -22,6 +22,20 @@ class M_member extends CI_Model
 	public function idjsonKey(): string
 	{
 		return "id";
+	}
+
+	/**
+	 * @OA\Property()
+	 * @var string
+	 */
+	public $code;
+	public function codeField(): string
+	{
+		return "code";
+	}
+	public function codejsonKey(): string
+	{
+		return "code";
 	}
 
 	/**
@@ -196,6 +210,7 @@ class M_member extends CI_Model
 	function fromRow($row): M_member
 	{
 		$this->id = $row->id;
+		$this->code = $row->code;
 		$this->username = $row->username;
 		$this->password = $row->password;
 		$this->name = $row->name;
@@ -216,6 +231,9 @@ class M_member extends CI_Model
 	{
 		if (isset($json[$this->idjsonKey()])) {
 			$this->id = $json[$this->idjsonKey()];
+		}
+		if (isset($json[$this->codejsonKey()])) {
+			$this->code = $json[$this->codejsonKey()];
 		}
 		if (isset($json[$this->usernameJsonKey()])) {
 			$this->username = $json[$this->usernameJsonKey()];
@@ -265,6 +283,7 @@ class M_member extends CI_Model
 	{
 		$data = array(
 			$this->idField() => $this->id,
+			$this->codeField() => $this->code,
 			$this->usernameField() => $this->username,
 			$this->passwordField() => $this->password,
 			$this->nameField() => $this->name,
@@ -308,13 +327,18 @@ class M_member extends CI_Model
 	{
 		try {
 			//generate key
-			$this->id = random_string('numeric', 12);
+			$this->id = null;
+			$this->code = random_string('numeric', 12);
 			$this->password = $this->password == "" ? $this->username :  $this->password;
 			$this->password = sha1($this->password);
 
+			if (count($this->db->get_where($this->tableName(), array('code' => $this->code))->result()) > 0) {
+				$this->add();
+			}
+
 			$this->db->insert($this->tableName(), $this->toArray());
 
-			$data = $this->db->get_where($this->tableName(), array('id' => $this->id));
+			$data = $this->db->get_where($this->tableName(), array('code' => $this->code));
 
 			return $this->fromRow($data->result()[0]);
 		} catch (Exception $e) {
@@ -322,13 +346,13 @@ class M_member extends CI_Model
 		}
 	}
 
-	public function get(String $id = null, String $searchKey = null, int $limit = 0, int $skip = 10): array
+	public function get(String $code = null, String $searchKey = null, int $limit = 0, int $skip = 10): array
 	{
 		$this->db->select('*');
 		$this->db->from($this->tableName());
 
-		if ($id != null && $id != "")
-			$this->db->where($this->idField(), $id);
+		if ($code != null && $code != "")
+			$this->db->where($this->idField(), $code);
 
 		if ($searchKey != null && $searchKey != "") {
 			$this->db->or_like($this->idField(), $searchKey);
