@@ -246,6 +246,8 @@ class M_voucher extends CI_Model
 				$this->add($prefix, $sufix);
 			}
 
+			//reset id
+			$this->id = null;
 			$this->db->insert($this->tableName(), $this->toArray());
 
 			$data = $this->db->get_where($this->tableName(), array('code' => $this->code));
