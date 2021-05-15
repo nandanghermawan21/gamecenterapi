@@ -264,11 +264,11 @@ class M_voucher extends CI_Model
 	{
 		$this->getById($id);
 		if ($this == "") {
-			throw "voucher not found";
+			throw new Exception("voucher not found");
 		}
 
 		if ($this->used == $this->count) {
-			throw "the voucher is not valid";
+			throw new Exception("voucher is not valid");
 		}
 
 		$this->db->set($this->usedField(), ($this->used ?? 0) + 1);
