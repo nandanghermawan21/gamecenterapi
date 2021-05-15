@@ -157,7 +157,7 @@ class M_voucher extends CI_Model
 	{
 		try {
 			//generate key
-			$this->id = random_string(type: 'numeric', len: 12, prefix: $prefix, sufix: $sufix);
+			$this->id = random_string('numeric',  12, $prefix, $sufix);
 
 			$this->db->insert($this->tableName(), $this->toArray());
 
@@ -174,7 +174,7 @@ class M_voucher extends CI_Model
 		$data = [];
 
 		for ($i = 1; $i <= $count; $i++) {
-			array_push($data, $this->add(prefix: $prefix, sufix: $sufix));
+			array_push($data, $this->add($prefix, $sufix));
 		}
 
 		return $data;

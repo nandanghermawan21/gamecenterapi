@@ -76,7 +76,7 @@ class Voucher extends BD_Controller
                 $sufix = $this->post("sufix");
                 $jsonBody  = json_decode(file_get_contents('php://input'), true);
                 $this->voucher->fromJson($jsonBody);
-                $result = $this->voucher->addBatch(prefix: $prefix, sufix: $sufix, count: $count);
+                $result = $this->voucher->addBatch($prefix, $sufix, $count);
                 $this->response($result, 200);
             } catch (\Exception $e) {
                 $error = new errormodel();
