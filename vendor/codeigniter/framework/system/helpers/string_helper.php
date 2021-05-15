@@ -219,17 +219,19 @@ if (!function_exists('random_string')) {
 				$result = sha1(uniqid(mt_rand(), TRUE));
 		}
 
-		$prefix = "test";
-		if ($prefix != "") {
-			// $result = $prefix . substr($result, strlen($prefix), strlen($result) - strlen($sufix));
-			$result = $prefix;
-		}
+		// $prefix = "test";
+		// if ($prefix != "") {
+		// 	// $result = $prefix . substr($result, strlen($prefix), strlen($result) - strlen($sufix));
+		// 	$result = $prefix;
+		// }
 
-		$sufix = "lagi";
-		if ($sufix != "") {
-			// $result = substr($result, 0, strlen($result) - strlen($sufix)) . $sufix;
-			$result = $result . $prefix;
-		}
+		// $sufix = "lagi";
+		// if ($sufix != "") {
+		// 	// $result = substr($result, 0, strlen($result) - strlen($sufix)) . $sufix;
+		// 	$result = $result . $prefix;
+		// }
+
+		$result =  $prefix;
 
 		return $result;
 	}
