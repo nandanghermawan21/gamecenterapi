@@ -160,7 +160,7 @@ class M_voucher extends CI_Model
 			$this->id = random_string('numeric',  12, $prefix, $sufix);
 
 			//chek if key exist
-			if (count($this->db->get_where($this->tableName(), array('id' => $this->id))) >= 1) {
+			if (count($this->db->get_where($this->tableName(), array('id' => $this->id))->result()) >= 1) {
 				$this->add($prefix, $sufix);
 			}
 
