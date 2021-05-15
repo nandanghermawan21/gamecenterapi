@@ -271,7 +271,7 @@ class M_voucher extends CI_Model
 			throw "the voucher is not valid";
 		}
 
-		$this->db->set($this->usedField(), ($this->usedField() ?? 0) + 1);
+		$this->db->set($this->usedField(), ($this->used ?? 0) + 1);
 		$this->db->where($this->idField(), $this->id);
 		$this->db->update($this->tableName());
 
