@@ -65,9 +65,9 @@ class Voucher extends BD_Controller
     {
         if ($this->user_data->type == "admin") {
             try {
-                $count = $this->get("count", true);
-                $prefix = $this->get("prefix", true);
-                $sufix = $this->get("sufix", true);
+                $count = $this->input->get("count", true);
+                $prefix = $this->input->get("prefix", true);
+                $sufix = $this->input->get("sufix", true);
                 $jsonBody  = json_decode(file_get_contents('php://input'), true);
                 $this->voucher->fromJson($jsonBody);
                 $result = $this->voucher->addBatch($prefix, $sufix, $count);
