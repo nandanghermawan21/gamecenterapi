@@ -241,4 +241,40 @@ class M_voucher extends CI_Model
 
 		return $data;
 	}
+
+	function getById(String $id): M_voucher
+	{
+		$this->id = $id;
+		$data = $this->db->get_where($this->tableName(), array('id' => $this->id))->result();
+
+		if (count($data) == 1) {
+			return $this->fromRow($data[0]);
+		} else {
+			$this->id = "";
+			return $this;
+		}
+	}
+
+	function getData(): M_voucher
+	{
+		return $this->getById($this->id);
+	}
+
+	function useVoucher(String $id)
+	{
+		$this->getById($id);
+		if ($this == "") {
+			throw "voucher not found";
+		}
+
+		if ($this->used == $this->count) {
+			throw "the voucher is not valid";
+		}
+
+		$this->db->set($this->usedField()(), $this->usedField() + 1);
+		$this->db->where($this->idField(), $this->id);
+		$this->db->update($this->tableName());
+
+		return $this->getData();
+	}
 }

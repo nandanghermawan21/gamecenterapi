@@ -20,6 +20,7 @@ class Voucher extends BD_Controller
         $this->auth();
         $this->load->helper('string');
         $this->load->model("m_voucher", "voucher");
+        $this->load->model("m_member", "member");
         $this->load->model('errormodel', 'errormodel');
     }
 
@@ -55,7 +56,7 @@ class Voucher extends BD_Controller
      *   @OA\Response(response=200,
      *     description="get member",
      *     @OA\JsonContent(type="array",
-     *       @OA\Items(ref="#/components/schemas/member")
+     *       @OA\Items(ref="#/components/schemas/voucher")
      *     ),
      *   ),
      *   security={{"token": {}}},
@@ -80,6 +81,44 @@ class Voucher extends BD_Controller
             }
         } else {
             $this->response("Access Denied", 401);
+        }
+    }
+
+    /**
+     * @OA\Post(path="/api/voucher/add",tags={"voucher"},
+     *   operationId="use voucher",
+     *   @OA\Parameter(
+     *       name="voucherid",
+     *       in="query",
+     *       required=true,
+     *       @OA\Schema(type="string")
+     *   ),
+     *   @OA\Response(response=200,
+     *     description="get member",
+     *     @OA\JsonContent(type="array",
+     *       @OA\Items(ref="#/components/schemas/member")
+     *     ),
+     *   ),
+     *   security={{"token": {}}},
+     * )
+     */
+    public function usevoucher_post()
+    {
+        $voucherId = $this->input->get("voucherid", true);
+        try {
+            if ($this->user_data->type == "member") {
+                $this->member->id =  $this->user_data->id;
+                $this->voucher->useVoucher($voucherId);
+                $this->member->addPoint($this->voucher->point);
+                return $this->response($this->member, 200);
+            } else {
+                $this->response("Access Denied", 401);
+            }
+        } catch (\Exception $e) {
+            $error = new errormodel();
+            $error->status = 500;
+            $error->message = $e->getMessage();
+            $this->response($error, 500);
         }
     }
 }
