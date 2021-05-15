@@ -25,7 +25,7 @@ class Voucher extends BD_Controller
     }
 
     /**
-     * @OA\Get(path="/api/member/get",tags={"voucher"},
+     * @OA\Get(path="/api/voucher/get",tags={"voucher"},
      *   operationId="get voucher",
      *   @OA\Parameter(
      *       name="id",
