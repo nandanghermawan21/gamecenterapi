@@ -228,9 +228,9 @@ if (!function_exists('random_string')) {
 				break;
 		}
 
-		// if ($prefix != "") {
-		// 	$result = $prefix . substr($result, strlen($prefix), strlen($result) - strlen($sufix));
-		// }
+		if ($prefix != "") {
+			$result = $prefix . substr($result, strlen($prefix), strlen($result) - strlen($sufix));
+		}
 
 		// if ($sufix != "") {
 		// 	$result = substr($result, 0, strlen($result) - strlen($sufix)) . $sufix;
