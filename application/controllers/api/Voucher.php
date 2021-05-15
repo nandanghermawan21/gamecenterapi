@@ -62,12 +62,16 @@ class Voucher extends BD_Controller
      */
     public function get_get()
     {
-        $id = $this->get("id", true);
-        $serchKey = $this->get("searchKey", true);
-        $limit = $this->get("limit", true);
-        $skip = $this->get("skip", true);
-        $data = $this->voucher->get($id, $serchKey, $limit, $skip);
-        $this->response($data, 200); // OK (200) being the HTTP response code
+        if ($this->user_data->type == "admin") {
+            $id = $this->get("id", true);
+            $serchKey = $this->get("searchKey", true);
+            $limit = $this->get("limit", true);
+            $skip = $this->get("skip", true);
+            $data = $this->voucher->get($id, $serchKey, $limit, $skip);
+            $this->response($data, 200);
+        } else {
+            $this->response("Access Denied", 401);
+        }
     }
 
 
