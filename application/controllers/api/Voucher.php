@@ -70,7 +70,7 @@ class Voucher extends BD_Controller
                 $sufix = $this->input->get("sufix", true);
                 $jsonBody  = json_decode(file_get_contents('php://input'), true);
                 $this->voucher->fromJson($jsonBody);
-                $result = $this->voucher->addBatch("test", "lagi", $count);
+                $result = $this->voucher->addBatch($prefix, $sufix, $count);
                 $this->response($result, 200);
             } catch (\Exception $e) {
                 $error = new errormodel();
