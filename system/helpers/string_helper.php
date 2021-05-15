@@ -221,9 +221,9 @@ if (!function_exists('random_string')) {
 				$result = sha1(uniqid(mt_rand(), TRUE));
 		}
 
-		if ($prefix != "") {
-			$result = $prefix . substr($result, strlen($prefix), strlen($result) - strlen($sufix));
-		}
+		// if ($prefix != "") {
+		// 	$result = $prefix . substr($result, strlen($prefix), strlen($result) - strlen($sufix));
+		// }
 
 		// if ($sufix != "") {
 		// 	$result = substr($result, 0, strlen($result) - strlen($sufix)) . $sufix;
