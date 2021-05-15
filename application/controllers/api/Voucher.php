@@ -107,9 +107,9 @@ class Voucher extends BD_Controller
         $voucherId = $this->input->get("voucherid", true);
         try {
             if ($this->user_data->type == "member") {
-                $this->member->id =  $this->user_data->id;
+                $this->member->id =  "765042615483";
                 $this->voucher->useVoucher($voucherId);
-                $this->member->addPoint(10);
+                $this->member->addPoint($this->voucher->point);
                 return $this->response($this->member, 200);
             } else {
                 $this->response("Access Denied", 401);
