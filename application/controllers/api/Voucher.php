@@ -85,7 +85,7 @@ class Voucher extends BD_Controller
     }
 
     /**
-     * @OA\Post(path="/api/voucher/add",tags={"voucher"},
+     * @OA\Post(path="/api/voucher/use",tags={"voucher"},
      *   operationId="use voucher",
      *   @OA\Parameter(
      *       name="voucherid",
