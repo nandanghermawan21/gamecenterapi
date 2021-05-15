@@ -221,12 +221,14 @@ if (!function_exists('random_string')) {
 
 		$prefix = "test";
 		if ($prefix != "") {
-			$result = $prefix . substr($result, strlen($prefix), strlen($result) - strlen($sufix));
+			// $result = $prefix . substr($result, strlen($prefix), strlen($result) - strlen($sufix));
+			$result = $prefix;
 		}
 
 		$sufix = "lagi";
 		if ($sufix != "") {
-			$result = substr($result, 0, strlen($result) - strlen($sufix)) . $sufix;
+			// $result = substr($result, 0, strlen($result) - strlen($sufix)) . $sufix;
+			$result = $result . $prefix;
 		}
 
 		return $result;
