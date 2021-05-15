@@ -282,6 +282,8 @@ class M_voucher extends CI_Model
 			$this->db->or_like($this->codeField(), $searchKey);
 		}
 
+		$this->db->order_by($this->idField(), "desc");
+
 		$this->db->limit($limit, $skip);
 
 		$query = $this->db->get();
