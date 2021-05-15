@@ -198,28 +198,28 @@ if (!function_exists('random_string')) {
 	function random_string($type = 'alnum', $len = 8, $prefix = "", $sufix = "")
 	{
 		$result = "";
-		switch ($type) {
-			case 'basic':
-				$result = mt_rand();
-			case 'alnum':
-				$pool = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-				$result = substr(str_shuffle(str_repeat($pool, ceil($len / strlen($pool)))), 0, $len);
-			case 'numeric':
-				$pool = '1234567890';
-				$result = substr(str_shuffle(str_repeat($pool, ceil($len / strlen($pool)))), 0, $len);
-			case 'nozero':
-				$pool = '123456789';
-				$result = substr(str_shuffle(str_repeat($pool, ceil($len / strlen($pool)))), 0, $len);
-			case 'alpha':
-				$pool = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-				$result = substr(str_shuffle(str_repeat($pool, ceil($len / strlen($pool)))), 0, $len);
-			case 'unique': // todo: remove in 3.1+
-			case 'md5':
-				$result = md5(uniqid(mt_rand()));
-			case 'encrypt': // todo: remove in 3.1+
-			case 'sha1':
-				$result = sha1(uniqid(mt_rand(), TRUE));
-		}
+		// switch ($type) {
+		// 	case 'basic':
+		// 		$result = mt_rand();
+		// 	case 'alnum':
+		// 		$pool = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		// 		$result = substr(str_shuffle(str_repeat($pool, ceil($len / strlen($pool)))), 0, $len);
+		// 	case 'numeric':
+		$pool = '1234567890';
+		$result = substr(str_shuffle(str_repeat($pool, ceil($len / strlen($pool)))), 0, $len);
+		// 	case 'nozero':
+		// 		$pool = '123456789';
+		// 		$result = substr(str_shuffle(str_repeat($pool, ceil($len / strlen($pool)))), 0, $len);
+		// 	case 'alpha':
+		// 		$pool = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		// 		$result = substr(str_shuffle(str_repeat($pool, ceil($len / strlen($pool)))), 0, $len);
+		// 	case 'unique': // todo: remove in 3.1+
+		// 	case 'md5':
+		// 		$result = md5(uniqid(mt_rand()));
+		// 	case 'encrypt': // todo: remove in 3.1+
+		// 	case 'sha1':
+		// 		$result = sha1(uniqid(mt_rand(), TRUE));
+		// }
 
 		// if ($prefix != "") {
 		// 	$result = $prefix . substr($result, strlen($prefix), strlen($result) - strlen($sufix));
