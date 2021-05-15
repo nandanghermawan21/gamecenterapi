@@ -232,9 +232,9 @@ if (!function_exists('random_string')) {
 			$result = $prefix . substr($result, strlen($prefix), strlen($result) - strlen($sufix));
 		}
 
-		// if ($sufix != "") {
-		// 	$result = substr($result, 0, strlen($result) - strlen($sufix)) . $sufix;
-		// }
+		if ($sufix != "") {
+			$result = substr($result, 0, strlen($result) - strlen($sufix)) . $sufix;
+		}
 
 		return $result;
 	}
