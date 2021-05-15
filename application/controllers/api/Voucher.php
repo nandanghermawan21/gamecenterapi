@@ -102,7 +102,7 @@ class Voucher extends BD_Controller
      *   security={{"token": {}}},
      * )
      */
-    public function usevoucher_post()
+    public function use_post()
     {
         $voucherId = $this->input->get("voucherid", true);
         try {
