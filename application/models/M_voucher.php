@@ -13,7 +13,7 @@ class M_voucher extends CI_Model
 	}
 	/**
 	 * @OA\Property()
-	 * @var string
+	 * @var int
 	 */
 	public $id;
 	public function idField(): string
