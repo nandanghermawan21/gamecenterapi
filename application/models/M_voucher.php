@@ -242,13 +242,13 @@ class M_voucher extends CI_Model
 			$this->code = random_string('numeric',  12, $prefix, $sufix);
 
 			//chek if key exist
-			if (count($this->db->get_where($this->tableName(), array('code' => $this->id))->result()) >= 1) {
+			if (count($this->db->get_where($this->tableName(), array('code' => $this->code))->result()) >= 1) {
 				$this->add($prefix, $sufix);
 			}
 
 			$this->db->insert($this->tableName(), $this->toArray());
 
-			$data = $this->db->get_where($this->tableName(), array('code' => $this->id));
+			$data = $this->db->get_where($this->tableName(), array('code' => $this->code));
 
 			return $this->fromRow($data->result()[0]);
 		} catch (Exception $e) {
