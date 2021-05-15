@@ -148,6 +148,7 @@ class M_voucher extends CI_Model
 	{
 		$this->id = $row->id;
 		$this->count = $row->count;
+		$this->used = $row->used;
 		$this->point = $row->point;
 		$this->silverTicket = $row->silver_ticket;
 		$this->goldTicket = $row->gold_ticket;
@@ -165,6 +166,9 @@ class M_voucher extends CI_Model
 		}
 		if (isset($json[$this->countJsonKey()])) {
 			$this->count = $json[$this->countJsonKey()];
+		}
+		if (isset($json[$this->usedJsonKey()])) {
+			$this->used = $json[$this->usedJsonKey()];
 		}
 		if (isset($json[$this->pointJsonKey()])) {
 			$this->point = $json[$this->pointJsonKey()];
@@ -199,6 +203,7 @@ class M_voucher extends CI_Model
 		$data = array(
 			$this->idField() => $this->id,
 			$this->countField() => $this->count,
+			$this->usedField() => $this->used,
 			$this->pointField() => $this->point,
 			$this->silverTicketField() => $this->silverTicket,
 			$this->goldTicketField() => $this->goldTicket,
