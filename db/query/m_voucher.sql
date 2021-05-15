@@ -21,6 +21,9 @@ create table trx_voucher(
 select * from m_voucher
 where id = '283725440099'
 
+update m_voucher
+set point = 5 where point is null
+
 delete from m_voucher
 
 drop table m_voucher
