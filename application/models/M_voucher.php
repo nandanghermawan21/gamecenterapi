@@ -159,6 +159,11 @@ class M_voucher extends CI_Model
 			//generate key
 			$this->id = random_string('numeric',  12, $prefix, $sufix);
 
+			//chek if key exist
+			if (count($this->db->get_where($this->tableName(), array('id' => $this->id)))) {
+				$this->add($prefix, $sufix);
+			}
+
 			$this->db->insert($this->tableName(), $this->toArray());
 
 			$data = $this->db->get_where($this->tableName(), array('id' => $this->id));
