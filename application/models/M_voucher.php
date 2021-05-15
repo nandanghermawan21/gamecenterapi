@@ -267,7 +267,7 @@ class M_voucher extends CI_Model
 			throw new Exception("voucher not found");
 		}
 
-		if ($this->used == $this->count) {
+		if ($this->used >= $this->count) {
 			throw new Exception("voucher is not valid");
 		}
 
