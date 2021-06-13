@@ -7,4 +7,4 @@ create table m_cashier(
     status int
 )
 
-drop table m_cashier
+select * from m_cashier
