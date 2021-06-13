@@ -19,12 +19,20 @@ class M_cashier extends CI_Model
 	{
 		return "id";
 	}
+	public function idJsonKey(): string
+	{
+		return "id";
+	}
 	/**
 	 * @OA\Property()
 	 * @var String
 	 */
 	public $name;
 	public function nameField(): string
+	{
+		return "name";
+	}
+	public function nameJsonKey(): string
 	{
 		return "name";
 	}
@@ -37,6 +45,10 @@ class M_cashier extends CI_Model
 	{
 		return "code";
 	}
+	public function codeJsonKey(): string
+	{
+		return "code";
+	}
 	/**
 	 * @OA\Property()
 	 * @var String
@@ -46,6 +58,10 @@ class M_cashier extends CI_Model
 	{
 		return "username";
 	}
+	public function usernameJsonKey(): string
+	{
+		return "userName";
+	}
 	/**
 	 * @OA\Property()
 	 * @var String
@@ -53,7 +69,11 @@ class M_cashier extends CI_Model
 	public $password;
 	public function passwordField(): string
 	{
-		return "username";
+		return "password";
+	}
+	public function passwordJsonKey(): String
+	{
+		return "password";
 	}
 	/**
 	 * @OA\Property()
@@ -63,6 +83,10 @@ class M_cashier extends CI_Model
 	public function statusField(): string
 	{
 		return "username";
+	}
+	public function statusjsonKey(): string
+	{
+		return "status";
 	}
 
 	function fromRow($row): M_cashier
@@ -101,6 +125,30 @@ class M_cashier extends CI_Model
 			$this->statusField() => $this->status
 		);
 		return $data;
+	}
+
+	function fromJson($json): M_cashier
+	{
+		if (isset($json[$this->idjsonKey()])) {
+			$this->id = $json[$this->idjsonKey()];
+		}
+		if (isset($json[$this->nameJsonKey()])) {
+			$this->name = $json[$this->nameJsonKey()];
+		}
+		if (isset($json[$this->codejsonKey()])) {
+			$this->code = $json[$this->codejsonKey()];
+		}
+		if (isset($json[$this->usernameJsonKey()])) {
+			$this->username = $json[$this->usernameJsonKey()];
+		}
+		if (isset($json[$this->passwordJsonKey()])) {
+			$this->password = $json[$this->passwordJsonKey()];
+		}
+		if (isset($json[$this->statusjsonKey()])) {
+			$this->status = $json[$this->statusjsonKey()];
+		}
+
+		return $this;
 	}
 
 	function login(String $username, String $password)
