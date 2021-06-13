@@ -20,7 +20,7 @@ class Cart extends BD_Controller
         parent::__construct();
         $this->auth();
         $this->load->helper('string');
-        $this->load->model("t_cart", "member");
+        $this->load->model("t_cart", "cart");
         $this->load->model('errormodel', 'errormodel');
     }
 
