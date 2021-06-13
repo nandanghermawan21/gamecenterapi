@@ -50,10 +50,6 @@ class Cashier extends BD_Controller
 
                 if ($cashier->checkUsernameExist() == true) {
                     $this->response("Username Is Exist", 400);
-                } else if ($cashier->checkEmailExist() == true) {
-                    $this->response("Email Is Exist", 400);
-                } else if ($cashier->checkPhoneExist() == true) {
-                    $this->response("Phone Is Exist", 400);
                 } else {
                     $result = $this->cashier->fromJson($jsonBody)->add();
                     $this->response($result, 200);
