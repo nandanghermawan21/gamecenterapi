@@ -14,3 +14,5 @@ values
         'PULSA',
         '{"operator":"string","nomor":"string","nominal":"int"}'
     );
+
+select * from m_trx_type
