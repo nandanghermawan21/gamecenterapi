@@ -79,6 +79,7 @@ class T_cart extends CI_Model
         // Construct the parent class
         parent::__construct();
         $this->load->helper('string');
+        $this->load->model('t_cart_detail', 'cartDetail');
         $this->load->model('filemodel', 'filemodel');
     }
 
@@ -88,6 +89,7 @@ class T_cart extends CI_Model
         $this->code = $row->code;
         $this->cashierCode = $row->cashier_code;
         $this->date = $row->date;
+        $this->detail = $this->cartDetail->getByCartCode($row->cod);
 
         return $this;
     }
@@ -150,29 +152,29 @@ class T_cart extends CI_Model
     }
 
     public function get(String $code = null, String $searchKey = null, int $limit = 0, int $skip = 10): array
-	{
-		$this->db->select('*');
-		$this->db->from($this->tableName());
+    {
+        $this->db->select('*');
+        $this->db->from($this->tableName());
 
-		if ($code != null && $code != "")
-			$this->db->where($this->idField(), $code);
+        if ($code != null && $code != "")
+            $this->db->where($this->idField(), $code);
 
-		if ($searchKey != null && $searchKey != "") {
-			$this->db->or_like($this->idField(), $searchKey);
-			$this->db->or_like($this->codeField(), $searchKey);
-		}
+        if ($searchKey != null && $searchKey != "") {
+            $this->db->or_like($this->idField(), $searchKey);
+            $this->db->or_like($this->codeField(), $searchKey);
+        }
 
-		$this->db->order_by($this->idField(), "desc");
-		$this->db->limit($limit, $skip);
+        $this->db->order_by($this->idField(), "desc");
+        $this->db->limit($limit, $skip);
 
-		$query = $this->db->get();
+        $query = $this->db->get();
 
-		$result = [];
-		foreach ($query->result() as $row) {
-			$member = new T_cart();
-			$result[] = $member->fromRow($row);
-		}
+        $result = [];
+        foreach ($query->result() as $row) {
+            $member = new T_cart();
+            $result[] = $member->fromRow($row);
+        }
 
-		return $result;
-	}
+        return $result;
+    }
 }

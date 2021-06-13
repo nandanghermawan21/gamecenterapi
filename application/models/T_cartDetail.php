@@ -163,51 +163,63 @@ class T_cartDetail extends CI_Model
     }
 
     function add(): T_cartDetail
-	{
-		try {
-			//generate key
-			$this->id = null;
-			$this->code = random_string('numeric', 12);
+    {
+        try {
+            //generate key
+            $this->id = null;
+            $this->code = random_string('numeric', 12);
 
-			if (count($this->db->get_where($this->tableName(), array('code' => $this->code))->result()) > 0) {
-				$this->add();
-			}
+            if (count($this->db->get_where($this->tableName(), array('code' => $this->code))->result()) > 0) {
+                $this->add();
+            }
 
-			$this->db->insert($this->tableName(), $this->toArray());
+            $this->db->insert($this->tableName(), $this->toArray());
 
-			$data = $this->db->get_where($this->tableName(), array('code' => $this->code));
+            $data = $this->db->get_where($this->tableName(), array('code' => $this->code));
 
-			return $this->fromRow($data->result()[0]);
-		} catch (Exception $e) {
-			throw $e;
-		}
-	}
+            return $this->fromRow($data->result()[0]);
+        } catch (Exception $e) {
+            throw $e;
+        }
+    }
 
     public function get(String $code = null, String $searchKey = null, int $limit = 0, int $skip = 10): array
-	{
-		$this->db->select('*');
-		$this->db->from($this->tableName());
+    {
+        $this->db->select('*');
+        $this->db->from($this->tableName());
 
-		if ($code != null && $code != "")
-			$this->db->where($this->idField(), $code);
+        if ($code != null && $code != "")
+            $this->db->where($this->idField(), $code);
 
-		if ($searchKey != null && $searchKey != "") {
-			$this->db->or_like($this->idField(), $searchKey);
-			$this->db->or_like($this->codeField(), $searchKey);
-		}
+        if ($searchKey != null && $searchKey != "") {
+            $this->db->or_like($this->idField(), $searchKey);
+            $this->db->or_like($this->codeField(), $searchKey);
+        }
 
-		$this->db->order_by($this->idField(), "desc");
-		$this->db->limit($limit, $skip);
+        $this->db->order_by($this->idField(), "desc");
+        $this->db->limit($limit, $skip);
 
-		$query = $this->db->get();
+        $query = $this->db->get();
 
-		$result = [];
-		foreach ($query->result() as $row) {
-			$member = new T_cartDetail();
-			$result[] = $member->fromRow($row);
-		}
+        $result = [];
+        foreach ($query->result() as $row) {
+            $member = new T_cartDetail();
+            $result[] = $member->fromRow($row);
+        }
 
-		return $result;
-	}
+        return $result;
+    }
 
+    public function getByCartCode(String $cartCode): array
+    {
+        $query = $this->db->get_where($this->tableName(), array($this->cartCodeField() => $cartCode));
+
+        $result = [];
+        foreach ($query->result() as $row) {
+            $cartDetail = new T_cartDetail();
+            $result[] = $cartDetail->fromRow($row);
+        }
+
+        return  $result;
+    }
 }
