@@ -26,14 +26,7 @@ class Cart extends BD_Controller
 
 
     /**
-     * @OA\Post(path="/api/cart/add",tags={"cart"},
-     *   operationId="add cart",
-     *   @OA\RequestBody(
-     *     @OA\MediaType(
-     *         mediaType="application/json",
-     *         @OA\Schema(ref="#/components/schemas/cart")
-     *     )
-     *   ),
+     * @OA\Post(path="/api/cart/new",tags={"cart"},
      *   @OA\Response(response=200,
      *     description="add cart",
      *     @OA\JsonContent(
@@ -47,9 +40,8 @@ class Cart extends BD_Controller
     {
         if ($this->user_data->type == "cashier") {
             try {
-                $jsonBody  = json_decode(file_get_contents('php://input'), true);
-                $cart = $this->cart->fromJson($jsonBody);
-                $cart->cashierCode = $this->user_data->type;
+                $cart = $this->cart;
+                $cart->cashierCode = $this->user_data->code;
 
                 $result = $cart->add();
                 $this->response($result, 200);

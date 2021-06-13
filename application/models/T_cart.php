@@ -95,7 +95,7 @@ class T_cart extends CI_Model
             $this->cashierCode = $json[$this->cashierCodeJsonKey()];
         }
         if (isset($json[$this->dateJsonKey()])) {
-            $this->date = date('Y-m-d H:i:s',  $json[$this->dateJsonKey()]);
+            $this->date = strtotime($json[$this->dateJsonKey()]);
         }
     }
 
@@ -111,7 +111,7 @@ class T_cart extends CI_Model
         $data = array(
             $this->idField() => $this->id,
             $this->codeField() => $this->code,
-            $this->cashierCodeField()() => $this->cashierCode,
+            $this->cashierCodeField() => $this->cashierCode,
             $this->dateField() => $this->date->format("Y-m-d H:i:s"),
         );
 
@@ -124,7 +124,7 @@ class T_cart extends CI_Model
             //generate key
             $this->id = null;
             $this->code = random_string('numeric', 12);
-            $this->date =  $this->date ?? new DateTime();
+            $this->date = new DateTime();
 
             if (count($this->db->get_where($this->tableName(), array('code' => $this->code))->result()) > 0) {
                 $this->add();
