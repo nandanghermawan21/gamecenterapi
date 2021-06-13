@@ -107,17 +107,17 @@ class Cart extends BD_Controller
     /**
      * @OA\Post(path="/api/cart/addDetail",tags={"cart"},
      *   operationId="add addDetail", 
-     *   @OA\RequestBody(
-     *     @OA\MediaType(
-     *         mediaType="application/json",
-     *         @OA\Schema(ref="#/components/schemas/cartDetail")
-     *     )
-     *   ),
      *   @OA\Parameter(
      *       name="cartCode",
      *       in="query",
      *       required=true,
      *       @OA\Schema(type="string")
+     *   ),
+     *   @OA\RequestBody(
+     *     @OA\MediaType(
+     *         mediaType="application/json",
+     *         @OA\Schema(ref="#/components/schemas/cartDetail")
+     *     )
      *   ),
      *   @OA\Response(response=200,
      *     description="add cart detail",
@@ -130,7 +130,7 @@ class Cart extends BD_Controller
      */
     public function addDetail_post()
     {
-        $code = $this->get("cartCode", true);
+        $code = $this->post("cartCode", true);
         if ($this->user_data->type == "cashier") {
             try {
                 $jsonBody  = json_decode(file_get_contents('php://input'), true);
