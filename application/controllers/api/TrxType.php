@@ -24,7 +24,7 @@ class TrxType extends BD_Controller
     }
 
     /**
-     * @OA\Post(path="/api/member/add",tags={"TransactionType"},
+     * @OA\Post(path="/api/trxType/add",tags={"TransactionType"},
      *   operationId="add trxType",
      *   @OA\RequestBody(
      *     @OA\MediaType(
