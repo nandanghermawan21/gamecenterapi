@@ -1,8 +1,9 @@
 <?php if (!defined('BASEPATH')) exit('No direct script allowed');
 
 /**
- * @OA\Schema(schema="cashier")
+ * @OA\Schema(schema="member")
  */
+
 class M_cashier extends CI_Model
 {
 	public function tableName(): string
