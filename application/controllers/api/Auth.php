@@ -21,6 +21,7 @@ class Auth extends BD_Controller
         $this->methods['users_delete']['limit'] = 50; // 50 requests per hour per user/key
         $this->load->model('M_user', 'user');
         $this->load->model('M_member', 'member');
+        $this->load->model('M_cashier', 'cashier');
     }
 
     /**
@@ -121,6 +122,58 @@ class Auth extends BD_Controller
             $token['id'] = $val->id;  //From here
             $token['username'] = $u;
             $token['type'] = "member";
+            $date = new DateTime();
+            $token['iat'] = $date->getTimestamp();
+            $token['exp'] = $date->getTimestamp() + 60 * 60 * 5; //To here is to generate token
+            $output['token'] = JWT::encode($token, $kunci); //This is the output token
+
+            //result the user
+            $user = $val;
+            $user->token = $output['token'];
+
+            $this->set_response($user, 200); //This is the respon if success
+        }
+    }
+
+     /**
+     * @OA\Post(path="/api/auth/memberlogin",tags={"Auth"},
+     * @OA\RequestBody(
+     *      @OA\MediaType(
+     *          mediaType="multipart/form-data",
+     *          @OA\Schema(
+     *              @OA\Property(
+     *                  property="username",
+     *                  type="string",
+     *                  description="username"
+     *              ),
+     *              @OA\Property(
+     *                  property="password",
+     *                  type="string",
+     *                  description="password"
+     *              )
+     *          )
+     *      )
+     *  ),
+     *   @OA\Response(response=200,
+     *     description="basic user info",
+     *     @OA\JsonContent(
+     *       @OA\Items(ref="#/components/schemas/user")
+     *     ),
+     *   ),
+     * )
+     */
+    public function cashierlogin_post()
+    {
+        $u = $this->post('username'); //Username Posted
+        $p = $this->post('password'); //Pasword Posted
+        $kunci = $this->config->item('thekey');
+        $val = $this->cashier->login($u, $p); //Model to get single data row from database base on username
+        if ($val == null) {
+            $this->response("invalid login", 403);
+        } else {
+            $token['id'] = $val->id;  //From here
+            $token['username'] = $u;
+            $token['type'] = "cashier";
             $date = new DateTime();
             $token['iat'] = $date->getTimestamp();
             $token['exp'] = $date->getTimestamp() + 60 * 60 * 5; //To here is to generate token
