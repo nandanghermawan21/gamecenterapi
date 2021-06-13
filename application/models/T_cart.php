@@ -89,7 +89,7 @@ class T_cart extends CI_Model
         $this->code = $row->code;
         $this->cashierCode = $row->cashier_code;
         $this->date = $row->date;
-        $this->detail = $this->cartDetail->getByCartCode($row->cod);
+        $this->detail = $this->cartDetail->getByCartCode($row->code);
 
         return $this;
     }
