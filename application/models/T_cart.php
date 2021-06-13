@@ -79,7 +79,7 @@ class T_cart extends CI_Model
         // Construct the parent class
         parent::__construct();
         $this->load->helper('string');
-        $this->load->model('t_cart_detail', 'cartDetail');
+        $this->load->model('t_cartDetail', 'cartDetail');
         $this->load->model('filemodel', 'filemodel');
     }
 
