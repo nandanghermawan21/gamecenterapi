@@ -93,7 +93,7 @@ class TrxType extends BD_Controller
      *       @OA\Schema(type="int")
      *   ),
      *   @OA\Response(response=200,
-     *     description="get member",
+     *     description="get trxType",
      *     @OA\JsonContent(type="array",
      *       @OA\Items(ref="#/components/schemas/trxType")
      *     ),
@@ -107,7 +107,7 @@ class TrxType extends BD_Controller
         $serchKey = $this->get("searchKey", true);
         $limit = $this->get("limit", true);
         $skip = $this->get("skip", true);
-        $data = $this->member->get($code, $serchKey, $limit, $skip);
+        $data = $this->trxTupe->get($code, $serchKey, $limit, $skip);
         $this->response($data, 200); // OK (200) being the HTTP response code
     }
 }
