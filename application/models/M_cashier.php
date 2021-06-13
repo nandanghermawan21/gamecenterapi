@@ -84,7 +84,7 @@ class M_cashier extends CI_Model
 	{
 		return "username";
 	}
-	public function statusjsonKey(): string
+	public function statusJsonKey(): string
 	{
 		return "status";
 	}
@@ -145,7 +145,7 @@ class M_cashier extends CI_Model
 			$this->password = $json[$this->passwordJsonKey()];
 		}
 		if (isset($json[$this->statusjsonKey()])) {
-			$this->status = $json[$this->statusjsonKey()];
+			$this->status = $json[$this->statusJsonKey()];
 		}
 
 		return $this;
