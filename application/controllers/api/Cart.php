@@ -116,7 +116,7 @@ class Cart extends BD_Controller
      *   @OA\Parameter(
      *       name="cartCode",
      *       in="query",
-     *       required=false,
+     *       required=true,
      *       @OA\Schema(type="string")
      *   ),
      *   @OA\Response(response=200,
@@ -136,7 +136,6 @@ class Cart extends BD_Controller
                 $jsonBody  = json_decode(file_get_contents('php://input'), true);
                 $cartDetail = $this->cartDetail->fromJson($jsonBody);
                 $cartDetail->cartCode = $code;
-                $cartDetail->cashierCode = $this->user_data->code;
 
                 $result = $cartDetail->add();
                 $this->response($result, 200);

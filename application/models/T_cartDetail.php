@@ -82,11 +82,11 @@ class T_cartDetail extends CI_Model
     public $capital;
     public function capitalField(): string
     {
-        return "data";
+        return "capital";
     }
     public function capitalJsonKey(): string
     {
-        return "data";
+        return "capital";
     }
     /**
      * @OA\Property()
@@ -125,8 +125,8 @@ class T_cartDetail extends CI_Model
         if (isset($json[$this->cartCodeJsonKey()])) {
             $this->cartCode = $json[$this->cartCodeJsonKey()];
         }
-        if (isset($json[$this->trxTypeCodeField()])) {
-            $this->trxTypeCode = $json[$this->trxTypeCodeField()];
+        if (isset($json[$this->trxTypeCodeJsonKey()])) {
+            $this->trxTypeCode = $json[$this->trxTypeCodeJsonKey()];
         }
         if (isset($json[$this->dataJsonKey()])) {
             $this->data = $json[$this->dataJsonKey()];
