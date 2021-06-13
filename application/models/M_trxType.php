@@ -163,4 +163,5 @@ class M_trxType extends CI_Model
 
 		return $result;
 	}
+    
 }

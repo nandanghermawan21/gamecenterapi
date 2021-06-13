@@ -66,7 +66,7 @@ class TrxType extends BD_Controller
     }
 
     /**
-     * @OA\Get(path="/api/member/trxType",tags={"TransactionType"},
+     * @OA\Get(path="/api/trxType/get",tags={"TransactionType"},
      *   operationId="get trxType",
      *   @OA\Parameter(
      *       name="code",
