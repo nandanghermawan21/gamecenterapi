@@ -11,7 +11,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
  *   in="header"
  * )
  */
-class TrxType extends BD_Controller{
+class TrxType extends BD_Controller
+{
     function __construct()
     {
         // Construct the parent class
@@ -22,7 +23,7 @@ class TrxType extends BD_Controller{
         $this->load->model('errormodel', 'errormodel');
     }
 
-      /**
+    /**
      * @OA\Post(path="/api/trxType/add",tags={"TransactionType"},
      *   operationId="add trxType",
      *   @OA\RequestBody(
@@ -48,7 +49,7 @@ class TrxType extends BD_Controller{
                 $trxType = $this->trxType->fromJson($jsonBody);
 
                 if ($trxType->validateCode() == true) {
-                    $this->response("Code Is Exist", 400);
+                    $this->response("Code Is Exist ".$trxType->code." ".$trxType->name, 400);
                 } else {
                     $result = $this->trxType->fromJson($jsonBody)->add();
                     $this->response($result, 200);

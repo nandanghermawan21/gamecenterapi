@@ -134,9 +134,6 @@ class M_trxType extends CI_Model
 
         $count = $this->db->count_all_results();
 
-        print("code => ".$this->code);
-        print("name => ".$this->name);
-
         return $count > 0 ? false : true;
     }
 
