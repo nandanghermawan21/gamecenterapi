@@ -172,6 +172,7 @@ class Auth extends BD_Controller
             $this->response("invalid login", 403);
         } else {
             $token['id'] = $val->id;  //From here
+            $token['code'] = $val->code;  //From here
             $token['username'] = $u;
             $token['type'] = "cashier";
             $date = new DateTime();
