@@ -24,7 +24,7 @@ class Cashier extends BD_Controller
     }
 
     /**
-     * @OA\Post(path="/api/member/add",tags={"cashier"},
+     * @OA\Post(path="/api/cashier/add",tags={"cashier"},
      *   operationId="add cashier",
      *   @OA\RequestBody(
      *     @OA\MediaType(
@@ -70,7 +70,7 @@ class Cashier extends BD_Controller
     }
 
     /**
-     * @OA\Get(path="/api/member/get",tags={"cashier"},
+     * @OA\Get(path="/api/cashier/get",tags={"cashier"},
      *   operationId="get cashier",
      *   @OA\Parameter(
      *       name="code",
@@ -116,7 +116,7 @@ class Cashier extends BD_Controller
     }
 
     /**
-     * @OA\Post(path="/api/member/changePassword",tags={"cashier"},
+     * @OA\Post(path="/api/cashier/changePassword",tags={"cashier"},
      * @OA\RequestBody(
      *      @OA\MediaType(
      *          mediaType="multipart/form-data",
