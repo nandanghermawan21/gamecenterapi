@@ -160,7 +160,7 @@ class T_cart extends CI_Model
 
 		$result = [];
 		foreach ($query->result() as $row) {
-			$member = new M_member();
+			$member = new T_cart();
 			$result[] = $member->fromRow($row);
 		}
 
