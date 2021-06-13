@@ -26,7 +26,7 @@ class Cart extends BD_Controller
 
 
     /**
-     * @OA\Post(path="/api/cart/new",tags={"cart"},
+     * @OA\Get(path="/api/cart/new",tags={"cart"},
      *   @OA\Response(response=200,
      *     description="add cart",
      *     @OA\JsonContent(
@@ -36,7 +36,7 @@ class Cart extends BD_Controller
      *   security={{"token": {}}},
      * )
      */
-    public function new_post()
+    public function new_get()
     {
         if ($this->user_data->type == "cashier") {
             try {
