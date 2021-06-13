@@ -1,7 +1,7 @@
 <?php if (!defined('BASEPATH')) exit('No direct script allowed');
 
 /**
- * @OA\Schema(schema="member")
+ * @OA\Schema(schema="cashier")
  */
 
 class M_cashier extends CI_Model
