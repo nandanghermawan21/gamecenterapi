@@ -135,7 +135,7 @@ class Cart extends BD_Controller
             try {
                 $jsonBody  = json_decode(file_get_contents('php://input'), true);
                 $cartDetail = $this->cartDetail->fromJson($jsonBody);
-                $cartDetail->cartCode = $code;
+                $cartDetail->cartCode = "tfasdfasd";
 
                 $result = $cartDetail->add();
                 $this->response($result, 200);
