@@ -83,7 +83,7 @@ class M_trxType extends CI_Model
             $this->name = $json[$this->nameJsonKey()];
         }
         if (isset($json[$this->dataJsonKey()])) {
-            $this->address = $json[$this->dataJsonKey()];
+            $this->data = $json[$this->dataJsonKey()];
         }
         return $this;
     }

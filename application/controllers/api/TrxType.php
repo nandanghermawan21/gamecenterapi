@@ -46,11 +46,10 @@ class TrxType extends BD_Controller
         if ($this->user_data->type == "admin") {
             try {
                 $jsonBody  = json_decode(file_get_contents('php://input'), true);
-                print($jsonBody);
                 $trxType = $this->trxType->fromJson($jsonBody);
 
                 if ($trxType->validateCode() == true) {
-                    $this->response("Code Is Exist " . $trxType->code . " " . $trxType->name, 400);
+                    $this->response("Code Is Exist", 400);
                 } else {
                     $result = $this->trxType->fromJson($jsonBody)->add();
                     $this->response($result, 200);
