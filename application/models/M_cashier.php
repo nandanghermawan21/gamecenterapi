@@ -139,7 +139,7 @@ class M_cashier extends CI_Model
 			$this->code = $json[$this->codejsonKey()];
 		}
 		if (isset($json[$this->usernameJsonKey()])) {
-			$this->username = $json[$this->usernameJsonKey()];
+			$this->username = $json[$this->usernameJsonKey()]
 		}
 		if (isset($json[$this->passwordJsonKey()])) {
 			$this->password = $json[$this->passwordJsonKey()];
