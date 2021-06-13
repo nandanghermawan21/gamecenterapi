@@ -64,6 +64,15 @@ class T_cart extends CI_Model
     {
         return "date";
     }
+    /**
+     * @OA\Property(
+     *   property="testItems",
+     *   type="array",
+     *   @OA\Items(ref="#/components/schemas/cartDetail")
+     * )
+     */
+    public $detail;
+
 
     function __construct()
     {
