@@ -130,12 +130,13 @@ class Cart extends BD_Controller
      */
     public function addDetail_post()
     {
-        $code = $this->get("cartCode", true);
+        $code = $this->post("cartCode", true);
         if ($this->user_data->type == "cashier") {
             try {
                 $jsonBody  = json_decode(file_get_contents('php://input'), true);
                 $cartDetail = $this->cartDetail->fromJson($jsonBody);
                 $cartDetail->cartCode = $code;
+                $cartDetail->cashierCode = $this->user_data->code;
 
                 $result = $cartDetail->add();
                 $this->response($result, 200);
