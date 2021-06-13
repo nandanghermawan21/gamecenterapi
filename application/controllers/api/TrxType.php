@@ -49,7 +49,8 @@ class TrxType extends BD_Controller
                 $trxType = $this->trxType->fromJson($jsonBody);
 
                 if ($trxType->validateCode() == true) {
-                    $this->response($jsonBody, 400);
+                    print($jsonBody);
+                    // $this->response("Code Is Exist", 400);
                 } else {
                     $result = $this->trxType->fromJson($jsonBody)->add();
                     $this->response($result, 200);
