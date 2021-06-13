@@ -66,7 +66,7 @@ class T_cart extends CI_Model
     }
     /**
      * @OA\Property(
-     *   property="testItems",
+     *   property="detail",
      *   type="array",
      *   @OA\Items(ref="#/components/schemas/cartDetail")
      * )
