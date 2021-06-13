@@ -49,7 +49,7 @@ class Cart extends BD_Controller
             try {
                 $jsonBody  = json_decode(file_get_contents('php://input'), true);
                 $cart = $this->cart->fromJson($jsonBody);
-                $cart->cashierCode = $this->user_data->code;
+                $cart->cashierCode = $this->user_data->type;
 
                 $result = $cart->add();
                 $this->response($result, 200);
