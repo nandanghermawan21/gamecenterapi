@@ -82,7 +82,7 @@ class M_cashier extends CI_Model
 	public $status;
 	public function statusField(): string
 	{
-		return "username";
+		return "status";
 	}
 	public function statusJsonKey(): string
 	{
@@ -120,7 +120,7 @@ class M_cashier extends CI_Model
 			$this->idField() => $this->id,
 			$this->codeField() => $this->code,
 			$this->nameField() => $this->name,
-			$this->usernameField() => "yulia99",
+			$this->usernameField() => $this->username,
 			$this->passwordField() => $this->password,
 			$this->statusField() => $this->status
 		);
