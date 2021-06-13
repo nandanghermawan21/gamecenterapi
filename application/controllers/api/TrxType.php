@@ -29,13 +29,13 @@ class TrxType extends BD_Controller
      *   @OA\RequestBody(
      *     @OA\MediaType(
      *         mediaType="application/json",
-     *         @OA\Schema(ref="#/components/schemas/trxType")
+     *         @OA\Schema(ref="#/components/schemas/member")
      *     )
      *   ),
      *   @OA\Response(response=200,
      *     description="add trxType",
      *     @OA\JsonContent(
-     *       @OA\Items(ref="#/components/schemas/trxType")
+     *       @OA\Items(ref="#/components/schemas/member")
      *     ),
      *   ),
      *   security={{"token": {}}},
