@@ -60,7 +60,7 @@ class M_cashier extends CI_Model
 	}
 	public function usernameJsonKey(): string
 	{
-		return "userName";
+		return "username";
 	}
 	/**
 	 * @OA\Property()
