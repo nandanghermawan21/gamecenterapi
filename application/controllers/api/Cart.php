@@ -36,7 +36,7 @@ class Cart extends BD_Controller
      *   security={{"token": {}}},
      * )
      */
-    public function add_post()
+    public function new_post()
     {
         if ($this->user_data->type == "cashier") {
             try {
