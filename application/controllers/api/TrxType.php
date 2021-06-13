@@ -107,7 +107,7 @@ class TrxType extends BD_Controller
         $serchKey = $this->get("searchKey", true);
         $limit = $this->get("limit", true);
         $skip = $this->get("skip", true);
-        $data = $this->trxTupe->get($code, $serchKey, $limit, $skip);
+        $data = $this->trxType->get($code, $serchKey, $limit, $skip);
         $this->response($data, 200); // OK (200) being the HTTP response code
     }
 }
