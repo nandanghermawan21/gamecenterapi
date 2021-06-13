@@ -21,6 +21,7 @@ class Cart extends BD_Controller
         $this->auth();
         $this->load->helper('string');
         $this->load->model("t_cart", "cart");
+        $this->load->model("t_cartDetail", "cartDetail");
         $this->load->model('errormodel', 'errormodel');
     }
 
@@ -101,5 +102,44 @@ class Cart extends BD_Controller
         $skip = $this->get("skip", true);
         $data = $this->cart->get($code, $serchKey, $limit, $skip);
         $this->response($data, 200); // OK (200) being the HTTP response code
+    }
+
+    /**
+     * @OA\Get(path="/api/cart/addDetail",tags={"cart"},
+     *   @OA\Parameter(
+     *       name="cartCode",
+     *       in="query",
+     *       required=false,
+     *       @OA\Schema(type="string")
+     *   ),
+     *   @OA\Response(response=200,
+     *     description="add cart",
+     *     @OA\JsonContent(
+     *       @OA\Items(ref="#/components/schemas/cartDetail")
+     *     ),
+     *   ),
+     *   security={{"token": {}}},
+     * )
+     */
+    public function addDetail_poss()
+    {
+        $code = $this->get("cartCode", true);
+        if ($this->user_data->type == "cashier") {
+            try {
+                $jsonBody  = json_decode(file_get_contents('php://input'), true);
+                $cartDetail = $this->cart->fromJson($jsonBody);
+                $cartDetail->cartCode =  $code;
+
+                $result = $cartDetail->add();
+                $this->response($result, 200);
+            } catch (\Exception $e) {
+                $error = new errormodel();
+                $error->status = 500;
+                $error->message = $e->getMessage();
+                $this->response($error, 500);
+            }
+        } else {
+            $this->response("Access Denied", 500);
+        }
     }
 }
