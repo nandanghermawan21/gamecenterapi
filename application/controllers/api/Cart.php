@@ -105,7 +105,7 @@ class Cart extends BD_Controller
     }
 
     /**
-     * @OA\Get(path="/api/cart/addDetail",tags={"cart"},
+     * @OA\Post(path="/api/cart/addDetail",tags={"cart"},
      *   operationId="add addDetail", 
      *   @OA\RequestBody(
      *     @OA\MediaType(
